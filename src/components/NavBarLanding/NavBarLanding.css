@@ -1,0 +1,49 @@
+.nav_bar1 {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    transition: background-color 0.3s; 
+}
+
+.nav_bar1.scrolled {
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+  
+  .app_name{
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bolder;
+    font-size: 40px;
+    color: white;
+  }
+  .nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin-left: 5%;
+    padding: 0;
+    flex-grow: 1; 
+    justify-content: flex-start; 
+  }
+  
+  .nav_links li {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .nav_links a {
+    text-decoration: none;
+    font-family: "Poppins", system-ui;
+    font-style: normal;
+    color: white;
+  }
+  
+  .nav_links a:hover {
+    color: #00B78C;
+  }
+  

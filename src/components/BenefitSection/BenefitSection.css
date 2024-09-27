@@ -1,0 +1,14 @@
+.benefits_container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .benefit_item {
+    flex: 1; 
+    padding: 20px; 
+    text-align: center; 
+    color: white;
+    font-family: "Poppins", system-ui;
+    font-style: normal;
+  }
+  
