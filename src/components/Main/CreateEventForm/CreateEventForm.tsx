@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import CreateEventFormView from './CreateEventForm.View';
 import { LeafletMouseEvent } from 'leaflet';
 import OpenModalButton from '../ButtonModal/ButtonModal';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../../utils/firebaseConfig'; 
 
 const CreateEventForm: React.FC = () => {
     const [name, setName] = useState<string>('');
@@ -36,7 +38,7 @@ const CreateEventForm: React.FC = () => {
         setEventImage(eventImages[eventType] || null); // Asigna la imagen correspondiente
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!mapClicked) {
@@ -57,13 +59,21 @@ const CreateEventForm: React.FC = () => {
             eventType,
             dressCode,
             description,
+            // userId: user.uid,
             coordinates: { lat, lng },
             image: eventImage, 
         };
         console.log('Event data:', eventData);
 
+        try {
+            const docRef = await addDoc(collection(db, "events"), eventData);
+            console.log("Documento escrito con ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error añadiendo documento: ", e);
+        }
+    
         resetForm();
-        setIsModalOpen(false); 
+        setIsModalOpen(false);
     };
 
     const resetForm = () => {
@@ -120,8 +130,8 @@ const CreateEventForm: React.FC = () => {
                     lat={lat ?? initialLat} 
                     lng={lng ?? initialLng} 
                     onMapClick={onMapClick}
-                    onClose={handleClose}  // Llama a la función para cerrar el modal
-                    eventImage={eventImage} // Pasar la imagen seleccionada
+                    onClose={handleClose}  
+                    eventImage={eventImage} 
                 />
             )}
         </div>
