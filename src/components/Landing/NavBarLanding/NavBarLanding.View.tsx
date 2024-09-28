@@ -1,7 +1,7 @@
 import React from "react";
 import "../NavBarLanding/NavBarLanding.css"
 import Button from "../NavButtons/NavButtons.View";
-import useScroll from "../../hooks/useScroll"
+import useScroll from "../../../hooks/useScroll";
 
 const Nav1: React.FC = () => {
     const scrolled = useScroll(); 

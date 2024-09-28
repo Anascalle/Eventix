@@ -2,7 +2,7 @@
     background: 
     linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
     linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1)), 
-    url('../../Img/banner.jpg'); 
+    url('../../../Img/banner.jpg'); 
     background-size: cover;
     background-position: center; 
     height: 100vh; 
@@ -39,7 +39,7 @@
       background: 
       linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
       linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1)), 
-      url('../../Img/bannerResponsive.jpg');
+      url('../../../Img/bannerResponsive.jpg');
       background-size: cover;
       background-position: center; 
       height: 100vh; 

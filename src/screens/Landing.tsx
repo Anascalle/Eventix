@@ -1,8 +1,8 @@
 import React from 'react';
-import Nav1 from '../components/NavBarLanding/NavBarLanding.View';
-import Banner from '../components/Banner/Banner.View';
-import SectionGroup from '../components/SectionGroup/SectionGroup.View';
-import Footer from '../components/Footer/Footer.View';
+import Nav1 from '../components/Landing/NavBarLanding/NavBarLanding.View';
+import Banner from '../components/Landing/Banner/Banner.View';
+import SectionGroup from '../components/Landing/SectionGroup/SectionGroup.View';
+import Footer from '../components/Landing/Footer/Footer.View';
 
 
 const LandingScreen: React.FC = () => {

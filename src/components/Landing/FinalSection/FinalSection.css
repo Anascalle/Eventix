@@ -5,7 +5,7 @@
     font-style: normal;
 }
 .final_section{
-background-image: url('../../Img/img4.png'); 
+background-image: url('../../../Img/img4.png'); 
   background-size: cover; 
   background-repeat: no-repeat;
   background-size: contain;
@@ -45,7 +45,7 @@ background-image: url('../../Img/img4.png');
   }
 
   .final_section{
-    background-image: url('../../Img/img4-mobile.png'); 
+    background-image: url('../../../Img/img4-mobile.png'); 
       background-size: cover; 
       background-repeat: no-repeat;
       background-size: contain;
