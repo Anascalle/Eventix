@@ -34,6 +34,7 @@ const Section: React.FC<SectionProps> = ({
                             {text}
                             
                        {text === "you" && <br />}
+                      
                         </span>
                     ))}
                 </h1>

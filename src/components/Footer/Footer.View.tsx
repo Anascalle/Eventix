@@ -14,6 +14,7 @@ const Footer: React.FC = () => {
             <Button label="SIGN UP" variant="primary" />
             <div>
             <img src="/src/Img/img5.png" alt="Footer" className="footer_image" />
+            <img src="/src/Img/img5-mobile.png" alt="Footer Responsive" className="footer_image_responsive" />
             <div className="footer_green-box"></div>
             </div>
             

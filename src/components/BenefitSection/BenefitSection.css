@@ -11,4 +11,21 @@
     font-family: "Poppins", system-ui;
     font-style: normal;
   }
-  
+  @media (max-width: 768px) {
+    .benefits_container {
+        flex-direction: column; 
+    }
+
+    .benefit_item {
+        flex: none; 
+    }
+  }
+  @media (max-width: 375px) {
+    .benefits_container {
+        flex-direction: column; 
+    }
+
+    .benefit_item {
+        flex: none; 
+    }
+}

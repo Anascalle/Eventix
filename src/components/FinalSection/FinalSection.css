@@ -18,3 +18,42 @@ background-image: url('../../Img/img4.png');
   
   
 }
+
+@media (max-width: 768px) {
+  .section_title {
+      font-size: 2rem;
+      margin-bottom: 45%;
+      margin-left: 45%;
+  }
+
+  .final_section {
+      padding-right: 0px;
+  }
+}
+
+@media (max-width: 375px) {
+  .section_title {
+      font-size:25px;
+      margin-bottom: 120%;
+      margin-left: 30px;
+      width: 100%;
+      text-align: center;
+      
+  }
+  .normal{
+    display: none;
+  }
+
+  .final_section{
+    background-image: url('../../Img/img4-mobile.png'); 
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center; 
+      display: flex; 
+      justify-content: flex-end; 
+      align-items: center; 
+      
+     
+  }    
+}
