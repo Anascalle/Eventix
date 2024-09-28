@@ -18,6 +18,7 @@ const CreateEventForm: React.FC = () => {
     const [mapClicked, setMapClicked] = useState<boolean>(false); 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [eventImage, setEventImage] = useState<string | null>(null); 
+    const [amount, setAmount] = useState<number | undefined>(undefined);
 
    
     const eventImages: Record<string, string> = {
@@ -46,8 +47,13 @@ const CreateEventForm: React.FC = () => {
             return;
         }
 
-        if (!name || !date || !startTime || !location || !eventType || !dressCode || !description) {
+        if (!name || !date || !startTime || !location || !eventType || !dressCode || !description || !amount) {
             alert("Por favor, completa todos los campos requeridos.");
+            return;
+        }
+
+        if (amount < 1) {
+            alert("La cantidad debe ser mayor o igual a 1.");
             return;
         }
 
@@ -62,20 +68,23 @@ const CreateEventForm: React.FC = () => {
             // userId: user.uid,
             coordinates: { lat, lng },
             image: eventImage, 
+            amount,
         };
         console.log('Event data:', eventData);
 
         try {
             const docRef = await addDoc(collection(db, "events"), eventData);
             console.log("Documento escrito con ID: ", docRef.id);
+        
         } catch (e) {
             console.error("Error añadiendo documento: ", e);
+            
         }
     
         resetForm();
         setIsModalOpen(false);
     };
-
+    
     const resetForm = () => {
         setName('');
         setDate('');
@@ -88,6 +97,8 @@ const CreateEventForm: React.FC = () => {
         setLng(undefined);
         setMapClicked(false); 
         setEventImage(null); 
+        setAmount(undefined);
+        
     };
 
     const onMapClick = (event: LeafletMouseEvent) => {
@@ -132,6 +143,8 @@ const CreateEventForm: React.FC = () => {
                     onMapClick={onMapClick}
                     onClose={handleClose}  
                     eventImage={eventImage} 
+                    amount={amount || 0} 
+                    setAmount={setAmount} 
                 />
             )}
         </div>

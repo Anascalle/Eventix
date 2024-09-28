@@ -20,6 +20,8 @@ interface CreateEventFormViewProps {
     handleSubmit: (e: React.FormEvent) => void;
     lat: number;
     lng: number;
+    amount: number;
+    setAmount: (value: number) => void;
     onMapClick: (event: any) => void; 
     onClose: () => void; 
     eventImage: string | null; 
@@ -28,7 +30,7 @@ interface CreateEventFormViewProps {
 const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
     name, setName, date, setDate, startTime, setStartTime, location, setLocation,
     eventType, setEventType, dressCode, setDressCode, description, setDescription,
-    handleSubmit, lat, lng, onMapClick, onClose, eventImage
+    handleSubmit, lat, lng, onMapClick, onClose, amount, setAmount
 }) => {
     return (
         <div className="create_event_form">
@@ -92,6 +94,13 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     placeholder="Description"
                     required
                 ></textarea>
+                <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) =>  setAmount(Number(e.target.value))}
+                    placeholder="Event amount"
+                    required
+                />
 
             
 
