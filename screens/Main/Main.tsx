@@ -1,7 +1,8 @@
 import React from 'react'; 
 import Nav2 from '../../components/Main/Nav/Nav';
-import Invitations from '../../components/Main/Invitations/invitations';
+
 import "./Main.css"
+import Invitations from '../../components/Main/Invitations/invitations';
 
 const Main: React.FC = () => {
     return (
