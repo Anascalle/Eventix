@@ -30,9 +30,8 @@
     font-style: normal;
   }
   
-  @media (max-width: 768px) {
-
-    
+  .account-message {
+    display: none;
   }
   @media (max-width: 375px) {
     .banner {
@@ -54,6 +53,7 @@
     }
 
     .banner h1 {
+      margin-top: 140px;
         font-size: 3rem; 
     }
 
@@ -61,4 +61,26 @@
         font-size: 0.8rem; 
         margin: 5px 0; 
     }
+    .account-message {
+      display: block;
+   
+    }
+
+    .login-button{
+      color:#00B78C; 
+      background-color: transparent;
+      border-color: transparent;
+      font-weight: 700;
+      box-shadow: none;
+      font-family: "Poppins", system-ui;
+      text-decoration: none; 
+      margin-left: 5px;
+      
+    }
+    .account-message {
+      display: flex;
+      align-items: center;
+      margin-top: 100px; 
+    }
+
 }

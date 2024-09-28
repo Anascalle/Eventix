@@ -1,14 +1,13 @@
-import './App.css'
-import LandingScreen from './screens/Landing'
+import React from 'react';
 
+import './App.css'; 
 
 function App() {
- 
   return (
     <div>
-      <LandingScreen></LandingScreen>
+     
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

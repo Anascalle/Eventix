@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css'; 
-import Button from '../NavButtons/NavButtons.View';
+import ButtonLogic from '../NavButtons/NavButtons';
+
 const Footer: React.FC = () => {
     return (
         <footer className="footer_container">
@@ -11,7 +12,7 @@ const Footer: React.FC = () => {
                 <span className="footer_word" style={{ color: '#FFAA00' }}>now</span> 
                 <span className="footer_word" style={{ color: '#00B78C' }}>!</span>
             </h1>
-            <Button label="SIGN UP" variant="primary" />
+            <ButtonLogic showPrimary={false} showSecondary={true} />
             <div>
             <img src="/src/Img/img5.png" alt="Footer" className="footer_image" />
             <img src="/src/Img/img5-mobile.png" alt="Footer Responsive" className="footer_image_responsive" />
