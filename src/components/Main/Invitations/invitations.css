@@ -3,14 +3,14 @@
     -webkit-box-shadow: 5px 6px 23px -4px rgba(128,128,128,0.39);
 -moz-box-shadow: 5px 6px 23px -4px rgba(128,128,128,0.39);
 box-shadow: 5px 6px 23px -4px rgba(128,128,128,0.39);
-width: 24vw;
+width: 20vw;
 height: 40vw;
 border-radius: 25px;
 padding-right: 2vw;
 }
 
 #invitations_div{
-    margin-left: 2vw;
+    margin-left: 1vw;
     margin-top: 2vw;
 }
 
@@ -38,4 +38,14 @@ h2{
     margin-bottom: 2vw;
 }
 
+#ocation{
+    font-weight: 700;
+}
 
+#date{
+    font-weight: 700;
+}
+
+span{
+    font-weight: 400;
+}
