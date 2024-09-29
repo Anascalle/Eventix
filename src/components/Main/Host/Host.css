@@ -1,7 +1,9 @@
 /* En tu archivo CSS principal (e.g., Host.css o App.css) */
 
 
-
+#buttons_event{
+display: flex;
+}
 #Host_card{
     border-radius: 20px;
     margin-top: -40vw;

@@ -1,13 +1,33 @@
-import React from "react";
+
 import "./Host.css";
-import profiles from "../data/data";
+import React, { useEffect, useState } from "react";
+import { db } from "../../../utils/firebaseConfig"; // Importa tu configuración de Firebase
+import { collection, getDocs } from "firebase/firestore";
 import HostEvents from "./Host";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css/bundle"
 import "swiper/css/pagination"
 
+interface EventProfile {
+  id: string; 
+  name: string;
+  eventType: string;
+  date: string;
+  image: string;
+}
 
 const Host: React.FC = () => {
+  const [profiles, setProfiles] = useState<EventProfile[]>([]); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, "events")); 
+      const data: EventProfile[] = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as EventProfile));
+      setProfiles(data); 
+    };
+
+    fetchData();
+  }, []);
 
   const extendedProfiles = [...profiles, ...profiles];  // Duplicar el array para más slides
   return (
@@ -24,10 +44,10 @@ const Host: React.FC = () => {
         >{extendedProfiles.map((profile, index) => (
           <SwiperSlide key={index}>
          <HostEvents
-           key={index}
-           ocation={profile.Ocation}
-           date={profile.Date}
-           url={profile.EventImg}
+           key={profile.id}
+           ocation={profile.eventType}
+           date={profile.date}
+           url={profile.image}
          />
          </SwiperSlide>
        ))}
