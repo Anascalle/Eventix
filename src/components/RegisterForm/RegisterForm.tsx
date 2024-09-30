@@ -19,10 +19,11 @@ function RegisterForm(){
         try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        const accountAmountNumber = parseInt(accountAmount);
 
         await setDoc(doc(db, 'users', user.uid), {
             username: username,
-            accountAmount: accountAmount,
+            accountAmount: accountAmountNumber,
             email: user.email
         });
         console.log('Usuario registrado:', userCredential.user, 'Usuario registrado con datos adicionales:', user);
