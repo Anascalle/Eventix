@@ -1,0 +1,40 @@
+/* En tu archivo CSS principal (e.g., Host.css o App.css) */
+
+
+#buttons_event{
+display: flex;
+}
+#Host_card{
+    border-radius: 20px;
+    margin-top: -40vw;
+    margin-left: 22vw;
+    z-index: -1;
+}
+
+.swiper-slide {
+    margin: 0;  /* Asegúrate de que el margen de la slide sea 0 */
+}
+
+#hosts_events{
+    border-color: rgb(0, 255, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    padding: 1vw;
+    margin: 2vw;
+    width: 14vw;
+}
+
+#carousel{
+    width: 65vw;
+        height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#host_tittle{
+    display: flex;
+    justify-content: left;
+    margin-bottom: -1vw;
+    margin-left: 2vw;
+}

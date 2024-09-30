@@ -1,3 +1,4 @@
+import "./FunctionBtns.css"
 
 interface FunctionProp{
     NextShooping: () => void;

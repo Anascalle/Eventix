@@ -1,4 +1,5 @@
 import FunctionBtn from "../FunctionBtns/FunctionBtns.view";
+import "./InfoCard.css"
 
 interface InfoProp {
     img: string;
@@ -13,7 +14,7 @@ interface InfoProp {
 }
 
 const InfoCard: React.FC<InfoProp> = (prop) => {
-    
+
     const handleNextShooping = () => {
         console.log("Shooping clicked");
     };
@@ -33,20 +34,24 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
             </div>
             <div className="NameEvent">
                 <h1>{prop.NameEvent}</h1>
-                <button></button>
+                <button>
+                    <img className="BtnImg" src="/src/Img/edit.png" alt="" />
+                </button>
             </div>
             <div className="Host">
-                <p>{prop.Host}</p>
+                <p><strong>Host:</strong> {prop.Host}</p>
             </div>
-            <div className="InfoSecttion1">
-                <p>{prop.EventType}</p>
-                <p>{prop.DressCode}</p>
-                <p>{prop.Date}</p>
-                <p>{prop.StartTime}</p>
-                <p>{prop.Location}</p>
-            </div>
-            <div className="InfoSecttion2">
-                <p>{prop.Description}</p>
+            <div className="InfoSections">
+                <div className="InfoSecttion1">
+                    <p><strong>Event Type:</strong> {prop.EventType}</p>
+                    <p><strong>Dress Code:</strong> {prop.DressCode}</p>
+                    <p><strong>Date:</strong> {prop.Date}</p>
+                    <p><strong>Start Time:</strong> {prop.StartTime}</p>
+                    <p><strong>Location:</strong> {prop.Location}</p>
+                </div>
+                <div className="InfoSecttion2">
+                    <p><strong>Description:</strong> {prop.Description}</p>
+                </div>
             </div>
             <div className="FunctionBtns">
                 <FunctionBtn

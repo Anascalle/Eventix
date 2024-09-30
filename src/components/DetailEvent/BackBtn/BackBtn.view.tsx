@@ -1,3 +1,4 @@
+import "./BackBtn.css"
 
 interface BackProp{
     NameEvent: string;

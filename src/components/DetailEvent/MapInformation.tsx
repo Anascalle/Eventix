@@ -1,9 +1,10 @@
 import BackBtn from "./BackBtn/BackBtn.view";
 import InfoCard from "./InfoCard/InfoCard.view";
+import "./MapInfo.css"
 
 const MapInformation: React.FC = () => {
     const eventInfo = {
-        img: "path_to_image.jpg",
+        img: "/src/Img/image.png",
         NameEvent: "Sample Event",
         Host: "John Doe",
         EventType: "Conference",
@@ -15,11 +16,11 @@ const MapInformation: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="MapInfo">
             <BackBtn NameEvent={eventInfo.NameEvent} />
             <InfoCard
-                img={eventInfo.img}
-                NameEvent={eventInfo.NameEvent}
+                img= {eventInfo.img}
+                NameEvent= {eventInfo.NameEvent}
                 Host={eventInfo.Host}
                 EventType={eventInfo.EventType}
                 DressCode={eventInfo.DressCode}
