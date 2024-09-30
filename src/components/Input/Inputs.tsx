@@ -5,13 +5,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     info: string;
     infoPlaceholder: string;
     uid: string;
+    inputType: string;
 }
 
-const Inputs: React.FC<InputProps> = ({ uid, lillogo, info, infoPlaceholder, ...props }) => {
+const Inputs: React.FC<InputProps> = ({ uid, lillogo, info, infoPlaceholder, inputType, ...props }) => {
 
     return <div>
         <p>{info}</p>
-        <input id={uid} type="text" placeholder={infoPlaceholder} {...props}/>
+        <input id={uid} type={inputType} placeholder={infoPlaceholder} {...props}/>
     </div>
 }
 
