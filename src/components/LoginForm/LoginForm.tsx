@@ -22,8 +22,8 @@ function LoginForm(){
 
     return <form onSubmit={handleLogin} id="loginForm">
     <RegisterMessage title="Log In" infoMessagept1="If you haven't registered yet" infoMessagept2="You can" infoLink="Register here !"></RegisterMessage>
-    <Inputs uid="loginEmail" lillogo="" info="Email" infoPlaceholder="Enter your email address" onChange={(e) => setEmail(e.target.value)}></Inputs>
-    <Inputs uid="loginPassword" lillogo="" info="Password" infoPlaceholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></Inputs>
+    <Inputs inputType="email" uid="loginEmail" lillogo="" info="Email" infoPlaceholder="Enter your email address" onChange={(e) => setEmail(e.target.value)}></Inputs>
+    <Inputs inputType="password" uid="loginPassword" lillogo="" info="Password" infoPlaceholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></Inputs>
     <RegisterButton btnId="" buttonText="Login"></RegisterButton>
     </form>
 }

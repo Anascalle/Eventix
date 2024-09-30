@@ -35,10 +35,10 @@ function RegisterForm(){
 
     return <form id="registerForm" onSubmit={handleRegister}>
     <RegisterMessage title="Sign Up" infoMessagept1="If you already have an account registered" infoMessagept2="You can" infoLink="Login here !"></RegisterMessage>
-    <Inputs uid="registerEmail" lillogo="" info="Email" infoPlaceholder="Enter your email address" onChange={(e) => setEmail(e.target.value)} />
-    <Inputs uid="registerUsername" lillogo="" info="Username" infoPlaceholder="Enter your username" onChange={(e) => setUsername(e.target.value)} />
-    <Inputs uid="registerPassword" lillogo="" info="Password" infoPlaceholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
-    <Inputs uid="registerAccount" lillogo="" info="Account Amount" infoPlaceholder="Add account amount" onChange={(e) => setAccountAmount(e.target.value)} />
+    <Inputs inputType="email" uid="registerEmail" lillogo="" info="Email" infoPlaceholder="Enter your email address" onChange={(e) => setEmail(e.target.value)} />
+    <Inputs inputType="string" uid="registerUsername" lillogo="" info="Username" infoPlaceholder="Enter your username" onChange={(e) => setUsername(e.target.value)} />
+    <Inputs inputType="password" uid="registerPassword" lillogo="" info="Password" infoPlaceholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
+    <Inputs inputType="number" uid="registerAccount" lillogo="" info="Account Amount" infoPlaceholder="Add account amount" onChange={(e) => setAccountAmount(e.target.value)} />
     <RegisterButton btnId="RegisterBtn" buttonText="Register"></RegisterButton>
     </form>
 }
