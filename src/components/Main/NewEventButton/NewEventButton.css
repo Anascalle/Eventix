@@ -1,17 +1,20 @@
 #button_new_div{
-    width: 10vw;
-    -webkit-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.5);
--moz-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.5);
-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.5);
+    width: 12vw;
+    -webkit-box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.222);
+-moz-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.222);
+box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.222);
     background-color: white;
-    border-radius: 15px;
+    border-top-left-radius: 25px;
+border-top-right-radius: 0px;
+border-bottom-left-radius: 25px;
+border-bottom-right-radius: 0px;
     padding: 1.5vw;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: right;
-    margin-left: 86vw;
-    margin-top: 8vw;
+    margin-left: 84vw;
+    margin-top: -45vw;
 }
 
 #new_nevent_button{

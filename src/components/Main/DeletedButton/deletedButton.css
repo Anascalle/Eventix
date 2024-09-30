@@ -8,3 +8,17 @@
     margin-top: 1vw;
     margin-left: 0.5vw;
 }
+
+
+@media (max-width: 768px) {
+    #deleted{
+        background-color: #F24B4B;
+        color: #f7f7f7;
+        border: none;
+        width: 10vw;
+        padding: 0.5%;
+        border-radius: 4px;
+        margin-left: 12vw;
+        height: 5vw;
+    }
+  }
