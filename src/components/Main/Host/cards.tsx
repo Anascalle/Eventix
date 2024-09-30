@@ -1,12 +1,13 @@
 
 import "./Host.css";
 import React, { useEffect, useState } from "react";
-import { db } from "../../../utils/firebaseConfig"; // Importa tu configuración de Firebase
+import { db } from "../../../utils/firebaseConfig"; 
 import { collection, getDocs } from "firebase/firestore";
 import HostEvents from "./Host";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css/bundle"
-import "swiper/css/pagination"
+import "swiper/css"
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 interface EventProfile {
   id: string; 
@@ -18,7 +19,8 @@ interface EventProfile {
 
 const Host: React.FC = () => {
   const [profiles, setProfiles] = useState<EventProfile[]>([]); 
-
+  console.log("host",profiles);
+  
   useEffect(() => {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, "events")); 
@@ -28,20 +30,26 @@ const Host: React.FC = () => {
 
     fetchData();
   }, []);
-
-  const extendedProfiles = [...profiles, ...profiles];  // Duplicar el array para más slides
   return (
     <div id="Host_card">
       <h2 id="host_tittle">You are Host</h2>
       <div id="carousel">
       <Swiper
-          spaceBetween={0}   
-          slidesPerView={3}  
-          slidesPerGroup={3}   
-          navigation ={false}     
-          pagination={{ clickable: true }}  
-          loop={false}         
-        >{extendedProfiles.map((profile, index) => (
+         spaceBetween={-50}
+         slidesPerView={1}
+         navigation ={false}
+         pagination={{clickable:true}}
+         loop={true} 
+         breakpoints={{
+          // when window width is >= 768px
+          800: {
+            slidesPerView: 3,
+            spaceBetween: -25
+          },
+        }}  
+     
+        >
+          {profiles.map((profile, index) => (
           <SwiperSlide key={index}>
          <HostEvents
            key={profile.id}
@@ -49,7 +57,7 @@ const Host: React.FC = () => {
            date={profile.date}
            url={profile.image}
          />
-         </SwiperSlide>
+          </SwiperSlide>
        ))}
   </Swiper>
       </div>

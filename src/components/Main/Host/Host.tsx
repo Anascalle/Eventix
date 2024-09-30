@@ -17,7 +17,7 @@ const HostEvents: React.FC<HostEventsProps> = ({
   
   return (
     <div id="hosts_events">
-        <img src={url} alt="" />
+        <img id="event_img" src={url} alt="" />
         <p id="ocation_event">{ocation}</p>
         <p id="date_event">{date}</p>
         <div id="buttons_event">

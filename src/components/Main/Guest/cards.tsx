@@ -1,11 +1,13 @@
+
 import React, { useEffect, useState } from "react";
 import "./guest.css";
-import { db } from "../../../utils/firebaseConfig"; // Importa tu configuración de Firebase
+import { db } from "../../../utils/firebaseConfig"; // Asegúrate de que esta ruta sea correcta
 import { collection, getDocs } from "firebase/firestore";
 import GuestEventes from "./guest";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css/bundle"
-import "swiper/css/pagination"
+import "swiper/css"
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 interface EventProfile {
   id: string; 
@@ -17,7 +19,7 @@ interface EventProfile {
 
 const Guest: React.FC = () => {
   const [profiles, setProfiles] = useState<EventProfile[]>([]); 
-
+  console.log(profiles); 
   useEffect(() => {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, "events")); 
@@ -33,15 +35,14 @@ const Guest: React.FC = () => {
       <h2 id="Guest_tittle">You are Guest</h2>
       <div id="carousel">
         <Swiper
-          spaceBetween={0}
+          spaceBetween={-25}
           slidesPerView={3}
-          slidesPerGroup={3}
-          navigation={false}
-          pagination={{ clickable: true }}
-          loop={false}
+          navigation ={false}
+          pagination={true}
+          loop={true}
         >
           {profiles.map((profile) => (
-            <SwiperSlide key={profile.id}> {/* Usa profile.id como key */}
+            <SwiperSlide key={profile.id}> 
               <GuestEventes
                 name={profile.name}
                 ocation={profile.eventType}

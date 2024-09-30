@@ -1,4 +1,3 @@
-/* En tu archivo CSS principal (e.g., Host.css o App.css) */
 
 
 #buttons_event{
@@ -8,11 +7,11 @@ display: flex;
     border-radius: 20px;
     margin-top: -40vw;
     margin-left: 22vw;
-    z-index: -1;
+    
 }
 
 .swiper-slide {
-    margin: 0;  /* Asegúrate de que el margen de la slide sea 0 */
+    margin: 0;  
 }
 
 #hosts_events{
@@ -22,16 +21,20 @@ display: flex;
     border-radius: 20px;
     padding: 1vw;
     margin: 2vw;
-    width: 15vw;
-   
+    width: 14vw;
 }
 
 #carousel{
     width: 65vw;
-        height: auto;
+    height: auto;
     display: flex;
     flex-direction: row;
+}
 
+#event_img{
+    width: 20vw;
+    height: 9vw;
+    border-radius: 10px;
 }
 
 #host_tittle{
@@ -40,3 +43,25 @@ display: flex;
     margin-bottom: -1vw;
     margin-left: 2vw;
 }
+ 
+  @media (max-width: 768px) {
+    /* En pantallas pequeñas, solo se muestra una slide a la vez */
+    #hosts_events {
+      max-width: 100%;
+      flex-direction: column;
+      text-align: center;
+      margin-top: 70vw;
+    }
+    
+    #event_img {
+      width: 100%;
+    }
+    
+    #buttons_event {
+      justify-content: center;
+    }
+    #event_img{
+      width: 40vw;
+    height: 10vw;
+    }
+  }
