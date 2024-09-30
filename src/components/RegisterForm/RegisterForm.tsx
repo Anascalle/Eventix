@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../service/firebaseConfig';
+import { db } from '../../service/firebaseConfig';
+import { doc, setDoc } from 'firebase/firestore';
 import Inputs from "../Input/Inputs";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 import RegisterButton from "../RegisterButton/RegisterButton";
@@ -16,7 +18,14 @@ function RegisterForm(){
         e.preventDefault();
         try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log('Usuario registrado:', userCredential.user);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, 'users', user.uid), {
+            username: username,
+            accountAmount: accountAmount,
+            email: user.email
+        });
+        console.log('Usuario registrado:', userCredential.user, 'Usuario registrado con datos adicionales:', user);
     } catch (error) {
         console.error('Error al registrar:', error);
     }

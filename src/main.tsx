@@ -1,11 +1,11 @@
-
-import { router } from './navegation/main.tsx'
-import { RouterProvider } from 'react-router-dom'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import './service/firebaseConfig.tsx'
 import App from './App.tsx'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
-  <RouterProvider router={router}></RouterProvider>
- )
- 
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
