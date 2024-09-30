@@ -1,10 +1,11 @@
+import "../RegisterButton/RegisterButton.css"
+
 interface buttonProps{
     buttonText: string;
-    btnId: string
 }
 
-function RegisterButton( { buttonText, btnId }:buttonProps ){
-    return <button type="submit" id={btnId}>{buttonText}</button>
+function RegisterButton( { buttonText }:buttonProps ){
+    return <button type="submit" className="theRegisterBtn">{buttonText}</button>
 }
 
 export default RegisterButton
