@@ -64,17 +64,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 10vw;
 }
 
 .InfoSecttion1 {
     margin-top: 2vh;
     font-size: 1.2vw;
+    width: 30vw;
 }
 
 .InfoSecttion2 {
     margin-top: 1.5vh;
     font-size: 1.2vw;
+    width: 20vw;
 }
 
 .FunctionBtns {

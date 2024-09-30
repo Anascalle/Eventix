@@ -1,31 +1,39 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import DeletedButton from "../DeletedButton/deletedButton";
 import EditButton from "../EditButton/editButton";
-import "./Host.css"
+import "./Host.css";
 
 interface HostEventsProps {
-    ocation: string;
-    date: string;
-    url: string;
-  }
-  
+  ocation: string;
+  date: string;
+  url: string;
+  id: string;
+}
+
 const HostEvents: React.FC<HostEventsProps> = ({
   ocation,
   date,
-  url
-}) =>{
-  
-  return (
-    <div id="hosts_events">
-        <img src={url} alt="" />
-        <p id="ocation_event">{ocation}</p>
-        <p id="date_event">{date}</p>
-        <div id="buttons_event">
-            <DeletedButton></DeletedButton>
-            <EditButton icon="Edit"></EditButton>
-        </div>
+  url,
+  id
+}) => {
+  const navigate = useNavigate();
 
-  </div>
+  const handleButtonClick = () => {
+    console.log(`Button clicked. Card ID: ${id}`);
+    navigate('/detail/:id', { state: { id } }); 
+  };
+
+  return (
+    <button className="host-event-button" onClick={handleButtonClick}>
+      <img src={url} alt="Event" />
+      <p className="ocation_event">{ocation}</p>
+      <p className="date_event">{date}</p>
+      <div className="buttons_event">
+        <DeletedButton />
+        <EditButton icon="Edit" />
+      </div>
+    </button>
   );
 };
 
