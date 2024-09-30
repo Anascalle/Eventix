@@ -1,3 +1,5 @@
+import "../RegisterMessage/RegisterMessage.css"
+
 interface MessageProps {
     title: string;
     infoMessagept1: string;
@@ -6,7 +8,7 @@ interface MessageProps {
 }
 
 function RegisterMessage( { title, infoMessagept1, infoMessagept2, infoLink }:MessageProps ){
-    return <div>
+    return <div id="MessageSpace">
         <h1>{title}</h1>
         <div>
         <p>{infoMessagept1}</p>

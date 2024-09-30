@@ -4,6 +4,7 @@ import { auth } from "../../service/firebaseConfig";
 import Inputs from "../Input/Inputs";
 import RegisterMessage from "../RegisterMessage/RegisterMessage";
 import RegisterButton from "../RegisterButton/RegisterButton";
+import "../LoginForm/LoginForm.css"
 
 function LoginForm(){
 
@@ -20,12 +21,14 @@ function LoginForm(){
         }
         };
 
-    return <form onSubmit={handleLogin} id="loginForm">
+    return <div className="registerSpace">
+    <form onSubmit={handleLogin} id="loginForm">
     <RegisterMessage title="Log In" infoMessagept1="If you haven't registered yet" infoMessagept2="You can" infoLink="Register here !"></RegisterMessage>
-    <Inputs inputType="email" uid="loginEmail" lillogo="" info="Email" infoPlaceholder="Enter your email address" onChange={(e) => setEmail(e.target.value)}></Inputs>
-    <Inputs inputType="password" uid="loginPassword" lillogo="" info="Password" infoPlaceholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></Inputs>
-    <RegisterButton btnId="" buttonText="Login"></RegisterButton>
+    <Inputs inputType="email" uid="loginEmail" lillogo="/mail.svg" info="Email" infoPlaceholder="Enter your email address" onChange={(e) => setEmail(e.target.value)}></Inputs>
+    <Inputs inputType="password" uid="loginPassword" lillogo="/lock.svg" info="Password" infoPlaceholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></Inputs>
+    <RegisterButton buttonText="Login"></RegisterButton>
     </form>
+    </div>
 }
 
 export default LoginForm

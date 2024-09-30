@@ -1,4 +1,5 @@
 import React from 'react';
+import "../Input/Inputs.css"
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     lillogo: string;
@@ -10,9 +11,13 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Inputs: React.FC<InputProps> = ({ uid, lillogo, info, infoPlaceholder, inputType, ...props }) => {
 
-    return <div>
+    return <div id='inputSpace'>
         <p>{info}</p>
-        <input id={uid} type={inputType} placeholder={infoPlaceholder} {...props}/>
+        <div id='img-Input'>
+            <img src={lillogo} alt="" />
+            <input className='theRegisterInput' id={uid} type={inputType} placeholder={infoPlaceholder} {...props}/>
+        </div>
+        <hr id='lineaHorizontal' />
     </div>
 }
 
