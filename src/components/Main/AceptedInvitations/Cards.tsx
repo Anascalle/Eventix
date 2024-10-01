@@ -8,7 +8,7 @@ const InvitationsAccept: React.FC = (
   return (
     <div id="acepted_invitations_shadow">
       <div id="acepted_invitations_div">
-        <h2>Invitations</h2>
+        <h2 id="acepted_invitations_tittle">Invitations</h2>
         {porfiles.map((profile, index) => (
         <AceptedInvitations
           key={index}

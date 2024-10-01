@@ -18,6 +18,7 @@ z-index: -1;
 #invitation_text{
     display: flex;
     flex-direction: column;
+    width: auto;
 }
 
 #Invitation{
@@ -56,25 +57,34 @@ span{
     #Invitation {
         flex-direction: row;
         align-items: flex-start;
-        margin-left: 25vw;
+        margin-left: 10vw ;
+        
     }
 
     #invitations_div_shadow{
-        margin-top: 250vw;
+        margin-top: 330vw;
         position: absolute;
-        width: 100%;
+        width: 300vw !important;
+        height: auto!important;
+       margin-left: 8vw;
+        padding-right: 10vw;
     }
 
     #invitations_tittle{
-        font-size: large;
+        font-size: larger;
+        margin-left: 10vw;
     }
 p{
-    font-size: 10px;
+    font-size: 15px;
 }
     
 
     #porfile_img {
-       
+       width: 15vw !important;
+       height: 15vw !important;
+       margin-right: 5vw !important;
+       display: flex;
+       justify-self:start;
     }
 
     #Buttons {
@@ -82,7 +92,8 @@ p{
         justify-content: space-between;
     }
     #invitation_text{
-        width: 100vw;
+        margin-left: 5vw !important;
+        width: 150vw !important;
 
     }
 }

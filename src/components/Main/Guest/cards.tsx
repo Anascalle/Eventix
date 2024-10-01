@@ -35,11 +35,18 @@ const Guest: React.FC = () => {
       <h2 id="Guest_tittle">You are Guest</h2>
       <div id="carousel">
         <Swiper
-          spaceBetween={-25}
-          slidesPerView={3}
+          spaceBetween={10}
+          slidesPerView={1}
           navigation ={false}
           pagination={true}
           loop={true}
+          breakpoints={{
+            // when window width is >= 768px
+            800: {
+              slidesPerView: 3,
+              spaceBetween: -25
+            },
+          }}  
         >
           {profiles.map((profile) => (
             <SwiperSlide key={profile.id}> 

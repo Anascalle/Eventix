@@ -35,7 +35,7 @@ const Host: React.FC = () => {
       <h2 id="host_tittle">You are Host</h2>
       <div id="carousel">
       <Swiper
-         spaceBetween={-50}
+         spaceBetween={50}
          slidesPerView={1}
          navigation ={false}
          pagination={{clickable:true}}

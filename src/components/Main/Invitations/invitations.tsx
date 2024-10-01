@@ -31,7 +31,7 @@ const Invitations: React.FC = () => {
         {/* Carrusel solo en dispositivos móviles */}
         {isMobile ? (
           <Swiper
-            spaceBetween={10}
+            spaceBetween={5}
             slidesPerView={1}
             pagination={{ clickable: true }}
             navigation = {false}
