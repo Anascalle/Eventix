@@ -8,7 +8,7 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.314);
     border-radius: 20px; 
-    z-index: 5;
+    z-index: 10;
     width: 90%;
     max-width: 500px;
     max-height: 90vh;
@@ -118,5 +118,5 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 1; 
+    z-index: 5; 
 }

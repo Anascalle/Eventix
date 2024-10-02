@@ -35,7 +35,7 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
             <div className="NameEvent">
                 <h1>{prop.NameEvent}</h1>
                 <button>
-                    <img className="BtnImg" src="/src/Img/edit.png" alt="" />
+                    <img className="BtnImg" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/edit.png?alt=media&token=46d5d42f-1190-4b51-9d00-38b09a271ceb" alt="" />
                 </button>
             </div>
             <div className="Host">

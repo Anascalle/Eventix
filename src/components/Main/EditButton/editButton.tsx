@@ -2,7 +2,7 @@ import React from "react";
 import "./editButton.css"
 
 interface EditButtonProps {
-    icon: React.ReactNode;  // ReactNode permite pasar cualquier tipo de contenido de React (JSX, texto, etc.)
+    icon: React.ReactNode;  
 }
 
 const EditButton: React.FC <EditButtonProps> = ({icon}) => {

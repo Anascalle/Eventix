@@ -30,7 +30,7 @@ interface CreateEventFormViewProps {
 const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
     name, setName, date, setDate, startTime, setStartTime, location, setLocation,
     eventType, setEventType, dressCode, setDressCode, description, setDescription,
-    handleSubmit, lat, lng, onMapClick, onClose, amount, setAmount
+    handleSubmit, lat, lng, onMapClick, onClose, amount, setAmount, 
 }) => {
     return (
         <div className="create_event_form">

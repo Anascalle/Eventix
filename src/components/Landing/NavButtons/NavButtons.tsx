@@ -13,7 +13,7 @@ interface ButtonLogicProps {
     const navigate = useNavigate();
   
     const handlePrimaryClick = () => {
-      navigate('/Login');
+      navigate('/login');
     };
   
     const handleSecondaryClick = () => {

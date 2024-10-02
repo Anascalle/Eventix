@@ -3,13 +3,13 @@ import "./invitations.css";
 import profiles from "../data/data";
 import InvitationsCards from "./cards";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css"; // Importa los estilos de Swiper
+import "swiper/swiper-bundle.css"; 
 
 const Invitations: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    // Función para actualizar el estado según el tamaño de la pantalla
+    
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };

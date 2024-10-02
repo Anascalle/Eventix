@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
-import "./Banner.css"
 
-const LoginButton: React.FC = () => {
+
+const RegisterFormButton: React.FC = () => {
     const navigate = useNavigate(); 
 
     const handleLoginClick = () => {
@@ -10,10 +10,10 @@ const LoginButton: React.FC = () => {
     };
 
     return (
-        <button onClick={handleLoginClick} className="login-button">
-            LOGIN
+        <button onClick={handleLoginClick} className="register-buttons">
+            Login here !
         </button>
     );
 };
 
-export default LoginButton;
+export default RegisterFormButton;

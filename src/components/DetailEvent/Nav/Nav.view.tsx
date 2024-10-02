@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import "./Nav.css";
 import useScroll from "../../../hooks/useScroll";
@@ -6,7 +6,7 @@ import { auth, db } from "../../../utils/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
-const Nav2: React.FC = () => {
+const Nav3: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
   const scrolled = useScroll(); 
   const [userName, setUserName] = useState<string | null>(null);
@@ -43,7 +43,7 @@ const Nav2: React.FC = () => {
   }, [userId]);
 
   return (
-    <nav className={`nav_bar2 ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`nav_bar3 ${scrolled ? 'scrolled' : ''}`}>
       <h1 className="app_name">Eventix</h1>
       <ul className="nav_links">
         <li><a href="/">ABOUT US</a></li>
@@ -55,4 +55,5 @@ const Nav2: React.FC = () => {
   );
 };
 
-export default Nav2;
+
+export default Nav3;
