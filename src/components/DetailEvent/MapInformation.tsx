@@ -46,7 +46,7 @@ const MapInformation: React.FC<MapInformationProps> = ({ eventId }) => {
 
     return (
         <div className="MapInfo">
-        <BackBtn NameEvent={eventInfo.name} />
+        <BackBtn NameEvent={eventInfo.name}  />
         <InfoCard
             img={eventInfo.image}
             NameEvent={eventInfo.name}

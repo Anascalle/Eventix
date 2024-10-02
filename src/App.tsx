@@ -1,16 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Main from './screens/Main/Main';
-import DetailScreen from './screens/Detail/Detail';
-
+import './App.css'
 function App() {
+ 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/detail/:id" element={<DetailScreen />} /> {/* Ruta con el parámetro id */}
-      </Routes>
-    </Router>
-  );
+    <div>
+   
+    </div>
+  )
 }
 
-export default App;
+export default App

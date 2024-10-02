@@ -2,7 +2,7 @@
     background: 
     linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
     linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1)), 
-    url('../../../Img/banner.jpg'); 
+    url('https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/banner.jpg?alt=media&token=37c86baf-60b9-4dec-88df-31757f1fd987'); 
     background-size: cover;
     background-position: center; 
     height: 100vh; 
@@ -30,16 +30,15 @@
     font-style: normal;
   }
   
-  @media (max-width: 768px) {
-
-    
+  .account-message {
+    display: none;
   }
   @media (max-width: 375px) {
     .banner {
       background: 
       linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
       linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1)), 
-      url('../../../Img/bannerResponsive.jpg');
+      url('https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/BannerResponsive.jpg?alt=media&token=b8e7c9e2-f6ef-4390-90fd-8bb5b76e65c7');
       background-size: cover;
       background-position: center; 
       height: 100vh; 
@@ -54,6 +53,7 @@
     }
 
     .banner h1 {
+      margin-top: 140px;
         font-size: 3rem; 
     }
 
@@ -61,4 +61,26 @@
         font-size: 0.8rem; 
         margin: 5px 0; 
     }
+    .account-message {
+      display: block;
+   
+    }
+
+    .login-button{
+      color:#00B78C; 
+      background-color: transparent;
+      border-color: transparent;
+      font-weight: 700;
+      box-shadow: none;
+      font-family: "Poppins", system-ui;
+      text-decoration: none; 
+      margin-left: 5px;
+      
+    }
+    .account-message {
+      display: flex;
+      align-items: center;
+      margin-top: 100px; 
+    }
+
 }

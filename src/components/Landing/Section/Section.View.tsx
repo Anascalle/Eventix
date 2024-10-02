@@ -19,13 +19,13 @@ const Section: React.FC<SectionProps> = ({
     customClass = "" 
 }) => {
     return (
-        <div className={`section_container ${customClass}`} >
-            <div className="text_container">
-                <h1 className="titles">
+        <div className={`section_containers ${customClass}`} >
+            <div className="text_containers">
+                <h1 className="titless">
                     {texts.map((text, index) => (
                         <span
                             key={index}
-                            className="text_item"
+                            className="text_items"
                             style={{
                                 color: colors[index] || "#0E0D35",
                                 fontWeight: fontWeights[index] || "normal",
@@ -39,7 +39,7 @@ const Section: React.FC<SectionProps> = ({
                     ))}
                 </h1>
             </div>
-            <div className="image_container">
+            <div className="image_containers">
                 <img src={imageUrl} alt={imageAlt} />
             </div>
         </div>

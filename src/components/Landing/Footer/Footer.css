@@ -2,7 +2,7 @@
     text-align: center; 
 } 
 
-.footer_title {
+.footer_titles {
     font-size: 3rem;
     margin-bottom: 30px;
     font-family: "Poppins", system-ui;
@@ -14,7 +14,7 @@
     height: auto;
 }
 
-.footer_word {
+.footer_words {
     margin: 0 4px; 
 }
 
@@ -32,12 +32,12 @@
 
 
 @media (max-width: 375px) {
-    .footer_title {
+    .footer_titles {
         margin-left: 15px;
     }
     
 
-    .footer_word {
+    .footer_words {
         font-size: 45px;
     }
 
