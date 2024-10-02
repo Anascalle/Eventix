@@ -1,0 +1,59 @@
+.section_title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-family: "Poppins", system-ui;
+    font-style: normal;
+}
+.final_section{
+background-image: url('https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img4.png?alt=media&token=1ae05872-ffd6-44f6-8f32-6e6ead0f4386'); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; 
+  height: 100vh; 
+  display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+    padding-right: 350px; 
+  
+  
+}
+
+@media (max-width: 768px) {
+  .section_title {
+      font-size: 2rem;
+      margin-bottom: 45%;
+      margin-left: 45%;
+  }
+
+  .final_section {
+      padding-right: 0px;
+  }
+}
+
+@media (max-width: 375px) {
+  .section_title {
+      font-size:25px;
+      margin-bottom: 120%;
+      margin-left: 30px;
+      width: 100%;
+      text-align: center;
+      
+  }
+  .normal{
+    display: none;
+  }
+
+  .final_section{
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img4-mobile.png?alt=media&token=12dcd3a6-1fea-4787-b3df-347a2b12c81f'); 
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center; 
+      display: flex; 
+      justify-content: flex-end; 
+      align-items: center; 
+      
+     
+  }    
+}
