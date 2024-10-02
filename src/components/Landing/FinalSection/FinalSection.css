@@ -5,7 +5,7 @@
     font-style: normal;
 }
 .final_section{
-background-image: url('../../../Img/img4.png'); 
+background-image: url('https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img4.png?alt=media&token=1ae05872-ffd6-44f6-8f32-6e6ead0f4386'); 
   background-size: cover; 
   background-repeat: no-repeat;
   background-size: contain;
@@ -45,7 +45,7 @@ background-image: url('../../../Img/img4.png');
   }
 
   .final_section{
-    background-image: url('../../../Img/img4-mobile.png'); 
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img4-mobile.png?alt=media&token=12dcd3a6-1fea-4787-b3df-347a2b12c81f'); 
       background-size: cover; 
       background-repeat: no-repeat;
       background-size: contain;

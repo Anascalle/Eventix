@@ -4,6 +4,7 @@ import { LeafletMouseEvent } from 'leaflet';
 import NewEventButton from '../NewEventButton/NewEventButton';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseConfig'; 
+import { getAuth } from 'firebase/auth';
 
 const CreateEventForm: React.FC = () => {
     const [name, setName] = useState<string>('');
@@ -56,6 +57,14 @@ const CreateEventForm: React.FC = () => {
             alert("La cantidad debe ser mayor o igual a 1.");
             return;
         }
+        const auth = getAuth();
+        const user = auth.currentUser;
+    
+        if (!user) {
+            alert("Usuario no autenticado.");
+            return;
+        }
+    
 
         const eventData = {
             name,
@@ -65,7 +74,7 @@ const CreateEventForm: React.FC = () => {
             eventType,
             dressCode,
             description,
-            //  userId: user.uid,
+            userId: user.uid,
             coordinates: { lat, lng },
             image: eventImage, 
             amount,

@@ -1,27 +1,37 @@
 import React from "react";
 import "./guest.css"
+import { useNavigate } from "react-router-dom";
 
 interface GuestEventesProps {
     ocation: string;
     date: string;
     url: string;
     name: string
+    id: string;
+    
   }
   
 const GuestEventes: React.FC<GuestEventesProps> = ({
   ocation,
   date,
   url,
-  name
+  name,
+  id,
 }) =>{
+    const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    console.log(`Button clicked. Card ID: ${id}`);
+    navigate(`/detail/${id}`, { state: { id } }); 
+  };
   
   return (
-    <div id="Guest_events">
+    <button id="Guest_events" onClick={handleButtonClick}>
         <img id="event_img" src={url} alt="" />
-        <p id="ocation_event">{ocation}</p>
+        <p id="ocation_event">{name}</p>
         <p id="date_event">{date}</p>
-        <p id="host_name">Host: <span>{name}</span></p>
-  </div>
+        
+  </button>
   );
 };
 
