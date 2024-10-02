@@ -6,15 +6,15 @@
     height: 100vh;
 }
 
-#loginForm{
+#registerForm{
     width: 75%;
 }
 
-#LogImg{
+#SignImg{
     width: 60%;
 }
 
-#LogSpace{
+#SignSpace{
     display: flex;
     flex-direction: row;
 }

@@ -1,12 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import "./LoginMessageButton.css"
 
 
 const LoginFormButton: React.FC = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleLoginClick = () => {
-        navigate('/signup'); 
+        navigate('/signup');
     };
 
     return (
