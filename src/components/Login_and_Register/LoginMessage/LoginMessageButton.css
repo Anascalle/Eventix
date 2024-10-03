@@ -4,3 +4,12 @@
     color: #00B78C;
     border-style: none;
 }
+
+.login-buttons:hover{
+    color: #01795d;
+    cursor: pointer;
+}
+
+.login-buttons:active{
+    color: #ff7f4c;
+}
