@@ -21,7 +21,7 @@ interface EventMapProps {
     onMapClick: (event: any) => void;
 }
 
-const EventMap: React.FC<EventMapProps> = ({ lat, lng, location, onMapClick }) => {
+const EventMap: React.FC<EventMapProps> = ({ lat, lng, onMapClick }) => {
     return (
         <MapContainer
             center={[lat, lng]}

@@ -28,7 +28,16 @@ const InvitationsCards: React.FC<InvitationsProps> = ({
         Date: <span id="date_number">{date}</span>
       </p>
     </div>
-    
+    <div id="Buttons">
+      <DeletedButton />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      />
+      <EditButton
+        icon={<span className="material-symbols-outlined">check</span>}
+      />
+    </div>
   </div>
   );
 };
