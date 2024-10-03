@@ -14,10 +14,8 @@
     #MessageLogSpace{
         text-decoration: none;
         font-family: "Poppins", system-ui;
-        font-style: normal;
         color: #0E0D35;
         margin-bottom: 2em;
-        font-size: 2000px;
     }
 
     #infoWithLinkLog{

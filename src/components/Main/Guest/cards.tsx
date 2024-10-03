@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import "./guest.css";
-import { db } from "../../../utils/firebaseConfig"; 
+import { db } from "../../../utils/firebaseConfig"; // Asegúrate de que esta ruta sea correcta
 import { collection, getDocs } from "firebase/firestore";
 import GuestEventes from "./guest";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -35,15 +35,23 @@ const Guest: React.FC = () => {
       <h2 id="Guest_tittle">You are Guest</h2>
       <div id="carousel">
         <Swiper
-          spaceBetween={-25}
-          slidesPerView={3}
+          spaceBetween={10}
+          slidesPerView={1}
           navigation ={false}
           pagination={true}
           loop={true}
+          breakpoints={{
+            // when window width is >= 768px
+            800: {
+              slidesPerView: 3,
+              spaceBetween: -25
+            },
+          }}  
         >
           {profiles.map((profile) => (
             <SwiperSlide key={profile.id}> 
               <GuestEventes
+                id={profile.id}
                 name={profile.name}
                 ocation={profile.eventType}
                 date={profile.date}

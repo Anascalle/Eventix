@@ -15,8 +15,8 @@ const AceptedInvitations: React.FC<InvitationsProps> = ({
   return (
     <div id="acepted_invitation">
     <img id="porfile_img" src={url} alt={name} />
-    <div id="invitation_text">
-      <p id="acepted_invitations-p">{name} accept your invitation for <span id="ocation">{ocation}</span></p>
+    <div id="acepted_invitation_text">
+      <p id="">{name}accept your invitation for <span id="ocation">{ocation}</span></p>
     </div>
   </div>
   );

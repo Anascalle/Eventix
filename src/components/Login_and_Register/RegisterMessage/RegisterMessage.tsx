@@ -22,4 +22,3 @@ function RegisterMessage( { title, infoMessagept1, infoMessagept2,  }:MessagePro
 }
 
 export default RegisterMessage
-

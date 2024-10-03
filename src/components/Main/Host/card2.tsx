@@ -82,7 +82,7 @@ const Host: React.FC<{ userId: string }> = ({ userId }) => {
             ))
           ) : (
             <SwiperSlide>
-              <p>No events available</p>
+              <p id="no_events">No events available</p>
             </SwiperSlide>
           )}
         </Swiper>

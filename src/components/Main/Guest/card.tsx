@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import "./guest.css"
 
 interface EventProfile {
   id: string; 
@@ -78,7 +79,7 @@ const Guest: React.FC<{ userId: string }> = ({ userId }) => {
             ))
           ) : (
             <SwiperSlide>
-              <p>No events available</p>
+              <p id="no_events">No events available</p>
             </SwiperSlide>
           )}
         </Swiper>

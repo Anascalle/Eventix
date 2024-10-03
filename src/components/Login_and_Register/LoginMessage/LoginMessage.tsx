@@ -22,4 +22,3 @@ function LoginMessage( { title, infoMessagept1, infoMessagept2,  }:MessageProps 
 }
 
 export default LoginMessage
-
