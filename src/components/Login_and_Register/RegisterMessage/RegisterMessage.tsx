@@ -12,9 +12,9 @@ function RegisterMessage( { title, infoMessagept1, infoMessagept2,  }:MessagePro
     return <div id="MessageSpace">
         <h1>{title}</h1>
         <div>
-        <p>{infoMessagept1}</p>
+        <p className="paragraph">{infoMessagept1}</p>
             <div id="infoWithLink">
-                <p>{infoMessagept2}</p>
+                <p className="paragraph">{infoMessagept2}</p>
                 <RegisterFormButton/>
             </div>
         </div>
