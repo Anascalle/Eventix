@@ -1,0 +1,47 @@
+.registerSpace{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#loginForm{
+    width: 75%;
+}
+
+#LogImg{
+    width: 60%;
+}
+
+#LogSpace{
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 899px) {
+    .registerSpace{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #loginForm{
+        width: 75%;
+    }
+
+    #LogImg{
+        display: none;
+        object-fit: cover;
+    }
+
+    #LogSpace{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+}

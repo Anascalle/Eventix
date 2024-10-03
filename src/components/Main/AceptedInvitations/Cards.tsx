@@ -1,7 +1,7 @@
 import React from "react";
 import "./AceptedInvitations.css";
 import porfiles from "../data/data";
-import AceptedInvitations from "./AceptedInvitations";
+import AceptedInvitations from "./AceptedInvitatios";
 
 const InvitationsAccept: React.FC = (
 ) => {

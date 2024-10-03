@@ -70,8 +70,8 @@ span {
         position: absolute;
     }
 
-    #invitations_p{
-        font-size: 15px;
+    #acepted_invitations-p{
+        font-size: 15px !important;
     }
     
     #acepted_invitations_div{

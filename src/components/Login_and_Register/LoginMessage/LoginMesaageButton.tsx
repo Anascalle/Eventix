@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
-
+import "../LoginMessage/LoginMesaageButton.css"
 
 const LoginFormButton: React.FC = () => {
     const navigate = useNavigate(); 

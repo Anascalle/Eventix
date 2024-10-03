@@ -149,7 +149,9 @@ const CreateEventForm: React.FC = () => {
     return (
         <>
             <NewEventButton onClick={handleOpenModal} />
-            {isModalOpen && (
+        {isModalOpen && (
+            <>
+                <div className="modal-background" onClick={handleClose}></div>
                 <CreateEventFormView
                     name={name}
                     setName={setName}
@@ -173,10 +175,9 @@ const CreateEventForm: React.FC = () => {
                     eventImage={eventImage}
                     amount={amount || 0}
                     setAmount={setAmount}
-                />
-            )}
-        </>
-    );
-};
-
+                    />
+                    </>
+                )}
+            </>
+        );}
 export default CreateEventForm;

@@ -1,19 +1,20 @@
 import RegisterFormButton from "./RegisterMessageButton";
+import "./RegisterMessage.css"
 
 interface MessageProps {
     title: string;
     infoMessagept1: string;
     infoMessagept2: string;
-    
+
 }
 
 function RegisterMessage( { title, infoMessagept1, infoMessagept2,  }:MessageProps ){
-    return <div>
+    return <div id="MessageSpace">
         <h1>{title}</h1>
         <div>
-        <p>{infoMessagept1}</p>
-            <div>
-                <p>{infoMessagept2}</p>
+        <p className="paragraph">{infoMessagept1}</p>
+            <div id="infoWithLink">
+                <p className="paragraph">{infoMessagept2}</p>
                 <RegisterFormButton/>
             </div>
         </div>
@@ -21,4 +22,3 @@ function RegisterMessage( { title, infoMessagept1, infoMessagept2,  }:MessagePro
 }
 
 export default RegisterMessage
-

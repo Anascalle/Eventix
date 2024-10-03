@@ -67,7 +67,7 @@
       justify-self: left;
     }
     #date_event {
-      font-size: large;
+      font-size: large !important;
       display: flex;
       justify-self: left;
     }
