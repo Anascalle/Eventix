@@ -33,3 +33,24 @@
     height: auto;
     margin-bottom: 0.5vh;
 }
+
+@media (max-width: 360px) {
+    .FunctionBtn {
+      gap: 4vh;
+      padding: 2vh;
+      margin-top: 1vh;
+      border-radius: 1vh;
+    }
+  
+    .FunctionBtn button {
+      width: 15vw;
+      height: 6vh;
+      font-size: 1.3vh;
+      border-radius: 10px;
+    }
+  
+    .FunctionBtn button img {
+      width: 2vh;
+      margin-bottom: 2px;
+    }
+  }

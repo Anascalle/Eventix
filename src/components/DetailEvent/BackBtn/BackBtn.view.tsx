@@ -1,17 +1,25 @@
-import "./BackBtn.css"
+import "./BackBtn.css";
+import { useNavigate } from "react-router-dom";
 
-interface BackProp{
+interface BackProp {
     NameEvent: string;
 }
 
-const BackBtn: React.FC<BackProp> = (prop) =>{
-    return(
+const BackBtn: React.FC<BackProp> = (prop) => {
+    const navigate = useNavigate(); 
+
+    const handleBackClick = () => {
+        navigate(-1); 
+    };
+
+    return (
         <div className="BackBtn">
-            <button><img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Back.png?alt=media&token=24f43304-f4db-4705-ab8a-998f0f31123f" alt="" /></button>
+            <button onClick={handleBackClick}>
+                <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Back.webp?alt=media&token=e360dcdd-63d6-41f7-af72-77f6785e2105" alt="backbutton" />
+            </button>
             <p>{prop.NameEvent}</p>
-        </div>  
-    
-    )
+        </div>
+    );
 }
 
 export default BackBtn;

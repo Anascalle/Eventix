@@ -35,11 +35,11 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
             <div className="NameEvent">
                 <h1>{prop.NameEvent}</h1>
                 <button>
-                    <img className="BtnImg" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/edit.png?alt=media&token=46d5d42f-1190-4b51-9d00-38b09a271ceb" alt="" />
+                    <img className="BtnImg" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/edit.webp?alt=media&token=f1998577-37d2-406c-a190-706a7a7850e4" alt="edit icon" />
                 </button>
             </div>
             <div className="Host">
-                <p><strong>Host:</strong> {prop.Host}</p>
+                <p>{prop.Host}</p>
             </div>
             <div className="InfoSections">
                 <div className="InfoSecttion1">
@@ -50,7 +50,8 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
                     <p><strong>Location:</strong> {prop.Location}</p>
                 </div>
                 <div className="InfoSecttion2">
-                    <p><strong>Description:</strong> {prop.Description}</p>
+                    <p><strong>Description:</strong> </p>
+                    <p> {prop.Description}</p>
                 </div>
             </div>
             <div className="FunctionBtns">

@@ -94,14 +94,14 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     placeholder="Description"
                     required
                 ></textarea>
+                  <label>Event amount</label>
                 <input
                     type="number"
                     value={amount}
-                    onChange={(e) =>  setAmount(Number(e.target.value))}
+                    onChange={(e) => setAmount(Number(e.target.value))}
                     placeholder="Event amount"
                     required
                 />
-
             
 
                 <button type="submit">Create event</button>

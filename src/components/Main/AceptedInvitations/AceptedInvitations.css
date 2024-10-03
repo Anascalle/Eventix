@@ -69,6 +69,10 @@ span {
         margin-left: 80vw;
         position: absolute;
     }
+
+    #invitations_p{
+        font-size: 15px;
+    }
     
     #acepted_invitations_div{
         margin-left: 1vw;
@@ -81,8 +85,8 @@ span {
     #acepted_invitation_text{
         display: flex;
         flex-direction: column;
-        width: 80vw !important;
-        margin-bottom: 15vw !important;
+        width: 50vw !important;
+        margin-bottom: 8vw !important;
     }
     
     #acepted_invitation{
@@ -100,12 +104,10 @@ span {
       
     }
     
-    h2{
+    #acepted_invitations_tittle{
         display: flex;
-        justify-content: left;
-        margin-bottom: vw;
-     
-
+        justify-content: center;
+        font-size: larger;
     }
     
     #invitations-p{

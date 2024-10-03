@@ -81,3 +81,82 @@
 .FunctionBtns {
     margin-top: 2vh;
 }
+
+@media (max-width: 360px) {
+    .InfoCard {
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-width: 1px;
+    }
+
+    .ImgBanner img {
+    width: 60vw;
+    height: 30vh;
+    border-radius: 0 0 20px 20px;
+    }
+
+    .NameEvent {
+    gap: 10px;
+    margin-top: 2vh;
+    }
+
+    .NameEvent h1 {
+    font-size: 24px;
+    }
+
+    .NameEvent button {
+    width: 8vw;
+    height: 4vh;
+    }
+
+    .BtnImg {
+    width: 16px;
+    margin-top: 4px;
+    }
+
+    .Host p {
+    font-size: 12px;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+    }
+
+    .InfoSections {
+    flex-direction: column;
+    width: 60vw;
+    }
+
+    .InfoSecttion1 p{
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-top: 1vh;
+        flex-wrap: nowrap;
+        white-space: nowrap; 
+    }
+}
+
+.InfoSecttion2 p {
+    display: flex;
+    justify-content: space-between;
+    width: 60vw;
+    font-size: 14px;
+    margin-top: 1vh;
+    flex-wrap: nowrap; /* Permite que el texto haga saltos de línea */
+    white-space: nowrap; /* Asegura que el texto no se quede en una sola línea */
+    overflow-wrap: break-word; 
+}
+
+.InfoSecttion1 p strong{
+    margin-right: 5px;
+}
+
+.InfoSecttion2 p strong {
+    margin-right: 20px;
+}
+
+.FunctionBtns {
+    margin-top: 2vh;
+}

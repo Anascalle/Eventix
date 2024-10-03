@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
             </h1>
             <ButtonLogic showPrimary={false} showSecondary={true} />
             <div>
-            <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img5.png?alt=media&token=54a0b046-b1ea-4dbf-b988-0fdf6b04702f" alt="Footer" className="footer_image" />
-            <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img5-mobile.png?alt=media&token=ec4052e6-1be8-4c02-a0e1-928562db8adc" alt="Footer Responsive" className="footer_image_responsive" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img5.webp?alt=media&token=f03b06bb-ce17-40e1-a8e2-c015293b6d0c" alt="Footer" className="footer_image" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img5-mobile.webp?alt=media&token=2bcd393a-69c3-4f56-b41f-2ed5cff88aa3"alt="Footer" className="footer_image_responsive" />
             <div className="footer_green-box"></div>
             </div>
             

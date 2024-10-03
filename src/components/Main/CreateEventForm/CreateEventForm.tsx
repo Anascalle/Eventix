@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreateEventFormView from './CreateEventForm.View';
 import { LeafletMouseEvent } from 'leaflet';
 import NewEventButton from '../NewEventButton/NewEventButton';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseConfig'; 
 import { getAuth } from 'firebase/auth';
 
@@ -16,56 +16,78 @@ const CreateEventForm: React.FC = () => {
     const [description, setDescription] = useState<string>('');
     const [lat, setLat] = useState<number | undefined>(undefined);
     const [lng, setLng] = useState<number | undefined>(undefined);
-    const [mapClicked, setMapClicked] = useState<boolean>(false); 
+    const [mapClicked, setMapClicked] = useState<boolean>(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [eventImage, setEventImage] = useState<string | null>(null); 
+    const [eventImage, setEventImage] = useState<string | null>(null);
     const [amount, setAmount] = useState<number | undefined>(undefined);
 
-   
     const eventImages: Record<string, string> = {
-        Halloween: 'https://www.65ymas.com/uploads/s1/46/02/74/bigstock-surprised-group-little-zombie-320069116_6_928x621.jpeg',
-        Wedding: 'https://png.pngtree.com/thumb_back/fw800/background/20220506/pngtree-wedding-portrait-shore-wedding-horizontal-photo-image_32394.jpg',
-        Birthday: 'https://img.freepik.com/foto-gratis/colegas-tiro-medio-tomando-selfie-telefono_23-2149295507.jpg',
-        "Baby shower": 'https://images.ctfassets.net/6m9bd13t776q/2cjADyvLsvSFdaT4HlM55g/068e18429a7557ec51556624e21bbb4a/creative-baby-gender-reveal-ideas-HERO.png?fm=webp&q=80',
-        Christmas: 'https://cdn11.bigcommerce.com/s-zqoar2tzjl/product_images/uploaded_images/11.12.21-dw-72.jpg',
-        Other: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROTmSj15lXihU2sLTE-rg8b2BVepk6G-HsiQ&s',
+        Halloween: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/halloween-family-ready-trick-treat.webp?alt=media&token=cb7357c0-a649-46c1-88b6-6df8cddc089c',
+        Birthday: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/medium-shot-people-celebrating-birthday.webp?alt=media&token=31e689f1-8044-4739-b278-20209c668162',
+        "Baby shower": 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/photo-happy-mother-holds-newborn-baby-looks-husband-who-helps-with-child-nursing-holds-mobile-feeding-bottle-young-parents-take-care-small-infant-family-parenthood-concept.webp?alt=media&token=ced5dcbf-788a-4e4a-8053-e375a43c82e0',
+        Christmas: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/funny-couple-love-with-photo-booth-gadgets.webp?alt=media&token=78552641-6d9a-4e5a-9bec-02fce51d2cff',
+        Other: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/medium-shot-friends-posing-photo-booth%20(1).webp?alt=media&token=e89d5ebb-9458-457a-85b7-c0d036084b2e',
     };
 
-    // Coordenadas iniciales del mapa
     const initialLat = 3.405;
     const initialLng = -76.49;
 
     const handleEventTypeChange = (eventType: string) => {
         setEventType(eventType);
-        setEventImage(eventImages[eventType] || null); // Asigna la imagen correspondiente
+        setEventImage(eventImages[eventType] || null);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!mapClicked) {
-            alert("Por favor, establece la ubicación en el mapa.");
+            alert("Please set the location on the map.");
             return;
         }
 
-        if (!name || !date || !startTime || !location || !eventType || !dressCode || !description || !amount) {
-            alert("Por favor, completa todos los campos requeridos.");
+        if (!name || !date || !startTime || !location || !eventType || !dressCode || !description || amount === undefined) {
+            alert("Please complete all the required fields.");
             return;
         }
 
         if (amount < 1) {
-            alert("La cantidad debe ser mayor o igual a 1.");
+            alert("The amount must be at least 1.");
             return;
         }
+
         const auth = getAuth();
         const user = auth.currentUser;
-    
+
         if (!user) {
-            alert("Usuario no autenticado.");
+            alert("User not authenticated.");
             return;
         }
-    
 
+        // Obtener la referencia del documento del usuario
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (!userDoc.exists()) {
+            alert("User data not found.");
+            return;
+        }
+
+        const userData = userDoc.data();
+        const currentAccountAmount = userData.accountAmount;
+
+        // Verificar si el usuario tiene suficiente saldo
+        if (currentAccountAmount < amount) {
+            alert("Insufficient funds.");
+            return;
+        }
+
+        // Restar la cantidad del saldo
+        const newAccountAmount = currentAccountAmount - amount;
+
+        // Actualizar el saldo del usuario en Firestore
+        await updateDoc(userRef, { accountAmount: newAccountAmount });
+
+        // Crear el nuevo evento
         const eventData = {
             name,
             date,
@@ -76,24 +98,22 @@ const CreateEventForm: React.FC = () => {
             description,
             userId: user.uid,
             coordinates: { lat, lng },
-            image: eventImage, 
+            image: eventImage,
             amount,
         };
         console.log('Event data:', eventData);
 
         try {
             const docRef = await addDoc(collection(db, "events"), eventData);
-            console.log("Documento escrito con ID: ", docRef.id);
-        
+            console.log("Document written with ID: ", docRef.id);
         } catch (e) {
-            console.error("Error añadiendo documento: ", e);
-            
+            console.error("Error adding document: ", e);
         }
-    
+
         resetForm();
         setIsModalOpen(false);
     };
-    
+
     const resetForm = () => {
         setName('');
         setDate('');
@@ -104,32 +124,31 @@ const CreateEventForm: React.FC = () => {
         setDescription('');
         setLat(undefined);
         setLng(undefined);
-        setMapClicked(false); 
-        setEventImage(null); 
+        setMapClicked(false);
+        setEventImage(null);
         setAmount(undefined);
-        
     };
 
     const onMapClick = (event: LeafletMouseEvent) => {
         const { lat, lng } = event.latlng;
         setLat(lat);
         setLng(lng);
-        setMapClicked(true); 
+        setMapClicked(true);
     };
 
     const handleClose = () => {
-        console.log('Formulario cerrado');
-        resetForm(); 
-        setIsModalOpen(false); 
+        console.log('Form closed');
+        resetForm();
+        setIsModalOpen(false);
     };
+
     const handleOpenModal = () => {
-        setIsModalOpen(true);  
+        setIsModalOpen(true);
     };
 
     return (
-        <div>
+        <>
             <NewEventButton onClick={handleOpenModal} />
-            {isModalOpen && <div className="modal-overlay" onClick={handleClose}></div>}
             {isModalOpen && (
                 <CreateEventFormView
                     name={name}
@@ -141,22 +160,22 @@ const CreateEventForm: React.FC = () => {
                     location={location}
                     setLocation={setLocation}
                     eventType={eventType}
-                    setEventType={(type) => handleEventTypeChange(type)} // Usar la función para cambiar el tipo de evento
+                    setEventType={handleEventTypeChange}
                     dressCode={dressCode}
                     setDressCode={setDressCode}
                     description={description}
                     setDescription={setDescription}
                     handleSubmit={handleSubmit}
-                    lat={lat ?? initialLat} 
-                    lng={lng ?? initialLng} 
+                    lat={lat || initialLat}
+                    lng={lng || initialLng}
                     onMapClick={onMapClick}
-                    onClose={handleClose}  
-                    eventImage={eventImage} 
-                    amount={amount || 0} 
-                    setAmount={setAmount} 
+                    onClose={handleClose}
+                    eventImage={eventImage}
+                    amount={amount || 0}
+                    setAmount={setAmount}
                 />
             )}
-        </div>
+        </>
     );
 };
 
