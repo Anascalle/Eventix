@@ -51,6 +51,7 @@ const Guest: React.FC = () => {
           {profiles.map((profile) => (
             <SwiperSlide key={profile.id}> 
               <GuestEventes
+                id={profile.id}
                 name={profile.name}
                 ocation={profile.eventType}
                 date={profile.date}
