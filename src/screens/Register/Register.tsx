@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from '../../components/Login_and_Register/RegisterForm/RegisterForm';
+import RegisterForm from '../../components/Login_and_Register/RegisterForm/RegisterForm.view';
 
 const RegisterScreen: React.FC = () => {
     return (
