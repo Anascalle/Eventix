@@ -2,7 +2,6 @@ import React from "react";
 import DeletedButton from "../DeletedButton/deletedButton";
 import EditButton from "../EditButton/editButton";
 import "./invitations.css"
-
 interface InvitationsProps {
     name: string;
     ocation: string;
@@ -41,5 +40,4 @@ const InvitationsCards: React.FC<InvitationsProps> = ({
   </div>
   );
 };
-
 export default InvitationsCards;

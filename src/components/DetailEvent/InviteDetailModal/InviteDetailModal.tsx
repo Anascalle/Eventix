@@ -37,10 +37,11 @@ const ModalInvite: React.FC<ModalInviteProps> = ({
     setSelectedUsers(selectedUsers.filter(user => user.id !== userId));
   };
 
-  // Filtrado de usuarios basado en el valor de búsqueda
+
   const filteredUsers = users.filter(user => 
     user.username.toLowerCase().includes(searchValue.toLowerCase())
   );
+  console.log(users)
 
   return (
     <div className="modal">
