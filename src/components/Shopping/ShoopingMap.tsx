@@ -1,41 +1,25 @@
-import React, { useEffect, useState } from "react";
 import Consumption from "./Consumption/Consumption.view";
-import Nav3 from "../DetailEvent/Nav/Nav.view";
+import useShoppingItems from "../../hooks/useShoppingItems";
 import Filters from "./Filters/Filter.view";
 import ShoppingCard from "./ShoopingCard/ShoppingCard.view";
-import { getItems } from "../../utils/firebaseConfig"; 
+import Nav3 from "../DetailEvent/Nav/Nav.view";
 
-interface Item {
-    image: string;
-    name: string;
-    price: number;
-    disponibility: number;
-}
 
 const ShoopingMap: React.FC = () => {
-    const [items, setItems] = useState<Item[]>([]);
-
-    useEffect(() => {
-    const fetchItems = async () => {
-        const itemsList = await getItems();
-        setItems(itemsList);
-    };
-
-    fetchItems();
-    }, []);
+    const { filteredItems, filterType, setFilterType } = useShoppingItems();
 
     return (
     <div>
-        <Nav3 />
-        <Filters filterType="category" />
+        <Nav3></Nav3>
+        <Filters filterType={filterType} onFilterSelect={setFilterType} />
         <div>
-        {items.map((item, index) => (
+        {filteredItems.map((item, index) => (
             <ShoppingCard
             key={index}
-            image={item.image}        
-            name={item.name}        
-            price={item.price}       
-            disponibility={item.disponibility} 
+            image={item.image}
+            name={item.name}
+            price={item.price}
+            disponibility={item.disponibility}
             />
         ))}
         </div>
