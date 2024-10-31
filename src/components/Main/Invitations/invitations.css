@@ -33,9 +33,6 @@ z-index: -1;
     align-self: center;
     margin-right: 1vw;
 }
-#hour{
-    font-weight: 700;
-}
 
 h2{
     display: flex;

@@ -41,7 +41,7 @@ const ModalInvite: React.FC<ModalInviteProps> = ({
   const filteredUsers = users.filter(user => 
     user.username.toLowerCase().includes(searchValue.toLowerCase())
   );
-  console.log(users)
+  console.log()
 
   return (
     <div className="modal">

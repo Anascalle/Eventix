@@ -64,11 +64,10 @@ const Invitations: React.FC = () => {
             {invitations.map((invitation) => (
               <SwiperSlide key={invitation.id}>
                 <InvitationsCards
-                username={invitation.username}
-                  ocation={invitation.eventType}
-                  hour={invitation.startTime}
-                  eventDate={invitation.eventDate}
-                  url={invitation.img}
+                  name={invitation.senderName}
+                  ocation={invitation.type} 
+                  date={invitation.eventTime} // Usa la hora del evento
+                  url={invitation.img} // Si tienes una imagen
                 />
               </SwiperSlide>
             ))}
@@ -77,11 +76,10 @@ const Invitations: React.FC = () => {
           invitations.map((invitation) => (
             <InvitationsCards
               key={invitation.id}
-              username={invitation.username}
-                  ocation={invitation.eventType}
-                  hour={invitation.startTime}
-                  eventDate={invitation.eventDate}
-                  url={invitation.img}
+              name={invitation.senderName}
+              ocation={invitation.type} // Cambia esto según tu tipo de invitación
+              date={invitation.eventTime} // Usa la hora del evento
+              url={invitation.img} // Si tienes una imagen
             />
           ))
         )}
