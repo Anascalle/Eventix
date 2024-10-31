@@ -3,10 +3,11 @@ import DeletedButton from "../DeletedButton/deletedButton";
 import EditButton from "../EditButton/editButton";
 import "./invitations.css"
 interface InvitationsProps {
-    name: string;
+    username: string;
     ocation: string;
-    date: string;
+    eventDate: string;
     url: string;
+    hour:string
   }
   
 const InvitationsCards: React.FC<InvitationsProps> = ({
@@ -19,12 +20,15 @@ const InvitationsCards: React.FC<InvitationsProps> = ({
     <div id="Invitation">
     <img id="porfile_img" src={url} alt={name} />
     <div id="invitation_text">
-      <p id="name">{name} sent you an invitation</p>
+      <p id="name">{username} sent you an invitation</p>
       <p id="ocation">
         Ocation: <span id="ocation_type">{ocation}</span>
       </p>
       <p id="date">
-        Date: <span id="date_number">{date}</span>
+        Date: <span id="date_number">{eventDate}</span>
+      </p>
+         <p id="hour">
+        Hour: <span id="date_number">{hour}</span>
       </p>
     </div>
     <div id="Buttons">
