@@ -1,21 +1,23 @@
 
 interface ShoppingCardProp {
-    imgShopping: string;
-    nameObject: string;
-    priceObject: number;
-    quantityObject: number;
+
+        image: string;
+        name: string;
+        price: number;
+        disponibility: number;
+
 }
 
 
-const ShoppingCard: React.FC<ShoppingCardProp> =({imgShopping, nameObject, priceObject, quantityObject}) => {
+const ShoppingCard: React.FC<ShoppingCardProp> =({image, name, price, disponibility}) => {
 return(
     <div>
         <button>
-            <img src={imgShopping} alt="" />
+            <img src={image} alt="" />
             <div>
-                <p>{nameObject}</p>
-                <p>{priceObject}</p>
-                <p>{quantityObject}</p>
+                <p>{name}</p>
+                <p>{price}</p>
+                <p>{disponibility}</p>
             </div>
             <div>
             <input type="number" name="" id="" />

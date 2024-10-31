@@ -15,6 +15,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const shop = getFirestore(app);
 
 export const getInvitations = async () => {
   const invitationsCol = collection(db, "invitations");
@@ -23,5 +24,12 @@ export const getInvitations = async () => {
   return invitationList;
 };
 
+export const getItems = async () => {
+  const itemShop = collection(shop, "shopping");
+  const itemSnapshot = await getDocs(itemShop);
+  const itemList = itemSnapshot.docs.map((doc) => doc.data());
+  return itemList;
+};
 
-export { auth, db };
+
+export { auth, db, shop };
