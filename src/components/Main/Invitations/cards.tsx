@@ -2,29 +2,35 @@ import React from "react";
 import DeletedButton from "../DeletedButton/deletedButton";
 import EditButton from "../EditButton/editButton";
 import "./invitations.css"
+
 interface InvitationsProps {
-    name: string;
     ocation: string;
-    date: string;
     url: string;
+    username: string;
+    eventDate: string;
+    hour:string
   }
   
 const InvitationsCards: React.FC<InvitationsProps> = ({
-  name,
+  username,
   ocation,
-  date,
+  eventDate,
+  hour,
   url
 }) =>{
   return (
     <div id="Invitation">
-    <img id="porfile_img" src={url} alt={name} />
+    <img id="porfile_img" src={url} alt={username} />
     <div id="invitation_text">
-      <p id="name">{name} sent you an invitation</p>
+      <p id="name">{username} sent you an invitation</p>
       <p id="ocation">
         Ocation: <span id="ocation_type">{ocation}</span>
       </p>
       <p id="date">
-        Date: <span id="date_number">{date}</span>
+        Date: <span id="date_number">{eventDate}</span>
+      </p>
+      <p id="hour">
+        Hour: <span id="date_number">{hour}</span>
       </p>
     </div>
     <div id="Buttons">
