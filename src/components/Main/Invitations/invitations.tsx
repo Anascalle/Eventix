@@ -11,6 +11,9 @@ const Invitations: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [invitations, setInvitations] = useState<any[]>([]);
   const { userId } = useParams<{ userId: string }>();
+  
+ 
+  const [visibleCount] = useState(4);
 
   useEffect(() => {
     const fetchInvitations = () => {
@@ -49,6 +52,8 @@ const Invitations: React.FC = () => {
     };
   }, []);
 
+ 
+
   return (
     <div id="invitations_div_shadow">
       <div id="invitations_div">
@@ -61,29 +66,32 @@ const Invitations: React.FC = () => {
             pagination={{ clickable: true }}
             navigation={false}
           >
-            {invitations.map((invitation) => (
+            {invitations.slice(0, visibleCount).map((invitation) => ( 
               <SwiperSlide key={invitation.id}>
                 <InvitationsCards
-                  username={invitation.username}
+                  creator={invitation.creatorName}
                   ocation={invitation.eventType} 
                   eventDate={invitation.eventDate} 
                   hour={invitation.startTime}
-                  url={invitation.img} 
+                  creatorImg={invitation.creatorImg} 
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         ) : (
-          invitations.map((invitation) => (
-            <InvitationsCards
-              key={invitation.id}
-              username={invitation.username}
-              ocation={invitation.eventType} 
-              eventDate={invitation.eventDate} 
-              hour={invitation.startTime}
-              url={invitation.img} 
-            />
-          ))
+          <>
+            {invitations.slice(0, visibleCount).map((invitation) => ( 
+              <InvitationsCards
+                key={invitation.id}
+                creator={invitation.creatorName}
+                ocation={invitation.eventType} 
+                eventDate={invitation.eventDate} 
+                hour={invitation.startTime}
+                creatorImg={invitation.creatorImg} 
+              />
+            ))}
+            
+          </>
         )}
       </div>
     </div>

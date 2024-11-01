@@ -4,35 +4,37 @@ import { useFetchFilteredUsers } from "./useFilteredUsers";
 
 export interface User {
   id: string;
-  username: string; 
+  username: string;
   img: string;
 }
 
 export interface UseInviteLogicReturn {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  filteredUsers: User[]; 
+  filteredUsers: User[];
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   selectedUsers: User[];
   setSelectedUsers: React.Dispatch<React.SetStateAction<User[]>>;
   handleInviteUser: () => Promise<void>;
   handleNextInvite: () => void;
-  sentInvitations: { userId: string; eventId: string; eventType?: string; eventDate?: string; startTime?: string; creatorName?: string; username?: string }[];
+  sentInvitations: { userId: string; eventId: string; eventType?: string; eventDate?: string; startTime?: string; creatorName?: string; creatorImg?: string; username?: string }[];
+  visibleInvitations: { userId: string; eventId: string; eventType?: string; eventDate?: string; startTime?: string; creatorName?: string; creatorImg?: string; username?: string }[];
+  loadMoreInvitations: () => void;
 }
 
 const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState(""); 
+  const [searchValue, setSearchValue] = useState("");
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const [sentInvitations, setSentInvitations] = useState<
-    { userId: string; eventId: string; eventType?: string; eventDate?: string; startTime?: string; creatorName?: string; username?: string }[]
+    { userId: string; eventId: string; eventType?: string; eventDate?: string; startTime?: string; creatorName?: string; creatorImg?: string; username?: string }[]
   >([]);
+  const [visibleInvitationsCount, setVisibleInvitationsCount] = useState(4); // Estado para controlar el número de invitaciones visibles
 
   const db = getFirestore();
-  const filteredUsers = useFetchFilteredUsers(searchValue); 
+  const filteredUsers = useFetchFilteredUsers(searchValue);
 
-  
   const fetchEventDetails = async (eventId: string) => {
     const eventRef = doc(db, "events", eventId);
     const eventDoc = await getDoc(eventRef);
@@ -40,14 +42,27 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
       const eventData = eventDoc.data();
       return {
         eventType: eventData?.eventType || "",
-        eventDate: eventData?.date || "", 
+        eventDate: eventData?.date || "",
         startTime: eventData?.startTime || "",
-        creatorName: eventData?.creatorName || "",
+        creatorId: eventData?.userId || "",
       };
     }
-    return { eventType: "", eventDate: "", startTime: "", creatorName: "" };
+    return { eventType: "", eventDate: "", startTime: "", creatorId: "" };
   };
 
+  const fetchCreatorDetails = async (creatorId: string) => {
+    if (!creatorId) return { creatorName: "", creatorImg: "" };
+    const userRef = doc(db, "users", creatorId);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      return {
+        creatorName: userData?.username || "",
+        creatorImg: userData?.img || "",
+      };
+    }
+    return { creatorName: "", creatorImg: "" };
+  };
 
   const fetchUserDetails = async (userId: string) => {
     const userRef = doc(db, "users", userId);
@@ -69,7 +84,8 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
 
     try {
       const eventDetails = await fetchEventDetails(eventId);
-      const newInvitations: any[] = [];  
+      const { creatorName, creatorImg } = await fetchCreatorDetails(eventDetails.creatorId);
+      const newInvitations: any[] = [];
 
       for (const user of selectedUsers) {
         const userDetails = await fetchUserDetails(user.id);
@@ -77,8 +93,10 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
           userId: user.id,
           eventId: eventId,
           eventType: eventDetails.eventType,
-          eventDate: eventDetails.eventDate, 
+          eventDate: eventDetails.eventDate,
           startTime: eventDetails.startTime,
+          creatorName,
+          creatorImg,
           username: userDetails.username,
         };
         newInvitations.push(invitation);
@@ -90,7 +108,7 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
           status: "pending",
           dateSent: new Date().toISOString(),
         });
-        console.log(`Invitación enviada a: ${userDetails.username} para el evento: ${eventId}`);
+        console.log(`Invitación enviada a: ${userDetails.username} para el evento: ${eventId} por el creador: ${creatorName}`);
       }
 
       setSentInvitations((prev) => [...prev, ...newInvitations]);
@@ -102,8 +120,16 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
   };
 
   const handleNextInvite = () => {
-    setIsModalOpen(true); 
+    setIsModalOpen(true);
   };
+
+  // Función para cargar más invitaciones en bloques de cuatro
+  const loadMoreInvitations = () => {
+    setVisibleInvitationsCount((prevCount) => prevCount + 4);
+  };
+
+  // Filtra las invitaciones visibles basadas en `visibleInvitationsCount`
+  const visibleInvitations = sentInvitations.slice(0, visibleInvitationsCount);
 
   return {
     isModalOpen,
@@ -116,6 +142,8 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
     handleInviteUser,
     handleNextInvite,
     sentInvitations,
+    visibleInvitations, // Solo devuelve las invitaciones visibles
+    loadMoreInvitations, // Agrega la función para cargar más invitaciones
   };
 };
 
