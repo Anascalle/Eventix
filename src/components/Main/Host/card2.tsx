@@ -6,17 +6,26 @@ import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import useHostEvents from "../../../hooks/useHostEvents";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../../utils/firebaseConfig";
 
 const Host: React.FC<{ userId: string }> = ({ userId }) => {
   const { profiles: initialProfiles, slidesPerView, loading, error } = useHostEvents(userId);
   const [profiles, setProfiles] = useState(initialProfiles);
 
   useEffect(() => {
-    setProfiles(initialProfiles);
+    setProfiles(initialProfiles); // Actualizamos profiles cuando se cargan los datos
   }, [initialProfiles]);
 
-  const handleDeleteEvent = (id: string) => {
-    setProfiles(prevProfiles => prevProfiles.filter(profile => profile.id !== id));
+  // Lógica de eliminación en Firebase y en el estado local
+  const handleDeleteEvent = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, "events", id)); // Elimina el evento en Firebase
+      setProfiles(prevProfiles => prevProfiles.filter(profile => profile.id !== id)); // Actualiza el estado local
+      console.log(`Event with ID ${id} deleted successfully.`);
+    } catch (error) {
+      console.error("Error deleting event:", error);
+    }
   };
 
   return (
@@ -43,8 +52,7 @@ const Host: React.FC<{ userId: string }> = ({ userId }) => {
                     name={profile.name}
                     date={profile.date}
                     url={profile.image}
-                    onDelete={handleDeleteEvent}
-                    aria-hidden="false"
+                    onDelete={() => handleDeleteEvent(profile.id)} // Pasamos la función de eliminación
                   />
                 </SwiperSlide>
               ))
