@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 
-const MapClickHandler: React.FC<{ onMapClick: (event: any) => void }> = ({ onMapClick }) => {
-    const map = useMap();
+interface MapUpdaterProps {
+    lat: number;
+    lng: number;
+}
 
+const MapUpdater: React.FC<MapUpdaterProps> = ({ lat, lng }) => {
+    const map = useMap();
+   
     useEffect(() => {
-        map.on('click', onMapClick);
-        return () => {
-            map.off('click', onMapClick); 
-        };
-    }, [map, onMapClick]);
+        map.setView([lat, lng]); 
+    }, [lat, lng, map]);
 
     return null; 
 };
 
-export default MapClickHandler;
-
+export default MapUpdater;

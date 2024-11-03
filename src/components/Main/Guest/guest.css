@@ -34,7 +34,7 @@
     flex-direction: row;
   }
   
-  #Guest_tittle {
+  #Guest_tittles {
     display: flex;
     justify-content: left;
     margin-bottom: -1vw;

@@ -8,7 +8,7 @@ interface GuestEventesProps {
     url: string;
     name: string
     id: string;
-    
+  
   }
   
 const GuestEventes: React.FC<GuestEventesProps> = ({
