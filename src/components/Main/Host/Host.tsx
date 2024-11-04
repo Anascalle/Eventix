@@ -9,7 +9,7 @@ interface HostEventsProps {
   url: string;
   id: string;
   name: string;
-  onDelete: () => void; // Recibimos la función de eliminación
+  onDelete: () => void; // Recibimos la función para abrir el modal
 }
 
 const HostEvents: React.FC<HostEventsProps> = ({
@@ -31,7 +31,7 @@ const HostEvents: React.FC<HostEventsProps> = ({
       <p id="ocation_event">{name}</p>
       <p id="date_event">{date}</p>
       <div id="buttons_event">
-        <DeletedButton onClick={onDelete} /> {/* Llama a la función de eliminación al hacer clic */}
+        <DeletedButton onClick={onDelete} /> {/* Abre el modal al hacer clic */}
         <EditButton icon="Edit" />
       </div>
     </button>
