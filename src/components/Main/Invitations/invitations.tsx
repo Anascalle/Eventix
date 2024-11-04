@@ -19,7 +19,7 @@ const Invitations: React.FC = () => {
         const q = query(
           collection(db, "invitations"),
           where("userId", "==", userId),
-          where("status", "==", "pending") // Mostrar solo invitaciones pendientes
+          where("status", "==", "pending")
         );
 
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -53,7 +53,6 @@ const Invitations: React.FC = () => {
 
   const handleAccept = async (invitationId: string, eventId: string) => {
     try {
-      // Primero, obtenemos los detalles del evento usando el eventId
       const eventRef = doc(db, "events", eventId);
       const eventDoc = await getDoc(eventRef);
 
@@ -62,15 +61,15 @@ const Invitations: React.FC = () => {
         return;
       }
 
-      const eventData = eventDoc.data(); // Obtener los datos del evento
-      const eventType = eventData?.eventType; // Ajusta esto según tu estructura de datos
-      const eventDate = eventData?.date; // Usar "date" para acceder a la fecha
+      const eventData = eventDoc.data();
+      const eventType = eventData?.eventType;
+      const eventDate = eventData?.date;
 
       const invitationRef = doc(db, "invitations", invitationId);
       await updateDoc(invitationRef, { status: "accepted" });
 
       console.log(`Invitación aceptada para el evento: ${eventType} en la fecha: ${eventDate}`);
-      console.log(`ID del evento aceptado: ${eventId}`); // Mostrar el ID del evento
+      console.log(`ID del evento aceptado: ${eventId}`);
 
       setInvitations((prev) => prev.filter((inv) => inv.id !== invitationId));
     } catch (error) {
@@ -96,7 +95,9 @@ const Invitations: React.FC = () => {
       <div id="invitations_div">
         <h2 id="invitations_tittle">Invitations</h2>
 
-        {isMobile ? (
+        {invitations.length === 0 ? (
+          <p id="no-invitations-message">No pending invitations</p>
+        ) : isMobile ? (
           <Swiper
             spaceBetween={5}
             slidesPerView={1}
@@ -112,7 +113,7 @@ const Invitations: React.FC = () => {
                   hour={invitation.startTime}
                   creatorImg={invitation.creatorImg}
                   eventData={invitation.eventData}
-                  onAccept={() => handleAccept(invitation.id, invitation.eventId)} // Asegúrate de que eventId esté presente
+                  onAccept={() => handleAccept(invitation.id, invitation.eventId)}
                   onReject={() => handleReject(invitation.id)}
                 />
               </SwiperSlide>
@@ -128,7 +129,7 @@ const Invitations: React.FC = () => {
               hour={invitation.startTime}
               creatorImg={invitation.creatorImg}
               eventData={invitation.eventData}
-              onAccept={() => handleAccept(invitation.id, invitation.eventId)} // Asegúrate de que eventId esté presente
+              onAccept={() => handleAccept(invitation.id, invitation.eventId)}
               onReject={() => handleReject(invitation.id)}
             />
           ))
