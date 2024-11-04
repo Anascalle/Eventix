@@ -7,7 +7,6 @@ import 'swiper/css/scrollbar';
 import "./guest.css";
 import useGuestEvents from "../../../hooks/useGuest";
 
-
 const Guest: React.FC<{ userId: string }> = React.memo(({ userId }) => {
   const { profiles, slidesPerView, loading, error } = useGuestEvents(userId); // Utiliza el hook
 

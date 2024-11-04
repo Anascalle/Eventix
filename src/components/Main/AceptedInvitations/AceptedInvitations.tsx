@@ -4,11 +4,11 @@ import { doc, updateDoc } from "firebase/firestore";
 import firebase from "firebase/compat/app"; // Ensure Firebase is imported correctly
 
 interface InvitationsProps {
-  id: string;
   name: string;
   ocation: string;
   url: string;
   status: string;
+  id: string;
 }
 
 const AceptedInvitations: React.FC<InvitationsProps> = ({ id, name, ocation, url, status }) => {

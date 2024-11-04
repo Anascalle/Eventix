@@ -21,12 +21,12 @@ const useCreateEventForm = () => {
     const [amount, setAmount] = useState<number>(0);
 
     const eventImages = useMemo<Record<string, string>>(() => ({
-        Halloween: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/162fae60-77df-11ee-bd0d-2d70b013b479.jpg.webp?alt=media&token=657d353c-98b6-4826-94b1-3ef021510c0e',
-        Birthday: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/septiembre-cumpleanos-655x368.webp?alt=media&token=9374ce7f-cf85-4cda-8a9b-8d52ca80f0e1',
-        "Baby shower": 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/e53d5867ba9718bd7626f70f2ff446f3.webp?alt=media&token=283fad8c-d887-421a-8e37-3c9c3044b8f5',
-        Wedding: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/unnamed-min.webp?alt=media&token=b4c33a4f-b720-47a8-b4f5-c5ddc028625e",
-        Christmas: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/S7H7HDZF2RJ7RJ3FYMDU5QFSQ4.webp?alt=media&token=9c5c1ce5-7293-4d20-a7fc-216049acbef0',
-        Other: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/amigos-tintinean-vasos-bebida-bar-moderno_1150-18971.webp?alt=media&token=d0a0eb11-822c-49e4-8b10-8e18070be90e',
+        Halloween: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FHalloween.webp?alt=media&token=60a5ef71-06d5-424a-9769-a00cfbb4a4a2',
+        Birthday: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FHappyBirthday.webp?alt=media&token=6902ad3e-c943-45e4-a355-ebd0a63acc39',
+        "Baby shower": 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2Fbaby-shower-1.webp?alt=media&token=88aff7ae-4e95-4902-b8f3-0235dfcce888',
+        Wedding: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FWedding.webp?alt=media&token=7e54d790-a151-4863-8dc4-1f2894748c46",
+        Christmas: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FNavidad.webp?alt=media&token=eb85b70d-cf4c-4a50-b62a-54fff05ca922',
+        Other: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FFiesta.webp?alt=media&token=09a1359c-42cc-43f4-921a-db5446cbfca9',
     }), []);
 
     const handleEventTypeChange = (eventType: string) => {

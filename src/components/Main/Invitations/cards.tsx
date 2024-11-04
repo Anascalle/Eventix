@@ -1,15 +1,17 @@
 import React from "react";
-import DeletedButton from "../DeletedButton/deletedButton";
-import EditButton from "../EditButton/editButton";
+import AcceptButton from "../AcceptButton/AcceptButton";
+import RejectButton from "../RejectButton/RejectButton";
 import "./invitations.css";
-
 
 interface InvitationsProps {
   ocation: string;
-  creatorImg: string; 
+  creatorImg: string;
   creator: string;
   eventDate: string;
+  eventData: any;
   hour: string;
+  onAccept: () => void;
+  onReject: () => void;
 }
 
 const InvitationsCards: React.FC<InvitationsProps> = ({
@@ -17,11 +19,12 @@ const InvitationsCards: React.FC<InvitationsProps> = ({
   ocation,
   eventDate,
   hour,
-  creatorImg 
+  creatorImg,
+  onAccept,
+  onReject,
 }) => {
   return (
     <div id="Invitation">
-      
       <img id="profile_img" src={creatorImg} alt={`Creator: ${creator}`} />
       <div id="invitation_text">
         <p id="name">{creator} sent you an invitation</p>
@@ -36,13 +39,14 @@ const InvitationsCards: React.FC<InvitationsProps> = ({
         </p>
       </div>
       <div id="Buttons">
-        <DeletedButton />
+        <RejectButton onClick={onReject} />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
-        <EditButton
+        <AcceptButton
           icon={<span className="material-symbols-outlined">check</span>}
+          onClick={onAccept}
         />
       </div>
     </div>
