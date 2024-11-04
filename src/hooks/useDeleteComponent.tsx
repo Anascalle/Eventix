@@ -1,11 +1,35 @@
-import { useCallback } from 'react';
+    import { useState } from "react";
+    import { deleteDoc, doc } from "firebase/firestore";
+    import { getAuth, onAuthStateChanged } from "firebase/auth";
+    import { db } from "../utils/firebaseConfig";
 
-const useDeleteComponent = (deleteComponent: () => void) => {
-    const handleDelete = useCallback(() => {
-        deleteComponent();
-    }, [deleteComponent]);
+    const useDeleteEvent = () => {
+    const [error, setError] = useState<string | null>(null);
+    const [deleting, setDeleting] = useState(false);
+    const auth = getAuth();
 
-    return handleDelete;
-}
+    const deleteEvent = async (eventId: string) => {
+        setDeleting(true);
+        setError(null);
 
-export default useDeleteComponent
+        try {
+        await deleteDoc(doc(db, "events", eventId));
+        console.log(`Event with ID ${eventId} deleted from Firebase.`);
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+            console.warn("User was signed out unexpectedly after deletion.");
+            }
+        });
+        } catch (err) {
+        setError("Error deleting event");
+        console.error("Error deleting event:", err);
+        } finally {
+        setDeleting(false);
+        }
+    };
+
+    return { deleteEvent, deleting, error };
+    };
+
+    export default useDeleteEvent;

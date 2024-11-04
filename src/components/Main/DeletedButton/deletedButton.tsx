@@ -2,7 +2,7 @@ import React from "react";
 import "./deletedButton.css";
 
 interface DeletedButtonProps {
-  onClick: (e: React.MouseEvent) => void;
+  onClick: () => void;
 }
 
 const DeletedButton: React.FC<DeletedButtonProps> = ({ onClick }) => {

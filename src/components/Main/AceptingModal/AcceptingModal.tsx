@@ -9,7 +9,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onAccept, message }) => {
-  if (!isOpen) return null;
+  if (!isOpen) return null; // Solo renderiza el modal si está abierto
 
   return (
     <div className="modal-overlay">
