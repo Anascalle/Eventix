@@ -49,6 +49,11 @@
 }
 
 
+.example{
+    font-size: 0.8rem;
+    color: #979292;
+}
+
 
 .create_event_form label {
     display: block;

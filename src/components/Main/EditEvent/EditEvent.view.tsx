@@ -1,43 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./EditEvent.css";
-import EventMap from '../Map/Map.View';
-import useUpdateEvent from '../../../hooks/UpdateEvent';
+import EventMap from "../Map/Map.View";
+import useUpdateEvent from "../../../hooks/UpdateEvent";
+import axios from "axios";
 
 interface EeditEventViewProps {
-    name: string;
-    setName: (value: string) => void;
-    date: string;
-    setDate: (value: string) => void;
-    startTime: string;
-    setStartTime: (value: string) => void;
-    location: string;
-    eventType: string;
-    setEventType: (value: string) => void;
-    dressCode: string;
-    setDressCode: (value: string) => void;
-    description: string;
-    setDescription: (value: string) => void;
-    onClose: () => void; 
-    lat: number;
-    lng: number;
-    amount: number;
-    setAmount: (value: number) => void;
-    eventImage: string | null; 
+  eventId: string;
+  name: string;
+  setName: (value: string) => void;
+  date: string;
+  setDate: (value: string) => void;
+  startTime: string;
+  setStartTime: (value: string) => void;
+  location: string;
+  setLocation: (value: string) => void;
+  eventType: string;
+  setEventType: (value: string) => void;
+  dressCode: string;
+  setDressCode: (value: string) => void;
+  description: string;
+  setDescription: (value: string) => void;
+  submitForm: (e: React.FormEvent) => void;
+  lat: number;
+  lng: number;
+  amount: number;
+  setAmount: (value: number) => void;
+  onMapClick: (event: any) => void;
+  onClose: () => void;
+  eventImage: string | null;
 }
 
 const EeditEventView: React.FC<EeditEventViewProps> = ({
-  name, setName, date, setDate, startTime, setStartTime, location,
-  eventType, setEventType, dressCode, setDressCode, description, setDescription,
-  onClose, lat, lng, amount, setAmount
+  eventId,
+  name,
+  setName,
+  date,
+  setDate,
+  startTime,
+  setStartTime,
+  location,
+  setLocation,
+  eventType,
+  setEventType,
+  dressCode,
+  setDressCode,
+  description,
+  setDescription,
+  lat,
+  lng,
+  onClose,
+  amount,
+  setAmount,
 }) => {
-  const { updateEvent, loading, error } = useUpdateEvent("yourEventIdHere");
+  const { updateEvent, error } = useUpdateEvent("yourEventIdHere");
   const [coordinates, setCoordinates] = useState({ lat, lng });
+  const [isLocationUpdating, setIsLocationUpdating] = useState(false);
 
-  // Renombramos la función a `submitForm` para evitar el conflicto de nombres
-  const submitForm = async (e: React.FormEvent) => {
+  // Función para enviar el formulario y actualizar el evento
+  const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const updatedData = {
+      eventId,
       name,
       date,
       startTime,
@@ -49,34 +73,56 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
       coordinates,
     };
 
-    await updateEvent(updatedData);
-    
-    if (!error) {
-      onClose(); // Cierra el modal o formulario si se actualiza con éxito
+    try {
+      await updateEvent(updatedData);
+
+      if (!error) {
+        onClose(); // Cierra el modal o formulario si se actualiza con éxito
+      }
+    } catch (error) {
+      console.error("Error updating event:", error);
     }
   };
 
+  // Actualización de la ubicación
   const handleLocationChange = async (value: string) => {
-    setCoordinates({ lat, lng }); // Asegura que el estado se actualice con lat y lng actuales
+    setLocation(value);
+    setIsLocationUpdating(true);
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(value)}`);
-      const data = await response.json();
+      const response = await axios.get(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(value)}`
+      );
+      const data = response.data;
+
       if (data && data.length > 0) {
-        setCoordinates({ lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) });
+        const { lat, lon } = data[0];
+        setCoordinates({ lat: parseFloat(lat), lng: parseFloat(lon) });
+      } else {
+        // Manejo de error: no se encontró la ubicación
+        console.error("No results found for this location.");
       }
     } catch (error) {
-      console.error('Error fetching location:', error);
+      console.error("Error fetching location:", error);
+    } finally {
+      setIsLocationUpdating(false);
     }
   };
+
+  // Sincroniza las coordenadas cuando cambian las propiedades lat y lng
+  useEffect(() => {
+    setCoordinates({ lat, lng });
+  }, [lat, lng]);
 
   return (
     <div aria-label="edit events form" className="edit_event_form">
-      <button className="close-button" onClick={onClose}>x</button>
-      <h2>Update a event</h2>
-      <form onSubmit={submitForm}>
+      <button className="close-button" onClick={onClose}>
+        x
+      </button>
+      <h2>Update an Event</h2>
+      <form onSubmit={handleSubmitForm}>
         <label>Event name</label>
-        <input 
-          aria-label="event name" 
+        <input
+          aria-label="event name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -84,37 +130,43 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
           required
         />
         <label>Date</label>
-        <input 
-          aria-label="event date" 
+        <input
+          aria-label="event date"
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
           required
         />
         <label>Start time</label>
-        <input 
-          aria-label="start time" 
+        <input
+          aria-label="start time"
           type="time"
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
           required
         />
-        <label>Address</label>
-        <p className='example'> Example: Cl. 38 Norte. #6N </p>
-        <input 
-          aria-label="address" 
+        <p className="example">Example: Cl. 38 Norte. #6N</p>
+        <input
+          aria-label="address"
           type="text"
           value={location}
           onChange={(e) => handleLocationChange(e.target.value)}
           placeholder="Address"
           required
         />
-        {loading && <p>Loading location...</p>}
+        {isLocationUpdating && <p>Loading location...</p>}
         <EventMap lat={coordinates.lat} lng={coordinates.lng} location={location} />
 
         <label>Event type</label>
-        <select aria-label="event type" value={eventType} onChange={(e) => setEventType(e.target.value)} required>
-          <option value="" disabled>Select an event type</option>
+        <select
+          aria-label="event type"
+          value={eventType}
+          onChange={(e) => setEventType(e.target.value)}
+          required
+        >
+          <option value="" disabled>
+            Select an event type
+          </option>
           <option value="Halloween">Halloween</option>
           <option value="Wedding">Wedding</option>
           <option value="Birthday">Birthday</option>
@@ -123,8 +175,8 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
           <option value="Other">Other</option>
         </select>
         <label>Dress code</label>
-        <input 
-          aria-label="dress code" 
+        <input
+          aria-label="dress code"
           type="text"
           value={dressCode}
           onChange={(e) => setDressCode(e.target.value)}
@@ -132,16 +184,16 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
           required
         />
         <label>Description</label>
-        <textarea 
-          aria-label="description" 
+        <textarea
+          aria-label="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description"
           required
         ></textarea>
         <label>Event amount</label>
-        <input 
-          aria-label="event amount" 
+        <input
+          aria-label="event amount"
           type="number"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
@@ -149,6 +201,7 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
         />
         <button type="submit">Update event</button>
       </form>
+      {error && <p>Error updating event: {error}</p>}
     </div>
   );
 };

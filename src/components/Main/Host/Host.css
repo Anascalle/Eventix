@@ -1,5 +1,7 @@
 #buttons_event {
     display: flex;
+    justify-content: center;
+    gap: 10%;
   }
   #Host_card {
     border-radius: 20px;
@@ -11,6 +13,12 @@
   .swiper-slide {
     margin: 0;
   }
+
+  #host_event_button{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+  }
   
   #hosts_events {
     border-color: rgb(0, 255, 255);
@@ -21,6 +29,7 @@
     margin: 2vw;
     width: 14vw;
     background-color: white;
+    z-index: -100;
   }
   
   #carousel {
@@ -73,9 +82,10 @@
       border-radius: 20px;
       padding: 3vw;
       margin: 10vw;
-      width: 70vw;
+      width: 65vw;
       height: 95vw;
-      margin-left: 0vw;
+      margin-left: -1vw;
+      margin-right: 0vw;
     }
   
     #no_events {
