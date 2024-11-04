@@ -1,3 +1,5 @@
+import "./Filter.css";
+import React, { useState } from "react";
 
 interface FilterProp {
     filterType: string;
@@ -7,14 +9,29 @@ interface FilterProp {
 const Filters: React.FC<FilterProp> = ({ filterType, onFilterSelect }) => {
     const categories = ["Halloween", "Birthday", "Wedding", "Baby Shower", "Christmas"];
 
+    const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+    const handleFilterSelect = (category: string) => {
+        setActiveCategory(category); 
+        onFilterSelect(category); 
+    };
+
     return (
-        <div>
-            <p>Filters by:</p>
-            {categories.map((category) => (
-                <button key={category} onClick={() => onFilterSelect(category)}>
-                    {category}
-                </button>
-            ))}
+        <div className="filters">
+            <div>
+                <p>Filters by:</p>
+            </div>
+            <div className="CardsFilters">
+                {categories.map((category) => (
+                    <button 
+                        className={`filterbtn ${activeCategory === category ? 'active' : ''}`} 
+                        key={category} 
+                        onClick={() => handleFilterSelect(category)}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 };
