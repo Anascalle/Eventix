@@ -4,6 +4,7 @@ import { collection, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../utils/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import axios from 'axios';
+
 const useCreateEventForm = () => {
     const [name, setName] = useState<string>('');
     const [date, setDate] = useState<string>('');
@@ -36,7 +37,6 @@ const useCreateEventForm = () => {
     const handleAddressChange = async (address: string) => {
         setLocation(address);
         
-        // Realiza la búsqueda de coordenadas usando OpenStreetMap
         const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
 
         try {
@@ -45,7 +45,7 @@ const useCreateEventForm = () => {
                 const { lat, lon } = response.data[0];
                 setLat(parseFloat(lat));
                 setLng(parseFloat(lon));
-                setMapClicked(true); // Marcar que se hizo clic en el mapa
+                setMapClicked(true); 
             } else {
                 alert("Location not found. Please try a different address.");
             }
@@ -58,10 +58,17 @@ const useCreateEventForm = () => {
     const closeModal = () => {
         setIsModalOpen(false); 
     };
-    
-    const handleSubmit = async (e: any) => {
+
+    const generateUniqueID = (): string => {
+        return `event-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault(); 
         console.log("Submitting event data...");
+
+        const newEventID = generateUniqueID(); 
+        console.log("Generated Event ID:", newEventID);
 
         if (!mapClicked) {
             alert("Please set the location on the map.");
@@ -73,12 +80,10 @@ const useCreateEventForm = () => {
             return;
         }
 
-        console.log("Current amount:", amount);
         if (amount < 0) {
             alert("Amount cannot be negative.");
             return;
         }
-    
 
         const auth = getAuth();
         const user = auth.currentUser;
@@ -112,6 +117,7 @@ const useCreateEventForm = () => {
             }
 
             const eventData = {
+                eventID: newEventID,  
                 name,
                 date,
                 startTime,
@@ -135,7 +141,6 @@ const useCreateEventForm = () => {
         } catch (error) {
             console.error("Error processing request: ", error);
             alert("An error occurred while creating the event.");
-            return false;
         }
     };
     
@@ -199,3 +204,4 @@ const useCreateEventForm = () => {
 };
 
 export default useCreateEventForm;
+

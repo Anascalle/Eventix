@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { LeafletMouseEvent } from 'leaflet';
 
 const useEditEventForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,13 +12,17 @@ const useEditEventForm = () => {
     const [eventType, setEventType] = useState('');
     const [dressCode, setDressCode] = useState('');
     const [description, setDescription] = useState('');
-    const [lat, setLat] = useState(0);
-    const [lng, setLng] = useState(0);
     const [amount, setAmount] = useState<number | null>(null);
+      const [lat, setLat] = useState<number>(3.405); // Valor predeterminado
+  const [lng, setLng] = useState<number>(-76.49); // Valor predeterminado
+  const [mapClicked, setMapClicked] = useState<boolean>(false);
 
     // Funciones para abrir y cerrar el modal
     const handleOpenModal = () => setIsModalOpen(true);
-    const handleCloseModal = () => setIsModalOpen(false);
+    const handleClose = () => {
+        setIsModalOpen(false);
+    };
+
 
     // Manejar el envío del formulario
     const handleSubmit = (e: React.FormEvent) => {
@@ -26,14 +31,21 @@ const useEditEventForm = () => {
         console.log('Evento actualizado:', {
             name, date, startTime, location, eventType, dressCode, description, amount, coordinates: { lat, lng }
         });
-        handleCloseModal();
+        handleClose();
+    };
+
+    const onMapClick = (event: LeafletMouseEvent) => {
+        const { lat, lng } = event.latlng;
+        setLat(lat);
+        setLng(lng);
+        setMapClicked(true);
     };
 
     return {
         name, setName, date, setDate, startTime, setStartTime, location, setLocation,
         eventType, setEventType, dressCode, setDressCode, description, setDescription,
         handleSubmit, lat, setLat, lng, setLng, amount, setAmount,
-        isModalOpen, handleOpenModal, handleCloseModal
+        isModalOpen, handleOpenModal, handleClose,mapClicked,onMapClick
     };
 };
 
