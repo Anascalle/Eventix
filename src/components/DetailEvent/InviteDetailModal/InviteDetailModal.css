@@ -137,3 +137,35 @@ li:hover {
   border-radius: 50%; 
   margin-right: 2%; 
 }
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1%;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.user-list div {
+  padding: 10px;
+  display: flex;
+  width: 95%;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.user-list div:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+}
+
+.user-list img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
