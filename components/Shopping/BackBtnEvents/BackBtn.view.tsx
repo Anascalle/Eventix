@@ -12,7 +12,7 @@ const BackBtnEvents: React.FC = () => {
     return (
         <div className="BackBtnEvents">
             <button className="" onClick={handleBackClick}>
-                <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Back.webp?alt=media&token=e360dcdd-63d6-41f7-af72-77f6785e2105" alt="backbuttonEvents" />
+                <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/DetailScreen%2FBack.webp?alt=media&token=f18bcebc-06b9-4d2f-abe5-895fe0f7505b" alt="backbuttonEvents" />
             </button>
             <p>your events</p>
         </div>
