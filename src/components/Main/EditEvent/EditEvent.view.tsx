@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect} from 'react';
 import "./EditEvent.css";
 import EventMap from "../Map/Map.View";
-import useUpdateEvent from "../../../hooks/UpdateEvent";
-import axios from "axios";
+import useEditEvent from '../../../hooks/UseEditEvent';
+
+
 
 interface EeditEventViewProps {
   eventId: string;
@@ -29,92 +30,36 @@ interface EeditEventViewProps {
   onClose: () => void;
   eventImage: string | null;
 }
+const EeditEventView: React.FC<EeditEventViewProps> = ({ eventId, lat, lng, onClose }) => {
+  const {
+    name, setName,
+    date, setDate,
+    startTime, setStartTime,
+    location,
+    eventType, setEventType,
+    dressCode, setDressCode,
+    description, setDescription,
+    amount, setAmount,
+    coordinates,
+    isLocationUpdating,
+    handleSubmitForm,
+    handleLocationChange,
+    error,
+    isUpdateSuccessful,
+  } = useEditEvent(eventId, { lat, lng });
 
-const EeditEventView: React.FC<EeditEventViewProps> = ({
-  eventId,
-  name,
-  setName,
-  date,
-  setDate,
-  startTime,
-  setStartTime,
-  location,
-  setLocation,
-  eventType,
-  setEventType,
-  dressCode,
-  setDressCode,
-  description,
-  setDescription,
-  lat,
-  lng,
-  onClose,
-  amount,
-  setAmount,
-}) => {
-  const [coordinates, setCoordinates] = useState({ lat, lng });
-  const [isLocationUpdating, setIsLocationUpdating] = useState(false);
-
-  const { updateEvent, error } = useUpdateEvent(); // No necesitas pasar el ID aquí, ya que lo tomas del prop eventId
-
-    // La función handleSubmitForm debe utilizar el eventId que se pasa como prop
-    const handleSubmitForm = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        const updatedData = {
-            name,
-            date,
-            startTime,
-            location,
-            eventType,
-            dressCode,
-            description,
-            amount,
-            coordinates: { lat, lng },
-        };
-
-        try {
-            await updateEvent(eventId, updatedData); // Llama a updateEvent pasando el eventId
-            onClose(); // Cierra el modal si se actualiza con éxito
-        } catch (error) {
-            console.error("Error updating event:", error);
-        }
-    };
-
-  // Actualización de la ubicación
-  const handleLocationChange = async (value: string) => {
-    setLocation(value);
-    setIsLocationUpdating(true);
-    try {
-      const response = await axios.get(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(value)}`
-      );
-      const data = response.data;
-
-      if (data && data.length > 0) {
-        const { lat, lon } = data[0];
-        setCoordinates({ lat: parseFloat(lat), lng: parseFloat(lon) });
-      } else {
-        // Manejo de error: no se encontró la ubicación
-        console.error("No results found for this location.");
-      }
-    } catch (error) {
-      console.error("Error fetching location:", error);
-    } finally {
-      setIsLocationUpdating(false);
-    }
-  };
-
-  // Sincroniza las coordenadas cuando cambian las propiedades lat y lng
+  // Cierra el modal o muestra una alerta si la actualización fue exitosa
   useEffect(() => {
-    setCoordinates({ lat, lng });
-  }, [lat, lng]);
+    if (isUpdateSuccessful) {
+      alert("Evento actualizado correctamente.");
+      onClose();
+    }
+  }, [isUpdateSuccessful, onClose]);
+
 
   return (
     <div aria-label="edit events form" className="edit_event_form">
-      <button className="close-button" onClick={onClose}>
-        x
-      </button>
+      <button className="close-button" onClick={onClose}>x</button>
       <h2>Update an Event</h2>
       <form onSubmit={handleSubmitForm}>
         <label>Event name</label>
@@ -161,9 +106,7 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
           onChange={(e) => setEventType(e.target.value)}
           required
         >
-          <option value="" disabled>
-            Select an event type
-          </option>
+          <option value="" disabled>Select an event type</option>
           <option value="Halloween">Halloween</option>
           <option value="Wedding">Wedding</option>
           <option value="Birthday">Birthday</option>
