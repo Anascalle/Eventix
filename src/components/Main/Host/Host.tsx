@@ -4,17 +4,16 @@ import EditButton from "../EditButton/editButton";
 import "./Host.css";
 import { useNavigate } from "react-router-dom";
 
-
 interface HostEventsProps {
     date: string;
-    url: string;
-    id: string;
+    image: string;
+    id: string;  // ID del evento
     name: string;
 }
 
 const HostEvents: React.FC<HostEventsProps> = ({
     date,
-    url,
+    image,
     id,
     name,
 }) => {
@@ -27,19 +26,17 @@ const HostEvents: React.FC<HostEventsProps> = ({
     };
 
     return (
-        <>
         <div id="hosts_events">
             <button id="host_event_button" onClick={handleButtonClick}>
-                <img id="event_img" src={url} alt="" />
+                <img id="event_img" src={image} alt="" />
                 <p id="location_event">{name}</p>
                 <p id="date_event">{date}</p>
             </button>
             <div id="buttons_event">
                 <DeletedButton />
-                <EditButton  icon="Edit" />
+                <EditButton icon="edit" eventId={id} />
             </div>
-            </div>
-        </>
+        </div>
     );
 };
 

@@ -3,13 +3,11 @@
     color: #f7f7f7;
     border: none;
     width: 4vw;
-    padding: 1%;
+    padding: 0.5%;
     border-radius: 4px;
     margin-top: 1vw;
     margin-left: 0.5vw;
-    height: 2.3vw;
-    cursor: pointer;
-    z-index: 200;
+    height: 2vw;
 }
 
 @media (max-width: 768px) {

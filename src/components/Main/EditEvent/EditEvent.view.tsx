@@ -52,37 +52,34 @@ const EeditEventView: React.FC<EeditEventViewProps> = ({
   amount,
   setAmount,
 }) => {
-  const { updateEvent, error } = useUpdateEvent("yourEventIdHere");
   const [coordinates, setCoordinates] = useState({ lat, lng });
   const [isLocationUpdating, setIsLocationUpdating] = useState(false);
 
-  // Función para enviar el formulario y actualizar el evento
-  const handleSubmitForm = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const { updateEvent, error } = useUpdateEvent(); // No necesitas pasar el ID aquí, ya que lo tomas del prop eventId
 
-    const updatedData = {
-      eventId,
-      name,
-      date,
-      startTime,
-      location,
-      eventType,
-      dressCode,
-      description,
-      amount,
-      coordinates,
+    // La función handleSubmitForm debe utilizar el eventId que se pasa como prop
+    const handleSubmitForm = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const updatedData = {
+            name,
+            date,
+            startTime,
+            location,
+            eventType,
+            dressCode,
+            description,
+            amount,
+            coordinates: { lat, lng },
+        };
+
+        try {
+            await updateEvent(eventId, updatedData); // Llama a updateEvent pasando el eventId
+            onClose(); // Cierra el modal si se actualiza con éxito
+        } catch (error) {
+            console.error("Error updating event:", error);
+        }
     };
-
-    try {
-      await updateEvent(updatedData);
-
-      if (!error) {
-        onClose(); // Cierra el modal o formulario si se actualiza con éxito
-      }
-    } catch (error) {
-      console.error("Error updating event:", error);
-    }
-  };
 
   // Actualización de la ubicación
   const handleLocationChange = async (value: string) => {
