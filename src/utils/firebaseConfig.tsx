@@ -17,6 +17,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const shop = getFirestore(app);
 
+export const receiptsCollection = collection(db, "receipts");
+export const eventsCollection = collection(db, "events");
+
 export const getInvitations = async () => {
   const invitationsCol = collection(db, "invitations");
   const invitationSnapshot = await getDocs(invitationsCol);
@@ -25,10 +28,13 @@ export const getInvitations = async () => {
 };
 
 export const getItems = async () => {
-  const itemShop = collection(shop, "shopping");
-  const itemSnapshot = await getDocs(itemShop);
-  const itemList = itemSnapshot.docs.map((doc) => doc.data());
-  return itemList;
+  const itemsCollection = collection(shop, "shopping"); 
+  const itemsSnapshot = await getDocs(itemsCollection);
+  const itemsList = itemsSnapshot.docs.map(doc => ({
+      id: doc.id, 
+      ...doc.data() 
+  }));
+  return itemsList;
 };
 
 
