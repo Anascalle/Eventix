@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./ShoppingCard.css";
 
 interface ShoppingCardProp {
     id: number;
@@ -17,25 +18,24 @@ const ShoppingCard: React.FC<ShoppingCardProp> = ({ id, image, name, price, disp
     };
 
     return (
-        <div>
-            <button >
-                <img src={image} alt={name} />
-                <div>
-                    <p>{name}</p>
-                    <p>${price}</p>
-                    <p>Disponibility: {disponibility}</p>
-                </div>
-                <div>
-                    <input
-                        type="number"
-                        value={quantity}
-                        min={1}
-                        max={disponibility}
-                        onChange={(e) => setQuantity(Math.min(Number(e.target.value), disponibility))}
-                    />
-                    <button onClick={handleAddToCart}>Buy</button>
-                </div>
-            </button>
+        <div className="product-card">
+            <img src={image} alt={name} />
+            <div>
+                <p className="product-name">{name}</p>
+                <p className="product-price">${price}</p>
+                <p className="product-disponibility">Disponibility: {disponibility}</p>
+            </div>
+            <div>
+                <input
+                    type="number"
+                    className="quantity-input"
+                    value={quantity}
+                    min={1}
+                    max={disponibility}
+                    onChange={(e) => setQuantity(Math.min(Number(e.target.value), disponibility))}
+                />
+                <button className="buy-button" onClick={handleAddToCart}>Buy</button>
+            </div>
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import "./shoppingMap.css"
 import React from 'react';
 import Consumption from "./Consumption/Consumption.view";
 import useShoppingItems from "../../hooks/useShoppingItems";
@@ -5,6 +6,8 @@ import { useConsumption } from "../../hooks/useConsumption";
 import Filters from "./Filters/Filter.view";
 import ShoppingCard from "./ShoopingCard/ShoppingCard.view";
 import Nav3 from '../DetailEvent/Nav/Nav.view';
+import BackBtnEvents from './BackBtnEvents/BackBtn.view';
+
 
 const ShoopingMap: React.FC = () => {
     const { filteredItems, filterType, setFilterType } = useShoppingItems();
@@ -12,9 +15,15 @@ const ShoopingMap: React.FC = () => {
 
     return (
         <div>
-            <Nav3></Nav3>
-            <Filters filterType={filterType} onFilterSelect={setFilterType} />
             <div>
+            <Nav3></Nav3>
+            <BackBtnEvents></BackBtnEvents>
+            </div>
+            <div className="receipt-section">
+            
+            <div>
+            <Filters filterType={filterType} onFilterSelect={setFilterType} />
+            <div className="grid-card">
                 {filteredItems.map((item) => (
                     <ShoppingCard
                         key={item.id}
@@ -27,11 +36,13 @@ const ShoopingMap: React.FC = () => {
                     />
                 ))}
             </div>
+            </div>
             <Consumption
                 items={consumption}
                 total={getTotal()}
                 onRemoveItem={removeFromConsumption}
             />
+            </div>
         </div>
     );
 };

@@ -13,6 +13,9 @@ const FunctionBtn: React.FC<FunctionProp> = (prop) =>{
                 <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/cart%20remove.webp?alt=media&token=28e87dcc-db6b-4ae1-9930-dde0bd1f4138" alt="card shopping icon" />
                 Shopping
             </button>
+
+
+            
             <button onClick={prop.NextFound}>
                 <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/bill%20dollar.webp?alt=media&token=bd78246c-f823-480d-970c-dafcd1cb4198" alt="bill dollar icon" />
                 Found

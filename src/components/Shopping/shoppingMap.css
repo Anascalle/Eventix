@@ -1,0 +1,15 @@
+.receipt-section{
+    display: flex;
+    flex-direction: row;
+    gap: 7vw;
+    padding-bottom: 10vh;
+}
+
+.grid-card{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 4vw;
+    width: 70%;
+    margin-left: 7vw;
+    margin-top: 5vh;
+}

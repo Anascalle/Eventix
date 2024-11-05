@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ModalInvite from "../InviteDetailModal/InviteDetailModal";
 import "./InfoCard.css";
 import FunctionBtn from "../FunctionBtns/FunctionBtns.view";
@@ -18,6 +18,7 @@ interface InfoProp {
 }
 
 const InfoCard: React.FC<InfoProp> = (prop) => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const eventId = state?.id;
 
@@ -34,7 +35,7 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
   } = useInviteLogic(eventId);
 
   const handleNextShooping = () => {
-    console.log("Shooping clicked");
+    navigate("/shopping", { state: { eventType: prop.EventType } });
   };
 
   const handleNextFound = () => {
@@ -46,6 +47,7 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
     setSearchValue(''); 
     setSelectedUsers([]); 
   };
+  
   return (
     <div className="InfoCard">
       <div className="ImgBanner">
