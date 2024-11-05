@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: '/shopping', 
+    path: '/shopping/:id', 
     element: <ShoppingScreen/>, 
   },
   
