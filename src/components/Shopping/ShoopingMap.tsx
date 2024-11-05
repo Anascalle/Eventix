@@ -1,5 +1,6 @@
-import "./shoppingMap.css"
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import "./shoppingMap.css";
 import Consumption from "./Consumption/Consumption.view";
 import useShoppingItems from "../../hooks/useShoppingItems";
 import { useConsumption } from "../../hooks/useConsumption";
@@ -8,40 +9,40 @@ import ShoppingCard from "./ShoopingCard/ShoppingCard.view";
 import Nav3 from '../DetailEvent/Nav/Nav.view';
 import BackBtnEvents from './BackBtnEvents/BackBtn.view';
 
-
 const ShoopingMap: React.FC = () => {
+    const { id: eventId } = useParams<{ id: string }>(); // Captura el eventId de la URL
     const { filteredItems, filterType, setFilterType } = useShoppingItems();
-    const { consumption, addToConsumption, removeFromConsumption, getTotal } = useConsumption();
+    const { consumption, addToConsumption, removeFromConsumption, getTotal, processPurchase } = useConsumption();
 
     return (
         <div>
             <div>
-            <Nav3></Nav3>
-            <BackBtnEvents></BackBtnEvents>
+                <Nav3></Nav3>
+                <BackBtnEvents></BackBtnEvents>
             </div>
             <div className="receipt-section">
-            
-            <div>
-            <Filters filterType={filterType} onFilterSelect={setFilterType} />
-            <div className="grid-card">
-                {filteredItems.map((item) => (
-                    <ShoppingCard
-                        key={item.id}
-                        id={item.id}
-                        image={item.image}
-                        name={item.name}
-                        price={item.price}
-                        disponibility={item.disponibility}
-                        addToConsumption={addToConsumption}
-                    />
-                ))}
-            </div>
-            </div>
-            <Consumption
-                items={consumption}
-                total={getTotal()}
-                onRemoveItem={removeFromConsumption}
-            />
+                <div>
+                    <Filters filterType={filterType} onFilterSelect={setFilterType} />
+                    <div className="grid-card">
+                        {filteredItems.map((item) => (
+                            <ShoppingCard
+                                key={item.id}
+                                id={item.id}
+                                image={item.image}
+                                name={item.name}
+                                price={item.price}
+                                disponibility={item.disponibility}
+                                addToConsumption={addToConsumption}
+                            />
+                        ))}
+                    </div>
+                </div>
+                <Consumption
+                    items={consumption}
+                    total={getTotal()}
+                    onRemoveItem={removeFromConsumption}
+                    onBuyAll={() => processPurchase(eventId)} 
+                />
             </div>
         </div>
     );

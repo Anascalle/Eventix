@@ -35,8 +35,9 @@ const InfoCard: React.FC<InfoProp> = (prop) => {
   } = useInviteLogic(eventId);
 
   const handleNextShooping = () => {
-    navigate("/shopping", { state: { eventType: prop.EventType } });
+    navigate(`/shopping/${eventId}`, { state: { eventType: prop.EventType, eventId } });
   };
+  
 
   const handleNextFound = () => {
     console.log("Found clicked");

@@ -7,7 +7,7 @@ interface FilterProp {
 }
 
 const Filters: React.FC<FilterProp> = ({ filterType, onFilterSelect }) => {
-    const categories = ["Halloween", "Birthday", "Wedding", "Baby Shower", "Christmas"];
+    const categories = ["Halloween", "Birthday", "Wedding", "Baby Shower", "Christmas", "Other"];
 
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
