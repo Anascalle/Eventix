@@ -37,7 +37,6 @@ const useCreateEventForm = () => {
     const handleAddressChange = async (address: string) => {
         setLocation(address);
         
-        // Realiza la búsqueda de coordenadas usando OpenStreetMap
         const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
 
         try {
