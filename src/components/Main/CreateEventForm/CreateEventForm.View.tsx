@@ -25,7 +25,7 @@ interface CreateEventFormViewProps {
     setAmount: (value: number) => void;
     onMapClick: (event: any) => void; 
     onClose: () => void; 
-    eventImage: string | null; 
+  
 }
 
 const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({

@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc, deleteDoc } from 'firebase/firestore'; 
 import { getAuth } from 'firebase/auth';
+import { Item } from '../hooks/useShoppingItem';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAPJBKfnpcxHtkPkS18CH4mb9AeFCq_9nY",
@@ -30,10 +31,14 @@ export const getItems = async () => {
   const itemsCollection = collection(shop, "shopping"); 
   const itemsSnapshot = await getDocs(itemsCollection);
   const itemsList = itemsSnapshot.docs.map(doc => ({
-      id: doc.id, 
-      ...doc.data() 
+      id: Number(doc.id), // Convertimos el ID a número si es necesario
+      image: doc.data().image || "", // Asignamos valores predeterminados
+      name: doc.data().name || "Sin nombre",
+      price: doc.data().price || 0,
+      disponibility: doc.data().disponibility || 0,
+      eventType: doc.data().eventType || "Desconocido",
   }));
-  return itemsList;
+  return itemsList as Item[]; // Asegura que el tipo sea Item[]
 };
 
 export const deleteInvitation = async (id: string) => {
