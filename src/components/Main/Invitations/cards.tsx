@@ -34,7 +34,7 @@ const InvitationsCards: React.FC<InvitationsProps> = ({
         <p id="date">
           Date: <span id="date_number">{eventDate}</span>
         </p>
-        <p id="hour">
+        <p id="date">
           Hour: <span id="date_number">{hour}</span>
         </p>
       </div>

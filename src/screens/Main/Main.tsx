@@ -18,6 +18,8 @@ const Main: React.FC = () => {
             <Guest userId={userId!} />
             <CreateEventForm />
             <InvitationsAccept creatorId={userId!} /> 
+            <div id="root"></div>
+            <div id="modal-root"></div>
         </div>
     );
 };

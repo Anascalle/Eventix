@@ -75,7 +75,7 @@ const ModalInviteView: React.FC<ModalInviteViewProps> = ({
           {selectedUsers.map((user) => (
             <div key={user.id} className="selected-user-card">
               <img src={user.img} alt={user.username} className="selected-user-image" />
-              <p>{user.username}</p>
+              <p id="selected_user_name">{user.username}</p>
               <button
                 className="eliminate_guest"
                 onClick={() => handleRemoveUser(user.id)}

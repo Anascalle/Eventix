@@ -7,56 +7,56 @@ interface AcceptedUser {
   id: string;
   name: string;
   profileUrl: string;
-  eventName: string; // Agrega el nombre del evento aquí
+  eventName: string; 
 }
 
 interface InvitationsAcceptProps {
-  creatorId: string; // Cambia a creatorId
+  creatorId: string; 
 }
 
 const InvitationsAccept: React.FC<InvitationsAcceptProps> = ({ creatorId }) => {
   const [acceptedUsers, setAcceptedUsers] = useState<AcceptedUser[]>([]);
 
   useEffect(() => {
-    console.log("Creator ID in InvitationsAccept:", creatorId); // Verificar el creatorId recibido
+    console.log("Creator ID in InvitationsAccept:", creatorId); 
 
     if (!creatorId) {
-      console.error("Creator ID is missing."); // Mensaje de error
-      return; // Salir si no hay creatorId
+      console.error("Creator ID is missing."); 
+      return; 
     }
 
     const fetchAcceptedUsers = async () => {
       try {
         const invitationsRef = collection(db, "invitations");
-        // Cambia la consulta para buscar por creatorId
+        
         const q = query(invitationsRef, where("creatorId", "==", creatorId), where("status", "==", "accepted"));
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
           console.log("No accepted invitations found for this creator."); // No se encontraron invitaciones
-          return; // Salir si no hay invitaciones
+          return; 
         }
 
         const acceptedUsersData: AcceptedUser[] = [];
         querySnapshot.forEach((doc) => {
           const invitationData = doc.data();
-          console.log("Invitation Data:", invitationData); // Mostrar los datos de cada invitación
+          console.log("Invitation Data:", invitationData); 
 
-          // Verifica que los campos existan en la invitación
+         
           if (invitationData.userId && invitationData.username && invitationData.creatorImg) {
             acceptedUsersData.push({
               id: invitationData.userId,
               name: invitationData.username,
               profileUrl: invitationData.userImg,
-              eventName: invitationData.eventName || "Unknown Event", // Agrega el nombre del evento
+              eventName: invitationData.eventName || "Unknown Event", 
             });
           } else {
-            console.warn("Missing fields in invitation data:", invitationData); // Campos faltantes
-          }
+            console.warn("Missing fields in invitation data:", invitationData); 
+                    }
         });
 
         setAcceptedUsers(acceptedUsersData);
-        console.log("Accepted Users:", acceptedUsersData); // Mostrar los usuarios aceptados
+        console.log("Accepted Users:", acceptedUsersData); 
       } catch (error) {
         console.error("Error fetching accepted users:", error);
       }
@@ -74,12 +74,12 @@ const InvitationsAccept: React.FC<InvitationsAcceptProps> = ({ creatorId }) => {
             <div key={user.id} id="acepted_invitation">
               <img id="profile_img" src={user.profileUrl} alt={user.name} />
               <div id="acepted_invitation_text">
-                <p>{user.name} accepted the invitation to <span>{user.eventName}</span></p> {/* Usa user.eventName aquí */}
+                <p id="text_accepted_p">{user.name} accepted the invitation to <span>{user.eventName}</span></p> 
               </div>
             </div>
           ))
         ) : (
-          <p>No accepted invitations yet.</p>
+          <p id="no_accepted_inv">No accepted invitations yet.</p>
         )}
       </div>
     </div>
