@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./CreateEventsForm.css";
 import EventMap from '../Map/Map.View';
+import axios from 'axios';
 
 interface CreateEventFormViewProps {
     name: string;
@@ -30,15 +31,46 @@ interface CreateEventFormViewProps {
 const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
     name, setName, date, setDate, startTime, setStartTime, location, setLocation,
     eventType, setEventType, dressCode, setDressCode, description, setDescription,
-    handleSubmit, lat, lng, onMapClick, onClose, amount, setAmount, 
+    handleSubmit, lat, lng, onClose, amount, setAmount,
 }) => {
+    const [coordinates, setCoordinates] = useState<{ lat: number; lng: number }>({ lat, lng });
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const handleLocationChange = async (value: string) => {
+        setLocation(value);
+        setLoading(true);
+        try {
+            const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(value)}`);
+            const data = response.data;
+    
+            if (data && data.length > 0) {
+                const { lat, lon } = data[0];
+                setCoordinates({ lat: parseFloat(lat), lng: parseFloat(lon) });
+            } else {
+                // Manejo de error: no se encontró la ubicación
+                console.error('No results found for this location.');
+            }
+        } catch (error) {
+            console.error('Error fetching location:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        setCoordinates({ lat, lng });
+    }, [lat, lng]);
+
+    
+
     return (
-        <div className="create_event_form">
+        <div aria-label="create events form" className="create_event_form">
             <button className="close-button" onClick={onClose}>x</button>
             <h2>Create a new event</h2>
             <form onSubmit={handleSubmit}>
                 <label>Event name</label>
-                <input
+                <input 
+                    aria-label="event name" 
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -46,31 +78,36 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     required
                 />
                 <label>Date</label>
-                <input
+                <input 
+                    aria-label="event date" 
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
                 />
                 <label>Start time</label>
-                <input
+                <input 
+                    aria-label="start time " 
                     type="time"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
                     required
                 />
                 <label>Address</label>
-                <input
+                <p className='example'> Example: Cl. 38 Norte. #6N </p>
+                <input 
+                    aria-label="address" 
                     type="text"
                     value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    onChange={(e) => handleLocationChange(e.target.value)}
                     placeholder="Address"
                     required
                 />
-                <EventMap lat={lat} lng={lng} location={location} onMapClick={onMapClick} />
+                {loading && <p>Loading location...</p>}
+                <EventMap lat={coordinates.lat} lng={coordinates.lng} location={location} />
 
                 <label>Event type</label>
-                <select value={eventType} onChange={(e) => setEventType(e.target.value)} required>
+                <select aria-label="event type" value={eventType} onChange={(e) => setEventType(e.target.value)} required>
                     <option value="" disabled>Select an event type</option>
                     <option value="Halloween">Halloween</option>
                     <option value="Wedding">Wedding</option>
@@ -80,7 +117,8 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     <option value="Other">Other</option>
                 </select>
                 <label>Dress code</label>
-                <input
+                <input 
+                    aria-label="dress code" 
                     type="text"
                     value={dressCode}
                     onChange={(e) => setDressCode(e.target.value)}
@@ -88,25 +126,23 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     required
                 />
                 <label>Description</label>
-                <textarea
+                <textarea 
+                    aria-label="description" 
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Description"
                     required
                 ></textarea>
-                  <label>Event amount</label>
-                <input
+                <label>Event amount</label>
+                <input 
+                    aria-label="event amount" 
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
                     placeholder="Event amount"
-                    required
                 />
-            
-
                 <button type="submit">Create event</button>
             </form>
-         
         </div>
     );
 };
