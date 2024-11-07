@@ -11,7 +11,7 @@ interface ConsumptionProp {
 const Consumption: React.FC<ConsumptionProp> = ({ items, total, onRemoveItem, onBuyAll }) => {
     return (
         <div className="shopping-cart">
-            <h2>My Shopping Cart</h2>
+            <h2 id="h2-consumption">My Shopping Cart</h2>
             <div>
                 {items.map((item) => (
                     <div key={item.id} className="cart-item">

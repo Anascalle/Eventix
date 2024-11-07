@@ -82,3 +82,16 @@
 .buy-button:hover {
     background-color: #009c78;
 }
+
+@media (max-width: 360px) {
+    .grid-container { /* Clase del contenedor padre de .product-card */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-card {
+        margin-bottom: 20px; /* Espacio entre las tarjetas */
+    }
+}

@@ -21,7 +21,7 @@ const ShoopingMap: React.FC = () => {
                 <BackBtnEvents></BackBtnEvents>
             </div>
             <div className="receipt-section">
-                <div>
+                <div className='cards-secction'>
                     <Filters filterType={filterType} onFilterSelect={setFilterType} />
                     <div className="grid-card">
                         {filteredItems.map((item) => (
@@ -37,12 +37,14 @@ const ShoopingMap: React.FC = () => {
                         ))}
                     </div>
                 </div>
+                <div className='consumption-section'>
                 <Consumption
                     items={consumption}
                     total={getTotal()}
                     onRemoveItem={removeFromConsumption}
                     onBuyAll={() => processPurchase(eventId)} 
                 />
+                </div>
             </div>
         </div>
     );

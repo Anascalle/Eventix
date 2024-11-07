@@ -28,19 +28,26 @@
 }
 
 @media (max-width: 360px) {
-    .BackBtnEvents {
-      gap: 4px;
-      padding: 8px;
+  .BackBtnEvents {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
       font-size: 14px;
-      margin-top: 5vh;
-      margin-bottom: 3vh;
-    }
-  
-    .BackBtnEvents button img {
-      width: 16px;
-    }
-  
-    .BackBtnEvents p {
-      font-size: 14px;
-    }
+      padding-top: 12vh;
+      margin-bottom: 4vh;
+      margin-left: 5vw;
   }
+
+  .BackBtnEvents button img {
+      width: 20px;
+      height: auto;
+  }
+
+  .BackBtnEvents p {
+      font-size: 14px;
+      font-weight: bold;
+      color: #0E0D35;
+  }
+}
+
