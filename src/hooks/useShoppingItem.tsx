@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getItems } from "../utils/firebaseConfig";
 
-interface Item {
+ export interface Item {
     image: string;
+    id:number;
     name: string;
     price: number;
     disponibility: number;
