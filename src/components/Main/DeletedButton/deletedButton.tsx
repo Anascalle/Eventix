@@ -6,10 +6,15 @@ interface DeletedButtonProps {
 }
 
 const DeletedButton: React.FC<DeletedButtonProps> = ({ onClick }) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation(); // Detiene la propagación del evento
+    onClick();
+  };
+
   return (
     <div>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-      <button id="deleted" onClick={onClick}>
+      <button id="deleted" onClick={handleClick}>
         <span className="material-symbols-outlined">delete</span>
       </button>
     </div>
