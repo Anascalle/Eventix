@@ -8,7 +8,7 @@ const useFirebaseLogin = () => {
     const navigate = useNavigate();
 
     const login = async (email: string, password: string) => {
-        setError(null); // Limpiar errores previos
+        setError(null); 
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -16,7 +16,7 @@ const useFirebaseLogin = () => {
 
             const userId = userCredential.user.uid;
 
-            // Redirigir al main después del inicio de sesión
+           
             navigate(`/main/${userId}`);
         } catch (error: any) {
             console.error('Error al iniciar sesión:', error);
