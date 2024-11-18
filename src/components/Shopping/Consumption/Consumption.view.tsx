@@ -2,7 +2,7 @@ import "./Consumption.css";
 import React from "react";
 
 interface ConsumptionProp {
-    items: { id: number; name: string; price: number; quantity: number; image: string }[];
+    items: { id: number; name: string; price: number; quantity: number; image: string  }[];
     total: number;
     onRemoveItem: (id: number) => void;
     onBuyAll: () => void;
@@ -24,7 +24,7 @@ const Consumption: React.FC<ConsumptionProp> = ({ items, total, onRemoveItem, on
                             <div className="btn-remove">
                                 <p>{item.quantity} units</p>
                                 <button onClick={() => onRemoveItem(item.id)}>
-                                    <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/delete.png?alt=media&token=dd5d15f8-ab25-4040-ae70-ee995f75b4e4" alt="" />
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Delete2.png?alt=media&token=535cf66d-bcb0-4ded-8f35-e514cdc399cb" alt="" />
                                 </button>
                             </div>
                         </div>
@@ -33,7 +33,9 @@ const Consumption: React.FC<ConsumptionProp> = ({ items, total, onRemoveItem, on
             </div>
             <div className="total-section">
                 <h2>Total: ${total}</h2>
-                <button onClick={onBuyAll}>Buy all</button>
+                <button onClick={onBuyAll}>
+                    <img className="img-total" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/ShoppingCart.png?alt=media&token=be532a3d-382c-4209-bcb4-6fdec543a456" alt="" />
+                    Buy all</button>
             </div>
         </div>
     );

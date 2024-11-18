@@ -1,4 +1,4 @@
-import ShoopingMap from "../../components/Shopping/ShoopingMap"
+import ShoopingMap from "../../components/Shopping/ShoppingMap";
 import React from "react";
 
 const ShoppingScreen: React.FC = () =>{

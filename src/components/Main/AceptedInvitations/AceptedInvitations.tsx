@@ -1,64 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { db } from "../../../utils/firebaseConfig";
-import { doc, updateDoc } from "firebase/firestore";
-import firebase from "firebase/compat/app"; // Ensure Firebase is imported correctly
+import { collection, query, where, getDocs } from "firebase/firestore";
+import "./AceptedInvitations.css";
+import { AcceptedUser, InvitationsAcceptProps } from "../../../Types/types";
 
-interface InvitationsProps {
-  id: string;
-  name: string;
-  ocation: string;
-  url: string;
-  status: string;
-}
+const InvitationsAccept: React.FC<InvitationsAcceptProps> = ({ creatorId }) => {
+  const [acceptedUsers, setAcceptedUsers] = useState<AcceptedUser[]>([]);
+  const [startIndex, setStartIndex] = useState(0); // Índice de inicio para los 5 usuarios visibles
 
-const AceptedInvitations: React.FC<InvitationsProps> = ({ id, name, ocation, url, status }) => {
-  const handleAcceptInvite = async (eventId: string, userId: string) => {
-    try {
-      const eventDocRef = doc(db, "events", eventId);
+  useEffect(() => {
+    console.log("Creator ID in InvitationsAccept:", creatorId);
 
-      // Agregar el usuario a la lista de aceptados y removerlo de los invitados
-      await updateDoc(eventDocRef, {
-        aceptados: firebase.firestore.FieldValue.arrayUnion(userId),
-        invitados: firebase.firestore.FieldValue.arrayRemove(userId),
-      });
-
-      alert("¡Invitación aceptada!");
-    } catch (e) {
-      console.error("Error al aceptar la invitación: ", e);
+    if (!creatorId) {
+      console.error("Creator ID is missing.");
+      return;
     }
-  };
 
-  const handleRejectInvite = async (eventId: string, userId: string) => {
-    try {
-      const eventDocRef = doc(db, "events", eventId);
+    const fetchAcceptedUsers = async () => {
+      try {
+        const invitationsRef = collection(db, "invitations");
+        const q = query(invitationsRef, where("creatorId", "==", creatorId), where("status", "==", "accepted"));
+        const querySnapshot = await getDocs(q);
 
-      // Aquí quitamos al usuario de los invitados si lo rechaza
-      await updateDoc(eventDocRef, {
-        invitados: firebase.firestore.FieldValue.arrayRemove(userId),
-      });
+        if (querySnapshot.empty) {
+          console.log("No accepted invitations found for this creator.");
+          return;
+        }
 
-      alert("¡Invitación rechazada!");
-    } catch (e) {
-      console.error("Error al rechazar la invitación: ", e);
+        const acceptedUsersData: AcceptedUser[] = [];
+        querySnapshot.forEach((doc) => {
+          const invitationData = doc.data();
+          console.log("Invitation Data:", invitationData);
+
+          if (invitationData.userId && invitationData.username && invitationData.userImg) {
+            acceptedUsersData.push({
+              id: invitationData.userId,
+              name: invitationData.username,
+              profileUrl: invitationData.userImg,
+              eventName: invitationData.eventName || "Unknown Event",
+            });
+          } else {
+            console.warn("Missing fields in invitation data:", invitationData);
+          }
+        });
+
+        setAcceptedUsers(acceptedUsersData);
+        console.log("Accepted Users:", acceptedUsersData);
+      } catch (error) {
+        console.error("Error fetching accepted users:", error);
+      }
+    };
+
+    fetchAcceptedUsers();
+  }, [creatorId]);
+
+  useEffect(() => {
+   
+    if (acceptedUsers.length > 5) {
+      setStartIndex(acceptedUsers.length - 5);  
     }
-  };
+  }, [acceptedUsers]);
+
+  const visibleUsers = acceptedUsers.slice(startIndex, startIndex + 5);
 
   return (
-    <div id="acepted_invitation">
-      <img id="porfile_img" src={url} alt={name} />
-      <div id="acepted_invitation_text">
-        <p>{name} invited you to <span>{ocation}</span></p>
-        {status === "pending" && (
-          <div>
-            <button onClick={() => handleAcceptInvite(id, "userId")}>Accept</button>
-            <button onClick={() => handleRejectInvite(id, "userId")}>Reject</button>
-          </div>
+    <div id="acepted_invitations_shadow">
+      <div id="acepted_invitations_div">
+        <h2 id="acepted_invitations_tittles">Your notifications</h2>
+        {visibleUsers.length > 0 ? (
+          visibleUsers.map((user) => (
+            <div key={user.id} id="acepted_invitation">
+              <img id="img_acc" src={user.profileUrl} alt={user.name} />
+              <div id="acepted_invitation_text">
+                <p id="text_accepted_p">{user.name} accepted the invitation for <br/><span className="bold-text">{user.eventName}</span></p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p id="no_accepted_inv_acc">No accepted invitations yet.</p>
         )}
-        {status === "accepted" && <p>Accepted</p>}
-        {status === "rejected" && <p>Rejected</p>}
       </div>
     </div>
   );
 };
 
-export default AceptedInvitations;
+export default InvitationsAccept;

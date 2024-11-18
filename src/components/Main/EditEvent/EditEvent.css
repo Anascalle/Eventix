@@ -1,0 +1,134 @@
+
+.edit_event_form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #f9f9f9;
+    height: 85%;
+    width: 55%;
+}
+
+#update_even_tittle{
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 22px;
+    font-size:22px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.address-container {
+    display: flex;
+    align-items: center;  
+    gap: 10px;  
+}
+
+.close-button {
+    position: absolute;
+    margin-bottom: 50%;
+    right: 20px;
+    background-color: #00B78C; 
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #00B78C;
+}
+
+
+.edit_event_form h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10%;
+    margin-top: 10%;
+    font-weight: 800;
+}
+
+
+.example{
+    font-size: 0.8rem;
+    color: #979292;
+}
+
+
+.left-column label, .map_div label {
+    font-family: "Red Hat Display";
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #00B78C;
+}
+
+.left-column input, .left-column select, .left-column textarea,
+.map_div input, .map_div textarea {
+    padding: 5px;  /* Reducir el padding para hacer los inputs más pequeños */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: all 0.3s ease; 
+    font-family: "Red Hat Display";
+    width: 97%;  /* Asegura que todos los inputs tengan el mismo tamaño */
+    font-size: 14px;  /* Tamaño de fuente más pequeño */
+    margin-bottom: 5px;  /* Espacio entre inputs */
+}
+
+.edit_event_form input:focus,
+.edit_event_form select:focus,
+.edit_event_form textarea:focus {
+    border-color: #00B78C;
+    outline: none;
+   
+}
+
+
+.edit_event_form .map {
+    margin: 15px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.edit_event_form button[type="submit"] {
+    width: 100%;
+    font-family: "Red Hat Display";
+    font-weight: 600;
+    padding: 15px;
+    background-color: #00B78C;
+    width: 40%;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+.cedit_event_form button[type="submit"]:hover {
+    background-color: #009f6b;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 5; 
+}

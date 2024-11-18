@@ -1,9 +1,9 @@
-#edit_button{
+#accept_button{
     background-color: #00B78C;
     color: #f7f7f7;
     border: none;
-    width: 40px; 
-    height: 40px;
+    width: 25px; 
+    height: 25px;
     display: flex;
     justify-content: center; 
     align-items: center;
@@ -12,16 +12,16 @@
     font-size: 24px; 
     transition: background-color 0.3s ease; 
 }
-#edit_button:hover {
+
+#accept_button:hover {
     background-color: #027157; 
   }
   
-  #edit_button:focus {
+  #accept_button:focus {
     outline: none; 
   }
-
 @media (max-width: 768px) {
-    #edit_button{
+    #accept_button{
         background-color: #00B78C;
         color: #f7f7f7;
         border: none;

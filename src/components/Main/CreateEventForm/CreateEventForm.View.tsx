@@ -2,31 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./CreateEventsForm.css";
 import EventMap from '../Map/Map.View';
 import axios from 'axios';
-
-interface CreateEventFormViewProps {
-    name: string;
-    setName: (value: string) => void;
-    date: string;
-    setDate: (value: string) => void;
-    startTime: string;
-    setStartTime: (value: string) => void;
-    location: string;
-    setLocation: (value: string) => void;
-    eventType: string;
-    setEventType: (value: string) => void;
-    dressCode: string;
-    setDressCode: (value: string) => void;
-    description: string;
-    setDescription: (value: string) => void;
-    handleSubmit: (e: React.FormEvent) => void;
-    lat: number;
-    lng: number;
-    amount: number;
-    setAmount: (value: number) => void;
-    onMapClick: (event: any) => void; 
-    onClose: () => void; 
-    eventImage: string | null; 
-}
+import { CreateEventFormViewProps } from '../../../Types/types';
 
 const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
     name, setName, date, setDate, startTime, setStartTime, location, setLocation,
@@ -47,7 +23,6 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                 const { lat, lon } = data[0];
                 setCoordinates({ lat: parseFloat(lat), lng: parseFloat(lon) });
             } else {
-                // Manejo de error: no se encontró la ubicación
                 console.error('No results found for this location.');
             }
         } catch (error) {
@@ -61,13 +36,22 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
         setCoordinates({ lat, lng });
     }, [lat, lng]);
 
-    
+    const isFormValid = () => {
+        return name && date && startTime && eventType && dressCode && description && location && amount !== undefined && amount !== null;
+    };
 
     return (
         <div aria-label="create events form" className="create_event_form">
-            <button className="close-button" onClick={onClose}>x</button>
-            <h2>Create a new event</h2>
+            <button className="close-button" onClick={onClose}>       
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M1.34961 1.34961L9.18961 9.18961" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9.18945 1.34961L1.34945 9.18961" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            </button>
+            <h2 className="title_create_event">Create a new event</h2>
             <form onSubmit={handleSubmit}>
+
+            <div className="left-column">
                 <label>Event name</label>
                 <input 
                     aria-label="event name" 
@@ -93,21 +77,9 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     onChange={(e) => setStartTime(e.target.value)}
                     required
                 />
-                <label>Address</label>
-                <p className='example'> Example: Cl. 38 Norte. #6N </p>
-                <input 
-                    aria-label="address" 
-                    type="text"
-                    value={location}
-                    onChange={(e) => handleLocationChange(e.target.value)}
-                    placeholder="Address"
-                    required
-                />
-                {loading && <p>Loading location...</p>}
-                <EventMap lat={coordinates.lat} lng={coordinates.lng} location={location} />
 
                 <label>Event type</label>
-                <select aria-label="event type" value={eventType} onChange={(e) => setEventType(e.target.value)} required>
+                <select id="select_id"aria-label="event type" value={eventType} onChange={(e) => setEventType(e.target.value)} required>
                     <option value="" disabled>Select an event type</option>
                     <option value="Halloween">Halloween</option>
                     <option value="Wedding">Wedding</option>
@@ -125,14 +97,7 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     placeholder="Dress code"
                     required
                 />
-                <label>Description</label>
-                <textarea 
-                    aria-label="description" 
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Description"
-                    required
-                ></textarea>
+            
                 <label>Event amount</label>
                 <input 
                     aria-label="event amount" 
@@ -141,7 +106,42 @@ const CreateEventFormView: React.FC<CreateEventFormViewProps> = ({
                     onChange={(e) => setAmount(Number(e.target.value))}
                     placeholder="Event amount"
                 />
-                <button type="submit">Create event</button>
+                </div>
+                <div className="map_div">
+                <div className="address-container">
+                    <label>Address</label>
+                    <p className='example'>Example: Cl. 38 Norte. #6N</p>
+                </div>
+                <input 
+                    aria-label="address" 
+                    type="text"
+                    value={location}
+                    onChange={(e) => handleLocationChange(e.target.value)}
+                    placeholder="Address"
+                    required
+                />
+                {loading && <p>Loading location...</p>}
+                <EventMap lat={coordinates.lat} lng={coordinates.lng} location={location} />
+                <label>Description</label>
+                <textarea 
+                    aria-label="description" 
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                    required
+                ></textarea>
+    
+                </div>
+                <button
+                    id="create_event"
+                    disabled={!isFormValid()}
+                    style={{
+                        backgroundColor: isFormValid() ? '#00B78C' : '#ccc',
+                        cursor: isFormValid() ? 'pointer' : 'not-allowed',
+                    }}
+                    type="submit">
+                    Create event
+                </button>
             </form>
         </div>
     );

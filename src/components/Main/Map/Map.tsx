@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
-
-interface MapUpdaterProps {
-    lat: number;
-    lng: number;
-}
+import { MapUpdaterProps } from '../../../Types/types';
 
 const MapUpdater: React.FC<MapUpdaterProps> = ({ lat, lng }) => {
     const map = useMap();

@@ -1,64 +1,60 @@
 #button_new_div {
-    width: 12vw;
-    -webkit-box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.222);
-    -moz-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.222);
-    box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.222);
+    -webkit-box-shadow: -4px 6px 13px -1px  rgba(103, 101, 101, 0.222);;
+    -moz-box-shadow: -4px 6px 13px -1px rgba(103, 101, 101, 0.222);
+    box-shadow: -4px 6px 13px -1px rgba(103, 101, 101, 0.222);
     background-color: white;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 0px;
-    padding: 1.5vw;
+    padding: 10px;
+    margin: 2vw;
+    width: 200px;
+    height: 200px; 
     position: absolute;
-    top: 25%; /* Ajusta según la posición deseada */
-    right: 0.5%; /* Ajusta según la posición deseada */
+    top: 21%; 
+    left: 28.5%; 
     display: flex;
     flex-direction: column;
-    justify-content: right;
+    justify-content: center; 
+    align-items: center;  
+    border-radius: 30px;
+    z-index: 5;
+    border: 2px dashed #bbb8b8; 
 }
 
 #new_nevent_button {
-    border-radius: 40px;
-    width: 4vw;
-    height: 4vw;
+    border-radius: 50px;  
+    width: 5vw;
+    height: 5vw;
     font-size: 3vw;
     color: white;
     background-color: #00B78C;
     border: none;
     cursor: pointer;
-    align-content: center;
-    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
 }
+
 @media (max-width: 480px) {
     #button_new_div{
         width: 12vw;
+        background-color:#f6f4fc ;
+        box-shadow: none;
+        border:none;
         margin-top: 130vw;
         position: absolute;
-        -webkit-box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0);
-        -moz-box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0);
-        box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0);
-        background-color: white;
         padding: 1.5vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: right;
         margin-left: 95vw;
     }
     
-    #new_nevent_button{
-        border-radius: 100vw;
-        width: 14vw !important;
-        height: 14vw;
-        font-size: 9vw;
-        color: white;
+    #new_nevent_button {
+        width: 20vw;
+        height: 20vw;
+        font-size: 12vw;
+        border-radius: 50%;
         background-color: #00B78C;
-        border: none;
-        cursor: pointer;
-        align-content: center;
-        align-self: center;
-        z-index: 5;
-        position: fixed;
-        margin-left: 2vw;
+        position: fixed; 
+        bottom: 5vw; 
+        right: 5vw;
+        z-index: 1000; 
     }
 
     #new_event_text{
@@ -66,3 +62,5 @@
     }
     
   }
+
+  
