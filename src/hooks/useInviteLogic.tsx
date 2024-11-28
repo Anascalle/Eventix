@@ -122,41 +122,44 @@ const useInviteLogic = (eventId: string | undefined): UseInviteLogicReturn => {
 
     try {
       const eventDetails = await fetchEventDetails(eventId);
-      const creatorId = eventDetails.creatorId; // Obtener el userId del creador
-      const { creatorName, creatorImg } = await fetchCreatorDetails(creatorId); // Usar creatorId para obtener los detalles
+      const creatorId = eventDetails.creatorId; 
+      const { creatorName, creatorImg } = await fetchCreatorDetails(creatorId); 
 
       const newInvitations: any[] = [];
 
       for (const user of selectedUsers) {
         const userDetails = await fetchUserDetails(user.id);
-        const userImg = user.img; // Guardar la imagen del usuario aquí
+        const userImg = user.img;
 
         const invitation = {
-          userId: user.id, // ID del usuario que recibe la invitación
+          userId: user.id,
           eventId: eventId,
           eventType: eventDetails.eventType,
           eventDate: eventDetails.eventDate,
           startTime: eventDetails.startTime,
-          userImg, // Guardar la imagen del usuario aquí
+          userImg,
           creatorName,
-          creatorId, // Incluir el ID del creador aquí
+          creatorId,
           creatorImg,
           username: userDetails.username,
-          eventName: eventDetails.eventName, // Guardar el nombre del evento
+          eventName: eventDetails.eventName,
         };
         newInvitations.push(invitation);
 
         const invitationsRef = collection(db, "invitations");
-        const invitationDoc = doc(invitationsRef);
+        const invitationDoc = doc(invitationsRef, `${eventId}_${user.id}`); // Usar un ID único para cada invitación
         await setDoc(invitationDoc, {
           ...invitation,
           status: "pending",
           dateSent: new Date().toISOString(),
         });
-        console.log(`Invitación enviada a: ${userDetails.username} para el evento: ${eventId} por el creador: ${creatorName}`);
+        console.log(`Invitación enviada a: ${userDetails.username} para el evento: ${eventId}`);
       }
 
+      // Actualizar el estado de sentInvitations
       setSentInvitations((prev) => [...prev, ...newInvitations]);
+
+      // Resetear el modal y los usuarios seleccionados
       setIsModalOpen(false);
       setSelectedUsers([]);
     } catch (error) {

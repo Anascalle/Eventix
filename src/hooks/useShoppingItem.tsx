@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { getItems } from "../utils/firebaseConfig";
+import { getItems} from "../utils/firebaseConfig";
 
  export interface Item {
     image: string;

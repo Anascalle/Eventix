@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, doc, deleteDoc } from 'firebase/firestore'; 
+import { getFirestore, collection, getDocs, doc, deleteDoc, updateDoc, getDoc } from 'firebase/firestore'; 
 import { getAuth } from 'firebase/auth';
 import { Item } from '../hooks/useShoppingItem';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAPJBKfnpcxHtkPkS18CH4mb9AeFCq_9nY",
@@ -13,13 +14,15 @@ const firebaseConfig = {
   };
 
 
-export const app = initializeApp(firebaseConfig); 
-export const auth = getAuth(app);
+const app = initializeApp(firebaseConfig); 
+const auth = getAuth(app);
 const db = getFirestore(app);
 const shop = getFirestore(app);
+export const storage= getStorage(app);
 
 export const receiptsCollection = collection(db, "receipts");
 export const eventsCollection = collection(db, "events");
+export const goalsCollection = collection(db, "goals");
 
 export const getInvitations = async () => {
   const invitationsCol = collection(db, "invitations");
@@ -50,6 +53,37 @@ export const deleteInvitation = async (id: string) => {
     console.error("Error deleting invitation:", error);
   }
 };
+const addFunds = async (eventId: string, amountToAdd: number) => {
+  try {
+    const goalRef = doc(db, 'funds', eventId);
+    const goalSnap = await getDoc(goalRef);
+
+    if (goalSnap.exists()) {
+      const data = goalSnap.data();
+      let updatedAmount;
+
+      // If currentAmount is an array, append the new amount to it
+      if (Array.isArray(data?.currentAmount)) {
+        updatedAmount = [...data.currentAmount, amountToAdd];  // Append new amount to array
+      } else {
+        updatedAmount = (data?.currentAmount || 0) + amountToAdd;  // Update if it's a number
+      }
+      
+      // Actualiza el campo `currentAmount` con el nuevo valor
+      await updateDoc(goalRef, {
+        currentAmount: updatedAmount
+      });
+
+      console.log('Meta actualizada exitosamente');
+    } else {
+      console.error('No se encontró el documento de meta');
+    }
+  } catch (err) {
+    console.error('Error al agregar fondos:', err);
+  }
+};
+
+console.log(addFunds)
 
 
-export { db, shop };
+export { db, shop, auth };

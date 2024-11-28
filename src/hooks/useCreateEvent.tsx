@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react';
 import { LeafletMouseEvent } from 'leaflet';
 import { collection, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db} from '../utils/firebaseConfig';
+import { db } from '../utils/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import axios from 'axios';
-
+import toast from 'react-hot-toast'; 
 const useCreateEventForm = () => {
     const [eventId, setEventId] = useState<string>('');
     const [name, setName] = useState<string>('');
@@ -28,180 +28,179 @@ const useCreateEventForm = () => {
         Wedding: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FWedding.webp?alt=media&token=7e54d790-a151-4863-8dc4-1f2894748c46",
         Christmas: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FNavidad.webp?alt=media&token=eb85b70d-cf4c-4a50-b62a-54fff05ca922',
         Other: 'https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/EventsProfImage%2FFiesta.webp?alt=media&token=09a1359c-42cc-43f4-921a-db5446cbfca9',
+    }), []);
 
-}), []);
+    const handleEventTypeChange = (eventType: string) => {
+        setEventType(eventType);
+        setEventImage(eventImages[eventType] || null);
+    };
 
-const handleEventTypeChange = (eventType: string) => {
-    setEventType(eventType);
-    setEventImage(eventImages[eventType] || null);
-};
+    const handleAddressChange = async (address: string) => {
+        setLocation(address);
 
-const handleAddressChange = async (address: string) => {
-    setLocation(address);
-    
-    const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
+        const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
 
-    try {
-        const response = await axios.get(geocodeUrl);
-        if (response.data.length > 0) {
-            const { lat, lon } = response.data[0];
-            setLat(parseFloat(lat));
-            setLng(parseFloat(lon));
-            setMapClicked(true); 
-        } else {
-            alert("Location not found. Please try a different address.");
+        try {
+            const response = await axios.get(geocodeUrl);
+            if (response.data.length > 0) {
+                const { lat, lon } = response.data[0];
+                setLat(parseFloat(lat));
+                setLng(parseFloat(lon));
+                setMapClicked(true);
+            } else {
+                toast.error("Location not found. Please try a different address.");
+            }
+        } catch (error) {
+            console.error("Error fetching location:", error);
+            toast.error("An error occurred while fetching the location.");
         }
-    } catch (error) {
-        console.error("Error fetching location:", error);
-        alert("An error occurred while fetching the location.");
-    }
-};
+    };
 
-const closeModal = () => {
-    setIsModalOpen(false); 
-};
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
-const generateUniqueID = (): string => {
-    return `event-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-};
+    const generateUniqueID = (): string => {
+        return `event-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    };
 
-const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
-    const generatedId = generateUniqueID(); 
-    setEventId(generatedId); 
+        const generatedId = generateUniqueID();
+        setEventId(generatedId);
 
-    if (!mapClicked) {
-        alert("Please set the location on the map.");
-        return;
-    }
-
-    if (!name || !date || !startTime || !location || !eventType || !dressCode || !description) {
-        alert("Please complete all the required fields.");
-        return;
-    }
-
-    if (amount < 0) {
-        alert("Amount cannot be negative.");
-        return;
-    }
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (!user) {
-        alert("User not authenticated.");
-        return;
-    }
-
-    const userRef = doc(db, "users", user.uid);
-    try {
-        const userDoc = await getDoc(userRef);
-        if (!userDoc.exists()) {
-            alert("User data not found.");
+        if (!mapClicked) {
+            toast.error("Please set the location on the map.");
             return;
         }
 
-        const userData = userDoc.data();
-        const currentAccountAmount = userData.accountAmount;
-
-        if (amount !== undefined && currentAccountAmount < amount) {
-            alert("Insufficient funds.");
+        if (!name || !date || !startTime || !location || !eventType || !dressCode || !description) {
+            toast.error("Please complete all the required fields.");
             return;
         }
 
-        const newAccountAmount = amount !== undefined ? currentAccountAmount - amount : currentAccountAmount;
-
-        if (amount !== undefined) {
-            await updateDoc(userRef, { accountAmount: newAccountAmount });
+        if (amount < 0) {
+            toast.error("Amount cannot be negative.");
+            return;
         }
 
-        const eventData = {
-            eventID: generatedId,  
-            name,
-            date,
-            startTime,
-            location,
-            eventType,
-            dressCode,
-            description,
-            userId: user.uid,
-            coordinates: { lat, lng },
-            image: image,
-            amount: amount === undefined ? null : amount,
-        };
+        const auth = getAuth();
+        const user = auth.currentUser;
 
-        await addDoc(collection(db, "events"), eventData);
-        
-        resetForm(); 
-        closeModal(); 
+        if (!user) {
+            toast.error("User not authenticated.");
+            return;
+        }
 
-    } catch (error) {
-        console.error("Error processing request: ", error);
-        alert("An error occurred while creating the event.");
-    }
+        const userRef = doc(db, "users", user.uid);
+        try {
+            const userDoc = await getDoc(userRef);
+            if (!userDoc.exists()) {
+                toast.error("User data not found.");
+                return;
+            }
+
+            const userData = userDoc.data();
+            const currentAccountAmount = userData.accountAmount;
+
+            if (amount !== undefined && currentAccountAmount < amount) {
+                toast.error("Insufficient funds.");
+                return;
+            }
+
+            const newAccountAmount = amount !== undefined ? currentAccountAmount - amount : currentAccountAmount;
+
+            if (amount !== undefined) {
+                await updateDoc(userRef, { accountAmount: newAccountAmount });
+            }
+
+            const eventData = {
+                eventID: generatedId,
+                name,
+                date,
+                startTime,
+                location,
+                eventType,
+                dressCode,
+                description,
+                userId: user.uid,
+                coordinates: { lat, lng },
+                image: image,
+                amount: amount === undefined ? null : amount,
+            };
+
+            await addDoc(collection(db, "events"), eventData);
+
+            resetForm();
+            closeModal();
+            toast.success("Event created successfully.");
+
+        } catch (error) {
+            console.error("Error processing request: ", error);
+            toast.error("An error occurred while creating the event.");
+        }
+    };
+
+    const resetForm = () => {
+        setName('');
+        setDate('');
+        setStartTime('');
+        setLocation('');
+        setEventType('');
+        setDressCode('');
+        setDescription('');
+        setLat(3.405);
+        setLng(-76.49);
+        setMapClicked(false);
+        setEventImage(null);
+        setAmount(0);
+        setEventId('');
+    };
+
+    const onMapClick = (event: LeafletMouseEvent) => {
+        const { lat, lng } = event.latlng;
+        setLat(lat);
+        setLng(lng);
+        setMapClicked(true);
+    };
+
+    const handleClose = () => {
+        resetForm();
+        setIsModalOpen(false);
+    };
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    return {
+        eventId,
+        name,
+        setName,
+        date,
+        setDate,
+        startTime,
+        setStartTime,
+        location,
+        setLocation: handleAddressChange,
+        setEventType: handleEventTypeChange,
+        dressCode,
+        setDressCode,
+        description,
+        setDescription,
+        eventType,
+        handleSubmit,
+        lat,
+        lng,
+        onMapClick,
+        handleClose,
+        handleOpenModal,
+        isModalOpen,
+        image,
+        amount,
+        setAmount,
+    };
 };
 
-const resetForm = () => {
-    setName('');
-    setDate('');
-    setStartTime('');
-    setLocation('');
-    setEventType('');
-    setDressCode('');
-    setDescription('');
-    setLat(3.405);
-    setLng(-76.49);
-    setMapClicked(false);
-    setEventImage(null);
-    setAmount(0);
-    setEventId(''); 
-};
-
-const onMapClick = (event: LeafletMouseEvent) => {
-    const { lat, lng } = event.latlng;
-    setLat(lat);
-    setLng(lng);
-    setMapClicked(true);
-};
-
-const handleClose = () => {
-    resetForm();
-    setIsModalOpen(false);
-};
-
-const handleOpenModal = () => {
-    setIsModalOpen(true);
-};
-
-return {
-    eventId,
-    name,
-    setName,
-    date,
-    setDate,
-    startTime,
-    setStartTime,
-    location,
-    setLocation: handleAddressChange, 
-    setEventType: handleEventTypeChange,
-    dressCode,
-    setDressCode,
-    description,
-    setDescription,
-    eventType,
-    handleSubmit,
-    lat,
-    lng,
-    onMapClick,
-    handleClose,
-    handleOpenModal,
-    isModalOpen,
-    image,
-    amount,
-    setAmount,
-};
-}
 export default useCreateEventForm;
-
-
