@@ -1,0 +1,101 @@
+
+.guest-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Contenedor del modal */
+  .guest-modal {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;  
+    box-sizing: border-box;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título del modal */
+  .guest-modal h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Estilos para la lista de invitados */
+  .guest-modal ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .guest-modal li {
+    font-size: 1.1em;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .guest-modal li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Botón para cerrar el modal */
+  .guest-modal button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .guest-modal button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsividad: en pantallas pequeñas */
+  @media (max-width: 600px) {
+    .guest-modal {
+      width: 95%;
+      padding: 15px;
+    }
+  
+    .guest-modal h2 {
+      font-size: 1.3em;
+    }
+  
+    .guest-modal li {
+      font-size: 1em;
+      padding: 6px 0;
+    }
+  
+    .guest-modal button {
+      padding: 8px 18px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .guest-modal {
+      width: 98%;
+      padding: 10px;
+    }
+  
+    .guest-modal h2 {
+      font-size: 1.2em;
+    }
+  
+    .guest-modal li {
+      font-size: 0.9em;
+    }
+  }
+  

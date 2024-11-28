@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../utils/firebaseConfig';
-import BackBtn from "./BackBtn/BackBtn.view";
 import InfoCard from "./InfoCard/InfoCard.view";
 import "./MapInfo.css";
+
 
 interface MapInformationProps {
     eventId: string;
@@ -45,8 +45,9 @@ const MapInformation: React.FC<MapInformationProps> = ({ eventId }) => {
     }
 
     return (
-        <div className="MapInfo">
-        <BackBtn NameEvent={eventInfo.name}  />
+        <>
+           <div className="MapInfo">
+     
         <InfoCard
             img={eventInfo.image}
             NameEvent={eventInfo.name}
@@ -60,6 +61,8 @@ const MapInformation: React.FC<MapInformationProps> = ({ eventId }) => {
             
         />
         </div>
+           </>
+       
     );
     };
 

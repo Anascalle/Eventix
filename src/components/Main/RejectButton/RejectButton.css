@@ -1,17 +1,29 @@
-#deleted{
+#reject_button {
     background-color: #F24B4B;
     color: #f7f7f7;
     border: none;
-    width: 4vw;
-    padding: 0.5%;
-    border-radius: 4px;
-    margin-top: 1vw;
-    margin-left: 0.5vw;
+    width: 25px; 
+    height: 25px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 50%; 
+    cursor: pointer;
+    font-size: 24px; 
+    transition: background-color 0.3s ease; 
+    outline: none; 
 }
 
+#reject_button:hover {
+    background-color: #a51c1c; 
+}
+
+#reject_button {
+    outline: none; 
+  }
 
 @media (max-width: 768px) {
-    #deleted{
+    #reject_button{
         background-color: #F24B4B;
         color: #f7f7f7;
         border: none;

@@ -1,21 +1,32 @@
 
 .edit_event_form{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.314);
-    border-radius: 20px; 
-    z-index: 100;
-    width: 90%;
-    max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
-    font-family: "Poppins", system-ui;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #f9f9f9;
+    height: 85%;
+    width: 55%;
 }
 
+#update_even_tittle{
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 22px;
+    font-size:22px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.address-container {
+    display: flex;
+    align-items: center;  
+    gap: 10px;  
+}
 
 .close-button {
     position: absolute;
@@ -55,27 +66,23 @@
 }
 
 
-.edit_event_form label {
-    display: block;
-    margin: 10px 0 5px;
+.left-column label, .map_div label {
+    font-family: "Red Hat Display";
     font-weight: bold;
-    font-size: 0.9rem;
+    margin-bottom: 5px;
     color: #00B78C;
-   
 }
 
-.edit_event_form input,
-.edit_event_form select,
-.edit_event_form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #e0e0e0;
-    font-family: "Poppins", system-ui;
+.left-column input, .left-column select, .left-column textarea,
+.map_div input, .map_div textarea {
+    padding: 5px;  /* Reducir el padding para hacer los inputs más pequeños */
+    border: 1px solid #ccc;
     border-radius: 10px;
-    font-size: 0.8rem;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
+    transition: all 0.3s ease; 
+    font-family: "Red Hat Display";
+    width: 97%;  /* Asegura que todos los inputs tengan el mismo tamaño */
+    font-size: 14px;  /* Tamaño de fuente más pequeño */
+    margin-bottom: 5px;  /* Espacio entre inputs */
 }
 
 .edit_event_form input:focus,
@@ -83,7 +90,7 @@
 .edit_event_form textarea:focus {
     border-color: #00B78C;
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 192, 135, 0.5);
+   
 }
 
 
@@ -96,7 +103,7 @@
 
 .edit_event_form button[type="submit"] {
     width: 100%;
-    font-family: "Poppins", system-ui;
+    font-family: "Red Hat Display";
     font-weight: 600;
     padding: 15px;
     background-color: #00B78C;
@@ -124,4 +131,35 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); 
     z-index: 5; 
+}
+
+@media (max-width: 768px) {
+    .edit_event_form {
+        width: 100%;
+        padding: 20px;
+        height: 50rem;
+        min-height: auto;
+        overflow-y: auto;
+    }
+
+    .left-column, .map_div {
+        width: 100%;
+    }
+
+    .close-button {
+        position: relative;
+        top: 0;
+        left: 92%;
+    }
+    #update_even_tittle {
+        margin-top: -45%;
+    }
+
+    #create_event[type="submit"] {
+        width: 100%;
+    }
+
+    #form_create {
+        margin-top: -30%;
+    }
 }

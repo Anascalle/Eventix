@@ -1,0 +1,100 @@
+/* Modal Styles for Thank You Message */
+.modal_thank {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#amountToAdd{
+  width: 35vw;
+}
+/* Modal Content */
+.modal-content_thank {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ContibuteButton{
+  margin-top: 41vw;
+  margin-left: 13vw;
+  position: relative;
+  z-index: 200;
+  width: 13vw;
+  height: 8vh;
+  border-radius: 15px;
+border: 1px solid rgba(14, 13, 53, 0.10);
+background: var(--Color-btns, #D2CFFF);
+box-shadow: 3px 4px 4px 0px rgba(14, 13, 53, 0.05);
+  font-size: 1vw;
+  color: #0E0D35;
+  cursor: pointer;
+  font-weight: 700;
+}
+.ContibuteButton:hover {
+  background-color: rgba(14, 13, 53, 0.219);
+}
+
+/* Thank You Message */
+#thanks_message {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+/* Input Field */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  color: #0E0D35;
+  border-radius: 15px;
+  border: 1px solid rgba(14, 13, 53, 0.10);
+  background: var(--Color-btns, #D2CFFF);
+  box-shadow: 3px 4px 4px 0px rgba(14, 13, 53, 0.05);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  font-weight: 700;
+}
+
+.submit-button:hover {
+  background-color: rgba(14, 13, 53, 0.219);
+}
+
+.submit-button:disabled {
+  background-color: #efefef;
+  cursor: not-allowed;
+}
+
+.close-button{
+  background-color: #00B78C;
+  color: white;
+}

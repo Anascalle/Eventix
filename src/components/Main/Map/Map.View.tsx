@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import MapUpdater from './Map';
-
+import { EventMapProps } from '../../../Types/types';
 const customIcon = new L.Icon({
     iconUrl: 'https://png.pngtree.com/png-clipart/20230815/original/pngtree-map-red-pointer-icon-marker-vector-isolated-on-white-background-eps-10-picture-image_7977947.png',
     iconSize: [40, 41],
@@ -11,11 +11,6 @@ const customIcon = new L.Icon({
     popupAnchor: [1, -34],
 });
 
-interface EventMapProps {
-    lat: number;
-    lng: number;
-    location?: string;
-}
 
 const EventMap: React.FC<EventMapProps> = ({ lat, lng, location }) => {
     return (

@@ -3,33 +3,22 @@
     font-family: "Poppins", system-ui;
     font-style: normal;
     color: #0E0D35;
-    margin-bottom: 2em;
-}
-
-#infoWithLinkLog{
-    display: flex;
+    margin-bottom: 1em;
+    width: 70%;
 }
 
 @media (max-width: 899px) {
+    .login_message{
+        font-size: 15px !important;
+        width: 85%;
+    }
+
     #MessageLogSpace{
         text-decoration: none;
         font-family: "Poppins", system-ui;
         font-style: normal;
         color: #0E0D35;
-        margin-bottom: 2em !important;
-        font-size: 2000px;
-
-    }
-
-    #message_space{
-        margin-bottom: 25px;
-    }
-
-    .login_message{
-        font-size: 15px !important;
-    }
-
-    #infoWithLinkLog{
-        display: flex;
+        margin-bottom: 3em;
+        width: 85%;
     }
 }

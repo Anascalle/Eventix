@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ModalInviteView from './InviteDetailModal.view';
+import { useUser } from '../../../context/useContext'; // Importa el contexto de usuario
+import toast from 'react-hot-toast'; // Importa toast para mostrar alertas
 import "./InviteDetailModal.css";
 
 interface User {
@@ -27,6 +29,9 @@ const ModalInvite: React.FC<ModalInviteProps> = ({
   setSelectedUsers,
   handleInviteUser,
 }) => {
+  const { user } = useUser(); // Obtén el usuario autenticado desde el contexto
+  const currentUserId = user?.uid || ''; // Asegúrate de que el usuario esté autenticado y obtener el UID
+
   const [debouncedSearchValue, setDebouncedSearchValue] = useState(searchValue);
 
   useEffect(() => {
@@ -40,9 +45,13 @@ const ModalInvite: React.FC<ModalInviteProps> = ({
   }, [searchValue]);
 
   const handleUserSelect = (user: User) => {
-    if (!selectedUsers.some((selected) => selected.id === user.id)) {
+    // Verificar si el usuario es el mismo que está autenticado
+    if (user.id === currentUserId) {
+      // Si el usuario intenta invitarse a sí mismo, muestra una alerta
+      toast.error('You cannot invite yourself!');
+    } else if (!selectedUsers.some((selected) => selected.id === user.id)) {
       setSelectedUsers([...selectedUsers, user]);
-      setSearchValue(''); 
+      setSearchValue(''); // Limpiar el campo de búsqueda después de seleccionar
     }
   };
 
@@ -54,10 +63,25 @@ const ModalInvite: React.FC<ModalInviteProps> = ({
     user.username.toLowerCase().includes(debouncedSearchValue.toLowerCase())
   );
 
+  // Modificación de la función handleInviteUser
+  const handleInviteUserWithNotification = async () => {
+    try {
+      // Lógica para invitar a los usuarios seleccionados
+      await handleInviteUser();  // Llama la función original de invitar usuarios
+
+      // Si la invitación fue exitosa, muestra la notificación
+      toast.success('Invitation sent successfully.');
+      closeModal();  // Cierra el modal después de la invitación
+    } catch (error) {
+      // Si ocurre un error
+      toast.error('Hubo un error al enviar la invitación.');
+    }
+  };
+
   return (
     <ModalInviteView
       closeModal={closeModal}
-      handleInviteUser={handleInviteUser}
+      handleInviteUser={handleInviteUserWithNotification} // Pasa la función modificada
       searchValue={searchValue}
       setSearchValue={setSearchValue}
       filteredUsers={filteredUsers}

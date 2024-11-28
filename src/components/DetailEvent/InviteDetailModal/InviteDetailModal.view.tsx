@@ -3,7 +3,7 @@ import React from 'react';
 interface User {
   id: string;
   username: string;
-  img: string;
+  img: string; // img siempre es un string en este componente
 }
 
 interface ModalInviteViewProps {
@@ -11,10 +11,10 @@ interface ModalInviteViewProps {
   handleInviteUser: () => Promise<void>;
   searchValue: string;
   setSearchValue: (value: string) => void;
-  filteredUsers: User[];
-  selectedUsers: User[];
-  handleUserSelect: (user: User) => void;
-  handleRemoveUser: (userId: string) => void;
+  filteredUsers: User[]; // Asegúrate de que filteredUsers es un arreglo de User
+  selectedUsers: User[]; // Debe ser un arreglo de User
+  handleUserSelect: (user: User) => void; // La función debe recibir un objeto User
+  handleRemoveUser: (userId: string) => void; // La función para eliminar a un usuario
 }
 
 const ModalInviteView: React.FC<ModalInviteViewProps> = ({

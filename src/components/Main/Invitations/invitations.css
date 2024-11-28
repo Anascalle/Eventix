@@ -1,113 +1,187 @@
-#invitations_div_shadow{
-    margin-top: 10vw;
-    -webkit-box-shadow: 5px 6px 23px -4px rgba(124,124,124,0.222);
-    -moz-box-shadow: 5px 6px 23px -4px rgba(124,124,124,0.222);
-    box-shadow: 5px 6px 23px -4px rgba(124,124,124,0.222);
-    width: 20vw;
-    height: 40vw;
+#invitations_div_shadow {
+    margin-top: 8vw;
+    width: 350px; 
+    height: 600px; 
     border-radius: 25px;
     padding-right: 2vw;
-    z-index: -1;
-
+    z-index: 1;
+    position: relative;
 }
 
-#no-invitations-message{
+#no-invitations-message {
     text-align: center;
     font-size: 1.2em;
     color: #888;
+    margin-left: -1.5rem;
     margin-top: 20px;
-
 }
 
-#invitations_div{
-    margin-left: 1vw;
+#name {
+    margin-top: 20px;
+    margin-left: 5%;
+}
+
+#ocat_icon {
+    width: 21px;
+    height: 21px;
+    background-color: #fff;
+    padding: 0.4vw;
+    margin-right: 3%;
+    border-radius: 50px;
+}
+
+#ocation, #date, #hour {
+    font-weight: 700;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    font-family: "Red Hat Display", sans-serif; 
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+#ocation {
+    margin-top: 10%;
+}
+
+#invitation_button {
+    background-color: transparent;
+    border: transparent;
+    z-index: 2;
+    position: absolute; 
+    top: 30px; 
+    right: 15px; 
+}
+
+#invitations_div {
+    margin-left: 2vw;
     margin-top: 2vw;
+    width: 20rem;
 }
 
-#invitation_text{
+#invitation_text {
     display: flex;
     flex-direction: column;
+    margin-left: 5rem;
+    color: #888;
+    transition: max-height 0.3s ease-in-out;  
 }
 
-#Invitation{
+#invitations_tittle {
+    justify-content: start;
+    margin-left: 10%;
+}
+
+#invitation_text.expanded {
+    max-height: 500px;  
+    color: #888;
+}
+
+#Invitation {
     display: flex;
-    margin-top: 2vw;
+    flex-direction: column; 
+    border-radius: 30px; 
+    margin-top: -1vw;
+    background-color: #fff;
+    padding: 2%;
+    margin-left: 10%;
+    margin-bottom: 15%;
+    position: relative;
+    width: 100%;
+    overflow: hidden; 
+    height: 75px; 
 }
 
-#porfile_img{
+#Invitation.expanded {
+    height: auto;  
+}
+
+#profile_img {
     width: 4vw;
     height: 4vw;
     display: flex;
     align-self: center;
     margin-right: 1vw;
+    padding: 5%;
+    overflow: hidden; 
+    position: absolute; 
+    top: 0;
+    left: 0;
 }
 
-h2{
+h2 {
     display: flex;
     justify-content: center;
     margin-bottom: 2vw;
 }
 
-#ocation{
-    font-weight: 700;
+#Buttons {
+    display: flex; 
+    gap: 10px; 
+    position: relative;
+    left: 42%;
 }
 
-#date{
-    font-weight: 700;
-}
-#hour{
-    font-weight: 700;
-}
-
-span{
+span {
     font-weight: 400;
+    font-size: 12px;
 }
 
 @media (max-width: 768px) {
     #Invitation {
-        flex-direction: row;
-        align-items: flex-start;
-        margin-left: 5vw ;  
+        margin: 0;
+        position: relative;
+        z-index: 9;
     }
 
-    #invitations_div_shadow{
+    #invitations_div_shadow {
         margin-top: 300vw;
+        position: relative;
+        width: 100vw;
+        padding-right: 2vw;
+    }
+
+    #invitations_div {
         position: absolute;
-        width: 200vw !important;
-        height: auto!important;
-        padding-right: 1vw;
-        
+        margin-left: 5rem;
+        top: 12rem;
+        padding-bottom: 6rem;
     }
 
-    #invitations_tittle{
-        font-size: larger;
-        margin-left: 10vw;
-    }
-
-    #no-invitations-message{
+    #invitations_tittle {
+        font-size: 1.75rem;
+        margin-left: 1rem;
         text-align: center;
-        font-size: 1.2em;
+    }
+
+    #no-invitations-message {
+        margin-left: -50px;
+        font-size: 1.5rem;
         color: #888;
         margin-top: 20px;
         padding-bottom: 5%;
-    
+        text-align: center;
     }
 
-    #porfile_img {
-       width: 15vw !important;
-       height: 15vw !important;
-       margin-right: 5vw !important;
-       display: flex;
-       justify-self:start;
+    #profile_img {
+        width: 10vw !important;
+        height: 10vw !important;
+        margin-right: 0 !important;
+        display: block;
+        justify-self: start;
+    }
+
+    #invitations_div {
+        width: 500rem;
     }
 
     #Buttons {
         width: 100%;
         justify-content: space-between;
     }
-    #invitation_text{
+
+    #invitation_text {
         margin-left: 5vw !important;
-        width: 150vw !important;
+        width: 80vw !important;
         padding-bottom: 5%;
     }
 }

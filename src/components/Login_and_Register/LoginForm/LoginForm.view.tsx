@@ -8,7 +8,7 @@ import "./LoginForm.css";
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login, error } = useFirebaseLogin(); 
+    const { login, error } = useFirebaseLogin();
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
@@ -16,14 +16,14 @@ function LoginForm() {
     };
 
     return (
-        <div id='LogSpace'>
-            <img id="LogImg" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/LoginSigup%2FFista%20login.webp?alt=media&token=9fcd2b8c-053f-4a35-bb6a-ed558e6ba107" alt="" />
-            <div className="registerSpace">
+        <div id='LogBackgroundSpace'>
+        <div id='LogWhiteSpace'>
+            <img id="LogImg" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/LoginSigup%2FRegister-Cover.png?alt=media&token=c7f8bff3-6426-4021-a9f7-73d84d6e2798" alt="" />
                 <form onSubmit={handleLogin} id="loginForm">
                     <LoginMessage
                         title="Log In"
-                        infoMessagept1="If you haven't registered yet"
-                        infoMessagept2="You can"
+                        infoMessagept1="If you haven't registered yet. You can"
+                      
                     />
                     <Inputs
                         inputType="email"
@@ -44,7 +44,7 @@ function LoginForm() {
                     {error && <div className="errorMessage">{error}</div>}
                     <RegisterButton btnId="" buttonText="Login" />
                 </form>
-            </div>
+        </div>
         </div>
     );
 }

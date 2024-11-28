@@ -1,0 +1,94 @@
+.fund-form {
+  position: absolute;
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+  top: 25%;
+  right: 30%;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#title_wel {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-left: 18%;
+}
+
+.fund-form div {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.fund-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: left;
+  font-size: 16px;
+  color: #333;
+}
+
+.fund-form input,
+.fund-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.fund-form button {
+  padding: 2% 5%;
+  width: 100%;
+  background-color: #2eae85;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.fund-form button:hover {
+  background-color: #26a474;
+}
+
+.fund-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.fund-form p {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fund-form p[style="color: red"] {
+  color: red;
+}
+
+.fund-form p[style="color: green"] {
+  color: green;
+}
+
+@media (max-width: 600px) {
+  .fund-form {
+    padding: 15px;
+    width: 90%;
+    top: 10%;
+    right: 5%;
+  }
+
+  .fund-form input,
+  .fund-form textarea,
+  .fund-form button {
+    font-size: 14px;
+  }
+}

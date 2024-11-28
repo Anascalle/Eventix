@@ -1,56 +1,64 @@
 .FunctionBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10vw;
-    margin-top: 2vh;
-    padding: 1vw 0;
-    border-radius: 0.2vw;
+  display: flex;
+  margin-top: -60%;
+  align-items: center;
+  justify-content: center;
+  gap: 22vw;
+  padding: 1vw 0;
+  border-radius: 0.2vw;
+  flex-direction: column;
 }
 
 .FunctionBtn button {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 8vw;
-    height: 8vh;
-    background-color: #00B78C;
-    border: none;
-    border-radius: 0.5vw;
-    font-size: 1vw;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 13vw;
+  height: 8vh;
+  border-radius: 15px;
+border: 1px solid rgba(14, 13, 53, 0.10);
+background: var(--Color-btns, #D2CFFF);
+box-shadow: 3px 4px 4px 0px rgba(14, 13, 53, 0.05);
+  font-size: 1vw;
+  color: #0E0D35;
+  cursor: pointer;
+  margin-top: -20vw;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+  gap: 1vw;
 }
 
 .FunctionBtn button:hover {
-    background-color: rgb(7, 108, 75);
+  background-color: rgba(14, 13, 53, 0.219);
 }
 
-.FunctionBtn button img {
-    width: 1.5vw;
-    height: auto;
-    margin-bottom: 0.5vh;
+.FunctionBtn button svg {
+width: 2.5vw;
+height: auto;
+flex-shrink: 0;
+  color: #0E0D35;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 360px) {
-    .FunctionBtn {
-      gap: 4vh;
-      padding: 2vh;
-      margin-top: 1vh;
-      border-radius: 1vh;
-    }
-  
-    .FunctionBtn button {
-      width: 15vw;
-      height: 6vh;
-      font-size: 1.3vh;
-      border-radius: 10px;
-    }
-  
-    .FunctionBtn button img {
-      width: 2vh;
-      margin-bottom: 2px;
-    }
+  .FunctionBtn {
+    gap: 4vh;
+    padding: 2vh;
+    margin-top: 1vh;
+    border-radius: 1vh;
   }
+
+  .FunctionBtn button {
+    width: 15vw;
+    height: 6vh;
+    font-size: 1.3vh;
+    border-radius: 10px;
+  }
+
+  .FunctionBtn button img {
+    width: 2vh;
+    margin-bottom: 2px;
+  }
+}

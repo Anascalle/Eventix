@@ -1,174 +1,371 @@
-@media (min-width: 740px){
-    .InfoCard {
-        width: 70vw;
-        margin: 0 auto;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        background-color: white;
-        border-radius: 5vw 5vw 0vw 0vw;
-        box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
-        border: 0.05vw solid #F24B4B;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .ImgBanner img {
-        width: 65vw;
-        height: 38vh;
-        object-fit: cover;
-        border-radius: 0vw 0vw 2vw 2vw;
-    }
-    
-    .NameEvent {
-        justify-content: center;
-        display: flex;
-        gap: 2vw;
-        align-items: center;
-        margin-top: 3vh;
-    }
-    
-    .NameEvent h1 {
-        font-size: 2vw;
-        color: #0E0D35;
-    }
-    
-    .NameEvent button {
-        width: 2vw;
-        height: 2vw;
-        background-color: #2eae85;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-    
-    .BtnImg{
-        width: 1.2vw;
-        height: auto;
-        margin-top: 0.5vh;
-    }
-    
-    .Host p {
-        display: flex;
-        justify-content: center;
-        font-size: 1.1vw;
-        color: #0E0D35;
-        margin-top: 1vh;
-        margin-bottom: 3vh;
-    }
-    
-    .label {
-        font-weight: bold;
-    }
-    
-    .InfoSections{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 65vw;
-    }
-    
-    .InfoSecttion1, .InfoSecttion2 {
-        font-size: 1.2vw; 
-        width: 45%; 
-        overflow-wrap: break-word; 
-        word-wrap: break-word; 
-    }
-    
-    .InfoSecttion1 p, .InfoSecttion2 p {
-        margin: 0.5vh 0; 
-        line-height: 1.5; 
-    }
-    
-    .InfoSecttion2 p:last-child {
-        white-space: normal; 
-        overflow-wrap: break-word;
-    }
-    
-    .FunctionBtns {
-        margin-top: 2vh;
-    }
+@media (min-width: 740px) {
+  .InfoCard {
+    width: 1608px;
+    height: 560px;
+    flex-shrink: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border-radius: 30px;
+    background: #ebebff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .ImgBanner img {
+    width: 60vw;
+    background-color: rgba(0, 0, 0, 0.467);
+    height: 560px;
+    object-fit: cover;
+    border-radius: 30px 0px 0px 30px;
+    z-index: -100;
+    margin-top: 0.5vw;
+    margin-left: -6.7vw;
+    filter: brightness(0.4);
+  }
+
+  .NameEvent {
+    justify-content: center;
+    display: flex;
+    gap: 2vw;
+    align-self: center;
+    display: flex;
+    margin-bottom: 0.5vw;
+    margin-top: 27vw;
+    position: absolute;
+    margin-left: 8vw;
+  }
+
+  .NameEvent h1 {
+    font-size: 2vw;
+    color: #ffff;
+  }
+
+  .NameEvent button {
+    width: 2vw;
+    height: 2vw;
+    background-color: #2eae85;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .BtnImg {
+    width: 1.2vw;
+    height: auto;
+    margin-top: 0.5vh;
+  }
+
+  .Host p {
+    display: flex;
+    justify-content: center;
+    font-size: 1.1vw;
+    color: #0e0d35;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .InfoSections {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 65vw;
+  }
+
+  .InfoSecttion1 {
+    background-color: #f8f8f9;
+    width: 30vw !important;
+    height: 542px;
+    flex-shrink: 0;
+    border-radius: 0px 30px 30px 0px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    margin-left: -7vw;
+    padding-left: 2vw;
+    padding-top: 1vw;
+  }
+
+  .EventDescription {
+    width: 9.5vw;
+    height: 9.5vw;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 0.567px solid rgba(14, 13, 53, 0.17);
+    background: #fff;
+    box-shadow: 2.267px 2.267px 4.534px 0px rgba(14, 13, 53, 0.05);
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    margin-bottom: 1.5vw;
+    padding-left: 1vw;
+  }
+
+  .EventDescription p{
+  font-size: 0.9rem;
+  }
+
+  .EventDescription img {
+    width: 4.5vw;
+    height: 4.5vw;
+    margin-left: -1vw;
+  }
+
+  .EditEventButton {
+    width: 10.5vw;
+    height: 9.5vw;
+    border-radius: 20px;
+    border: 1.7px dashed rgba(48, 47, 80, 0.332);
+    background: #fff;
+    box-shadow: 2.267px 2.267px 4.534px 0px rgba(14, 13, 53, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .EditEventButton img {
+    width: 5vw;
+    height: 5vw;
+    display: flex;
+  }
+
+  #row1 {
+    display: flex;
+    flex-direction: row;
+    gap: 4vw;
+  }
+  #row2 {
+    display: flex;
+    flex-direction: row;
+    gap: 4vw;
+  }
+  #row3 {
+    display: flex;
+    flex-direction: row;
+    gap: 4vw;
+  }
+  .InfoSecttion1,
+  .InfoSecttion2 {
+    font-size: 2vw;
+    width: 45%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+  }
+  .InfoSecttion2p {
+    font-size: 2vw;
+    margin-top: 50%;
+    width: 45%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+  }
+#info_desc_info{
+  margin-top: 65%;
 }
 
-    @media (max-width: 360px) {
-        .InfoCard {
-        width: 90%;
-        padding-left: 20px;
-        padding-right: 20px;
-        border-radius: 20px 20px 0 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border-width: 1px;
-        border: 0.05vw solid #F24B4B;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        }
-    
-        .ImgBanner img {
-        width: 60vw;
-        height: 30vh;
-        border-radius: 0 0 20px 20px;
-        }
-    
-        .NameEvent {
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        margin-top: 2vh;
-        }
-    
-        .NameEvent h1 {
-        font-size: 20px;
-        text-align: center;
-        }
-    
-        .NameEvent button {
-        width: 10vw;
-        height: 4vh;
-        background-color: #2eae85;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        }
-    
-        .BtnImg {
-        width: 16px;
-        margin-top: 4px;
-        }
-    
-        .Host p {
-        font-size: 12px;
-        margin-top: 1vh;
-        margin-bottom: 2vh;
-        }
-    
-        .InfoSections {
-        flex-direction: column;
-        width: 70vw;
-        }
+  .InfoSecttion1 p,
+  .InfoSecttion2 p {
+    margin: 0.5vh 0;
+    line-height: 1.5;
+    z-index: 200;
+  }
 
-        .InfoSecttion1 p{
-            font-size: 14px;
-            margin-top: 1vh;
-            overflow-wrap: break-word; 
-            word-wrap: break-word; 
-        }
-    }
+  .InfoSecttion2 p {
+    margin: 0.5vh 0;
+    line-height: 1.5;
+    z-index: 200;
+    margin-left: 2vw;
+  }
 
-    .InfoSecttion2 p {
-        font-size: 14px;
-        margin-top: 1vh;
-        overflow-wrap: break-word; 
-    }
+  .InfoSecttion2 p:last-child {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
 
-    .InfoSecttion1 p strong{
-        margin-right: 5px;
-    }
+  .InfoSecttion2 .FunctionBtns {
+    margin-top: 70vw;
+    display: flex;
+    flex-direction: column;
+  }
+ #FunctionBtns{
+  margin-top: 150%;
+ }
+}
 
-    .InfoSecttion2 p strong {
-        margin-right: 20px;
-    }
-    
-    .FunctionBtns {
-        margin-top: 2vh;
-    }
+@media (max-width: 360px) {
+  .InfoCard {
+    width: 100%;
+    margin-top: 30px;
+    margin-left: -17px;
+    padding-right: 35px;
+
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-width: 1px;
+    background: #ebebff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ImgBanner img {
+    width: 80vw;
+    height: 35vh;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-left: 17px;
+  }
+
+  .NameEvent {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 0vh;
+    width: 50px;
+  }
+
+  .NameEvent h1 {
+    font-size: 25px;
+    text-align: center;
+    color: #0e0d35;
+  }
+
+  .NameEvent button {
+    width: 10vw;
+    height: 4vh;
+    background-color: #2eae85;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .BtnImg {
+    width: 16px;
+    margin-top: 4px;
+  }
+
+  #row1 {
+    display: flex;
+    flex-direction: row;
+    gap: 11vw;
+    margin-left: 17px;
+    margin-top: 4vw;
+  }
+
+  #row2 {
+    display: flex;
+    flex-direction: row;
+    gap: 11vw;
+    margin-left: 17px;
+    margin-top: 4vw;
+  }
+
+  #row3 {
+    display: flex;
+    flex-direction: row;
+    gap: 11vw;
+    margin-left: 17px;
+    margin-top: 4vw;
+  }
+
+  .EventDescription {
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 0.567px solid rgba(14, 13, 53, 0.17);
+    background: #fff;
+    box-shadow: 2.267px 2.267px 4.534px 0px rgba(14, 13, 53, 0.05);
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    margin-bottom: 1.5vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 2vw;
+  }
+
+  .EventDescription img {
+    width: 30vw !important;
+    height: 30vw !important;
+  }
+
+  .EditEventButton {
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 0.567px solid rgba(14, 13, 53, 0.17);
+    background: #fff;
+    box-shadow: 2.267px 2.267px 4.534px 0px rgba(14, 13, 53, 0.05);
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    margin-bottom: 1.5vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 2vw;
+    width: 30vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .EditEventButton img {
+    width: 20vw !important;
+    height: 20vw !important;
+  }
+
+  .EventDescription p {
+    margin-left: 11px;
+  }
+
+  .Host p {
+    font-size: 12px;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+  }
+
+  .InfoSections {
+    flex-direction: column;
+    width: 70vw;
+  }
+
+  .InfoSecttion1 p {
+    font-size: 14px;
+    margin-top: 1vh;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .InfoSecttion2 {
+    font-size: 14px;
+    margin-top: 1vh;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.InfoSecttion2 p {
+  font-size: 14px;
+  margin-top: 1vh;
+  overflow-wrap: break-word;
+}
+
+.InfoSecttion1 p strong {
+  margin-right: 5px;
+}
+
+.InfoSecttion2 p strong {
+  margin-right: 20px;
+}
+
+.FunctionBtns {
+  margin-top: 2vh;
+}
