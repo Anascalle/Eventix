@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../../utils/firebaseConfig";
+import { auth, db, storage } from "../../utils/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const UserProfile: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const UserProfile: React.FC = () => {
   // Fetch user data from Firebase
   useEffect(() => {
     const fetchUserData = async () => {
-      const userId = auth.currentUser?.uid; // Get the logged-in user's ID
+      const userId = auth.currentUser?.uid;
       if (userId) {
         const userDocRef = doc(db, "users", userId);
         const userSnapshot = await getDoc(userDocRef);
@@ -29,39 +30,40 @@ const UserProfile: React.FC = () => {
     fetchUserData();
   }, []);
 
-  // Handle Logout
   const handleLogout = () => {
     auth.signOut().then(() => navigate("/login"));
   };
 
-  // Handle Input Change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle File Change
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
     }
   };
 
-  // Save Profile Changes
   const handleSave = async () => {
     try {
-      const userId = auth.currentUser?.uid; // Get the logged-in user's ID
+      const userId = auth.currentUser?.uid;
       if (!userId) return;
 
       const userDocRef = doc(db, "users", userId);
-      await updateDoc(userDocRef, user);
 
-      // Optional: Handle file upload logic for profile image
+      // Update profile image if a new file is provided
+      let updatedImgUrl = user.img;
       if (file) {
-        // Add your file upload logic here
-        console.log("Handle image upload", file);
+        const storageRef = ref(storage, `profileImages/${userId}`);
+        await uploadBytes(storageRef, file);
+        updatedImgUrl = await getDownloadURL(storageRef);
       }
 
+      // Update user data in Firestore
+      await updateDoc(userDocRef, { ...user, img: updatedImgUrl });
+
+      setUser((prev) => ({ ...prev, img: updatedImgUrl }));
       alert("Profile updated successfully!");
     } catch (error) {
       console.error("Error updating profile:", error);
