@@ -4,6 +4,8 @@ import DetailScreen from '../screens/Detail/Detail';
 import Main from '../screens/Main/Main';
 import RegisterScreen from '../screens/Register/Register';
 import LoginScreen from '../screens/Login/Login';
+import ShoppingScreen from '../screens/Shopping/Shopping';
+import UserProfile from '../components/Profile/profile';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
   {
     path: '/detail/:id', 
     element: <DetailScreen/>, 
+  },
+  {
+    path: '/shopping/:id', 
+    element: <ShoppingScreen/>, 
+  },
+  {
+    path: '/Profile/:userId', 
+    element: <UserProfile/>, 
   },
   
 ]);
