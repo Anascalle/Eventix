@@ -1,22 +1,37 @@
-.registerSpace{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 #loginForm{
-    width: 75%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
 }
 
 #LogImg{
-    width: 60%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 #LogSpace{
     display: flex;
     flex-direction: row;
+}
+
+#LogBackgroundSpace{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-image: linear-gradient(#D2CDFF,#C6F6FA);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#LogWhiteSpace{
+    display: flex;
+    width: 90%;
+    height: 85%;
+    background-color: #F8F8F9;
+    border-radius: 20px;
 }
 
 #disLog1{
@@ -34,40 +49,40 @@
 }
 
 @media (max-width: 899px) {
-    .registerSpace{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
     #loginForm{
-        width: 75%;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        align-items: center;
+        justify-content: center;
     }
 
     #LogImg{
         display: none;
-        object-fit: cover;
     }
 
     #LogSpace{
-        width: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: row;
+    }
+
+    #LogBackgroundSpace{
+        display: flex;
+        flex-direction: row;
         height: 100vh;
+        background-image: linear-gradient(#D2CDFF,#C6F6FA);
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
     }
 
-    #disLog1{
-        display: none;
-    }
-
-    #disLog2{
-        display: none;
-    }
-
-    #LogNavH1{
-        color: #00B78C;
+    #LogWhiteSpace{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background-color: #F8F8F9;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0;
     }
 }

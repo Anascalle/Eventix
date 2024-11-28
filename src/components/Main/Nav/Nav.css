@@ -61,7 +61,8 @@
     margin-right: 4vw;
   }
 
-  @media (max-width: 768px) {
+/* Estilos responsivos */
+@media (max-width: 768px) {
     /* Para pantallas tipo tablet */
     .nav_bar2 {
       flex-direction: row;

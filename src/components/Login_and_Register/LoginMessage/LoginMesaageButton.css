@@ -1,12 +1,14 @@
 .login-buttons{
-    margin-left: 1em;
+    margin-left: 0.4em;
     background-color: rgba(240, 248, 255, 0);
-    color: #00B78C;
+    color: #a800b7;
+    font-weight: bolder;
     border-style: none;
 }
 
 .login-buttons:hover{
-    color: #01795d;
+    color: #ff7f4c;
+    background-color: rgba(240, 248, 255, 0);
     cursor: pointer;
 }
 

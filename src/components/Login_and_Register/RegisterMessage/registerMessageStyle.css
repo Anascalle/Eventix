@@ -1,4 +1,4 @@
-#MessageLogSpace{
+#MessageSpace{
     text-decoration: none;
     font-family: "Poppins", system-ui;
     font-style: normal;
@@ -8,12 +8,13 @@
 }
 
 @media (max-width: 899px) {
-    .login_message{
+
+    #register_message{
         font-size: 15px !important;
         width: 85%;
     }
 
-    #MessageLogSpace{
+    #MessageSpace{
         text-decoration: none;
         font-family: "Poppins", system-ui;
         font-style: normal;

@@ -49,7 +49,7 @@ const Nav3: React.FC = () => {
         <li><a href="/">ABOUT US</a></li>
         <li><a href="/about">SUPPORT</a></li>
       </ul>
-      <img id="profile_img_nav" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Porfileimg.webp?alt=media&token=71078af7-b02e-415d-9b56-8002af2a9a15" alt="Profile" />
+      <img id="profile_img_nav" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Group%201000004464.webp?alt=media&token=6852ddce-d999-4ccf-ac59-8a1f43b3b770" alt="Profile" />
       <p id="user_name_nav">{userName || "Guest"}</p>
     </nav>
   );

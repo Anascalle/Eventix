@@ -8,7 +8,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 const Nav2: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
-  const scrolled = useScroll();
+  const scrolled = useScroll(); 
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Nav2: React.FC = () => {
         }
 
         try {
-          const userDocRef = doc(db, "users", userId);
+          const userDocRef = doc(db, "users", userId); 
           const userDoc = await getDoc(userDocRef);
 
           if (userDoc.exists()) {
@@ -35,19 +35,20 @@ const Nav2: React.FC = () => {
           setUserName(null);
         }
       } else {
-        setUserName(null);
+        setUserName(null); 
       }
     });
 
-    return () => unsubscribe();
+    return () => unsubscribe(); 
   }, [userId]);
 
   return (
     <nav className={`nav_bar2 ${scrolled ? 'scrolled' : ''}`}>
       <h1 className="app_name">Eventix</h1>
       <ul className="nav_links">
-        <li><a href="/">ABOUT US</a></li>
-        <li><a href="/about">SUPPORT</a></li>
+        
+        <li><a aria-label="About us" href="/">ABOUT US</a> </li>
+        <li><a aria-label="About" href="/about">SUPPORT</a></li>
       </ul>
       <img id="profile_img_nav" src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Group%201000004464.webp?alt=media&token=6852ddce-d999-4ccf-ac59-8a1f43b3b770" alt="Profile" />
       <p id="user_name_nav">{userName || "Guest"}</p>
