@@ -1,131 +1,317 @@
-#buttons_event {
-  display: flex;
-  justify-content: center;
-  gap: 10%;
-}
-#Host_card {
-  border-radius: 20px;
-  margin-top: -40vw;
-  margin-left: 22vw;
-  width: 60vw;
-}
-
-.swiper-slide {
-  margin: 0;
-}
-
-#host_event_button{
-  background-color: white;
-  border: none;
-  cursor: pointer;
-}
-
 #hosts_events {
-  border-color: rgb(0, 255, 255);
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 20px;
-  padding: 1vw;
-  margin: 2vw;
-  width: 14vw;
-  background-color: white;
-  z-index: -100;
+  position: relative;
+  padding: 1em;
+  border-radius: 1.5em;
+  margin-bottom: 1em;
+  width: 80%;
+  height: 12rem;
+  box-shadow: 0 0.125em 0.625em #0000001a;
+}
+
+#invitations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #carousel {
-  width: 65vw;
-  height: auto;
   display: flex;
-  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: .2em; 
 }
 
-#event_img {
-  width: 20vw;
-  height: 9vw;
-  border-radius: 10px;
+.carousel-container {
+  display: flex;
+  gap: 1.5em; 
+  flex-wrap: nowrap;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  width: 15rem;
+  scroll-snap-align: start;
+  margin-right: 1em; 
+}
+
+#host_card {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 100%;
+}
+
+#host_event_button {
+  width: 100%;
+  height: auto;
+  border-radius: 1em;
+  padding: 2.5vw;
+  margin-left: -1.25em;
+  margin-top: -2.5rem;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 #host_tittle {
-  display: flex;
-  justify-content: left;
-  margin-bottom: -1vw;
-  margin-left: 2vw;
+  position: absolute;
+  right: 60.5%;
+  top: 7.5rem;
+  font-family: "Red Hat Display";
 }
 
-@media (max-width: 768px) {
-  #buttons_event {
-    display: flex;
-    justify-self: left;
-    margin-top: 6vw !important;
-   
-  }
+#name_event {
+  color: var(#0E0D35);
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: "Red Hat Display";
+  margin-top: 2rem;
+  text-align: start;
+}
 
-  #Host_card {
-    border-radius: 10px;
-    margin-top: 35vw;
-    margin-left: 22vw;
-    margin-right: 22vw;
-    position: absolute;
-  }
+#date_event {
+  color: #0E0D35;
+  font-family: "Red Hat Display";
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-align: left;
+}
 
-  .swiper-slide swiper-slide-active {
-    width: 100%;
-  }
+#guest_list {
+  display: flex;
+  align-items: center;
+  gap: -0.5em;
+  position: relative;
+  margin-left: 1.7rem;
+}
 
-  .swiper-slide {
-    margin: 0;
-  }
+.sb-avatar__image {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
 
+.sb-avatar__image:nth-child(2) {
+  z-index: 2;
+  left: -0.6rem; /* Superposición sobre el primero */
+}
+
+.sb-avatar__image:nth-child(3) {
+  z-index: 3;
+  left: -1.2rem; /* Superposición sobre el segundo */
+}
+
+.more-invites {
+  font-size: 0.75rem;
+  color: #555;
+  width: 2rem;
+  height: 2rem;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: -0.6rem; 
+  z-index: 5;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.more-invites-text {
+  font-weight: 700;
+}
+
+#threeDotsButton {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  position: absolute;
+  top: 1.25em;
+  right: 1.25em;
+  cursor: pointer;
+  color: #333;
+}
+
+#buttons_event {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2em;
+  right: 0.625em;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  border-radius: 0.3125em;
+  z-index: 10;
+}
+
+#guest_text_h {
+  margin-left: 2.5em;
+  font-size: 0.5rem;
+}
+
+#buttons_event button {
+  margin: 0.3125em 0;
+  padding: 0.5em;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.3125em;
+}
+
+#loading,
+#error,
+#no_events {
+  text-align: center;
+}
+
+#carousel {
+  max-width: calc(15rem * 3 + 0.625em * 2);
+  overflow-x: auto;
+  position: relative;
+}
+
+#carousel_div {
+  top: 10.875rem;
+  width: 46.875rem;
+  position: absolute;
+  left: 44.6875rem;
+}
+
+#carousel::-webkit-scrollbar {
+  height: 0.5em;
+}
+
+#carousel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#carousel::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.625em;
+}
+
+#carousel::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 740px) {
+  /* Ajuste para el contenedor de eventos */
   #hosts_events {
-    border-color: rgb(0, 255, 255);
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 20px;
-    padding: 3vw;
-    margin: 10vw;
-    width: 52vw;
-    height: 95vw;
-    margin-left: 1vw;
-    margin-right: 0vw;
+    min-height: 22rem;  
+    min-width: 19rem;   
+    padding: 1.5em; 
+    overflow-x: auto;
   }
 
-  #no_events {
-    font-size: large;
-    display: flex;
-    justify-self: center;
-  }
-
+  /* Carrusel - Ajustar para pantallas pequeñas */
   #carousel {
-    height: auto !important;
-    width: auto;
+    width: 100%;
+    overflow-x: auto; /* Activa el scroll horizontal */
+    margin-top: 14em;
+    height: auto;
+  }
+
+  .carousel-container {
     display: flex;
-    flex-direction: row;
+    gap: 1.5em;
+    flex-wrap: nowrap;
+    width: max-content; /* Ajusta al contenido */
   }
 
-  #location_event {
-    font-size: larger;
-  }
-  #date_event {
-    font-size: larger;
-  }
-
-  #event_img {
-    width: 70vw !important;
-    height: 50vw !important;
-    border-radius: 10px;
-    margin-bottom: 6vw !important;
+  .carousel-item {
+    width: 100%;
+    min-width: 16rem; /* Mantiene un tamaño adecuado para los ítems */
+    flex-shrink: 0; /* Evita que los ítems se reduzcan */
+    margin-right: 1.5em; 
   }
 
+  /* Botón de evento */
+  #host_event_button {
+    padding: 6vw;
+    margin-top: -2rem;
+    margin-left: 1rem;
+  }
+
+  /* Título del evento */
   #host_tittle {
-    display: flex;
-    justify-content: left;
-    margin-bottom: -1vw;
-    margin-left: 2vw;
-    font-size: larger;
+    right: 30%;
+    top: 10rem;
+    font-size: 1.75rem; 
   }
-  #ocation_event {
-    font-size: larger;
-    display: flex;
-    justify-self: left;
+
+  #name_event {
+    font-size: 1.75rem; /* Ajuste de tamaño */
+    margin-top: 2rem; 
+    text-align: left;
+  }
+
+  #date_event {
+    font-size: 1.25rem; 
+    font-weight: 700;
+  }
+
+  /* Ajuste para los botones del evento */
+  #buttons_event {
+    top: 3em;
+    right: 2em; 
+  }
+
+  #buttons_event button {
+    padding: 1.5em;
+    font-size: 1.25rem; 
+  }
+
+  /* Ajustes en el carrusel */
+  #carousel_div {
+    top: 0.5rem;
+    width: 1100px;
+    left: 5rem;
+  }
+
+  #threeDotsButton svg{
+    width: 40px;
+    height: 60px;
+  }
+
+  #guest_text_h{
+    font-size: 1.2rem;
+    margin-left: 2rem;
+    margin-top:1rem;
+  }
+
+  /* Ajustes en la lista de invitados */
+  #guest_list {
+    flex-direction: column; 
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sb-avatar__image {
+    margin-left: .8rem;
+    margin-top: .1rem;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .sb-avatar__image:nth-child(2) {
+    z-index: 2;
+    gap: 0.2;
+    top: 0.2rem;
+    left: 2.2rem;
+  }
+
+  .more-invites {
+    font-size: 5rem;
+    width: 4rem;
+    height: 4rem;
+    margin-top: 0.01em; 
+
+  }
+
+  .more-invites-text {
+    font-size: 1.5rem;
+    font-weight: 700;
   }
 }

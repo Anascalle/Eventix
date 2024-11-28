@@ -24,7 +24,7 @@ const Filters: React.FC<FilterProp> = ({  onFilterSelect }) => {
     return (
         <div className="filters">
             <div onClick={toggleDropdown} className="filters-toggle">
-                <p>Filters by ∨</p>
+                <p className="p-filters">Filters by</p>
             </div>
             <div className={`CardsFilters ${isDropdownVisible ? 'visible' : ''}`}>
                 {categories.map((category) => (

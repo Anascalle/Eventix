@@ -1,0 +1,80 @@
+#fund-form-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #fund-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #form-group {
+    margin-bottom: 20px;
+  }
+  
+  #form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  #form-input, #form-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  #form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  #submit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #submit-button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  #submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  #close-btns-found {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  #close-btns-found:hover {
+    color: #f44336;
+  }
+  
+  #form-group p {
+    color: red;
+    font-size: 14px;
+  }
+  

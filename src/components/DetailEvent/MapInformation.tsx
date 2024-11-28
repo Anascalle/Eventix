@@ -4,6 +4,7 @@ import { db } from '../../utils/firebaseConfig';
 import BackBtn from "./BackBtn/BackBtn.view";
 import InfoCard from "./InfoCard/InfoCard.view";
 import "./MapInfo.css";
+import Nav2 from '../Main/Nav/Nav.view';
 
 interface MapInformationProps {
     eventId: string;
@@ -45,7 +46,9 @@ const MapInformation: React.FC<MapInformationProps> = ({ eventId }) => {
     }
 
     return (
-        <div className="MapInfo">
+        <>
+           <Nav2></Nav2>
+           <div className="MapInfo">
         <BackBtn NameEvent={eventInfo.name}  />
         <InfoCard
             img={eventInfo.image}
@@ -60,6 +63,8 @@ const MapInformation: React.FC<MapInformationProps> = ({ eventId }) => {
             
         />
         </div>
+           </>
+       
     );
     };
 

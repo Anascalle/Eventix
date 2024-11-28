@@ -1,0 +1,39 @@
+#buttons_event_container {
+    position: relative; 
+  }
+  
+  #threeDotsButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  #buttons_event {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 30px; 
+    right: 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+  }
+  
+  #buttons_event button {
+    margin: 5px 0;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  #buttons_event button:hover {
+    background-color: #ddd;
+  }
+  

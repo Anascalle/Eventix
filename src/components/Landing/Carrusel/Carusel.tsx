@@ -48,7 +48,7 @@ const CarouselBanner = () => {
     <Swiper
       pagination={{ clickable: true }}
       autoplay={{
-        delay: 3000,
+        delay: 4000,
         disableOnInteraction: false,
       }}
       modules={[Pagination, Autoplay]} 
@@ -74,7 +74,7 @@ const CarouselBanner = () => {
             }}
           >
             <h1 id='banner_title'>{slide.title}</h1>
-            <p className='banner_text'>{slide.text}</p>
+            <p id='banner_text'>{slide.text}</p>
             <ButtonLogic showPrimary={false} showSecondary={true} />
           </div>
         </SwiperSlide>

@@ -1,17 +1,58 @@
-#main_screen{
-    margin: 0
-    
-}
-
-h2{
-    font-family: "Poppins", system-ui;
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #D2CDFF 0%, #C6F6FA 100%); 
+  }
+  
+  #background_houst_guest {
+    background-color: #F8F8F9;
+    position: absolute;
+    width: 69.5vw;
+    height: 640px;
+    top: 14%;
+    border-radius: 30px;
+    margin-left: 28vw;
+    z-index: -1;
+  }
+  
+  #background_invitation{
+    background-color: #EBEBFF;
+    position: absolute;
+    width: 30.5vw;
+    height: 640px;
+    top: 14%;
+    border-radius: 30px;
+    margin-left: 2vw;
+    z-index: -5;
+  }
+  h2, h3 {
+    font-family: "Red Hat Display", sans-serif; 
     font-style: normal;
     font-size: 1.5vw;
     color: #0E0D35;
-}
-
-p{
-    font-family: "Poppins", system-ui;
-    font-size: 1vw;
+  }
+  
+  p {
+    font-family: "Red Hat Display", sans-serif; 
     color: #0E0D35;
-}
+  }
+  
+
+  @media (max-width: 740px) {
+    body {
+        background: #f6f4fc;
+    }
+  
+    #background_houst_guest {
+      display: none;
+    
+    }
+  
+    h2, h3, h1 {
+      font-size: 5vw; 
+    }
+
+    #background_invitation{
+      display: none;
+    }
+  }
+  

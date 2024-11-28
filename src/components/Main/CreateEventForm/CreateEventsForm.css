@@ -1,147 +1,93 @@
-
-.create_event_form {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.314);
-    border-radius: 20px; 
-    z-index: 10;
-    width: 90%;
-    max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
-    font-family: "Poppins", system-ui;
+.fund-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  width: 55%;
+  max-width: 100%;
+  min-height: 500px;
+  height: auto;
+  overflow-y: auto;
 }
 
-
-.close-button {
-    position: absolute;
-    margin-bottom: 50%;
-    right: 20px;
-    background-color: #00B78C; 
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
+.fund-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
-.close-button:hover {
-    background-color: #00B78C;
+.fund-form label {
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: bold;
+  color: #00b78c;
 }
 
-
-.create_event_form h2 {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 10%;
-    margin-top: 10%;
-    font-weight: 800;
+.fund-form input,
+.fund-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 15px;
+  font-family: "Red Hat Display";
+  transition: border-color 0.3s ease;
 }
 
-
-.example{
-    font-size: 0.8rem;
-    color: #979292;
+.fund-form input:focus,
+.fund-form textarea:focus {
+  border-color: #00b78c;
+  outline: none;
 }
 
-
-.create_event_form label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: #00B78C;
-   
+.fund-form button {
+  padding: 15px;
+  background-color: #00b78c;
+  width: 40%;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  margin: 20px auto;
+  font-family: "Red Hat Display";
 }
 
-.create_event_form input,
-.create_event_form select,
-.create_event_form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #e0e0e0;
-    font-family: "Poppins", system-ui;
-    border-radius: 10px;
-    font-size: 0.8rem;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
+.fund-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  color: #777;
 }
 
-.create_event_form input:focus,
-.create_event_form select:focus,
-.create_event_form textarea:focus {
-    border-color: #00B78C;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 192, 135, 0.5);
+.fund-form button:hover:not(:disabled) {
+  background-color: #007d5a;
 }
 
-
-.create_event_form .map {
-    margin: 15px 0;
-    border-radius: 10px;
-    overflow: hidden;
+.fund-form .success-message {
+  color: green;
+  font-weight: bold;
 }
 
-
-.create_event_form button[type="submit"] {
-    width: 100%;
-    font-family: "Poppins", system-ui;
-    font-weight: 600;
-    padding: 15px;
-    background-color: #00B78C;
-    width: 40%;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
-    display: block;
-    margin: 20px auto;
-}
-
-.create_event_form button[type="submit"]:hover {
-    background-color: #009f6b;
-}
-
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 5; 
+.fund-form .error-message {
+  color: red;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
-    .create_event_form {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.314);
-        border-radius: 20px; 
-        z-index: 10;
-        width: 80%;
-        max-width: 500px;
-        max-height: 90vh;
-        overflow-y: auto;
-        font-family: "Poppins", system-ui;
-    }
+  .fund-form {
+    width: 100%;
+    padding: 20px;
+    min-height: auto;
+  }
 
+  .fund-form button {
+    width: 100%;
+  }
 }

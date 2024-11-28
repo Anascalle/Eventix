@@ -6,10 +6,7 @@
     border-style: none;
 }
 
-.register-buttons:hover{
-    color: #01795d;
-    cursor: pointer;
-}
+
 
 .register-buttons:active{
     color: #ff7f4c;

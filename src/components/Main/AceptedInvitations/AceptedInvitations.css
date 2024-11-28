@@ -1,18 +1,27 @@
 #acepted_invitations_shadow {
-    width: 14vw;
     height: 33vw;
-    -webkit-box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.222);
-    -moz-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.222);
     box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.222);
-    border-top-left-radius: 25px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 0px;
+    border-radius: 30px;
     padding-right: 1vw;
     position: absolute;
-    top: 60%;
-    right: 0.5%; 
- 
+    top: 100%;
+    width: 25%;
+    margin-right: 17%;
+    background-color: #fff;
+    right: -2%;
+    z-index: 50;
+    transition: all 0.3s ease;
+}
+
+#acepted_invitations_shadow::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 90%;
+    transform: translateX(-50%);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid #fff;
 }
 
 #acepted_invitations_div {
@@ -23,8 +32,9 @@
 #acepted_invitation_text {
     display: flex;
     flex-direction: column;
-    width: 10vw;
-    margin-left: 5%;
+    width: 20vw;
+    margin-top: 2%;
+    margin-left: 10%;
 }
 
 #acepted_invitation {
@@ -32,106 +42,80 @@
     margin-top: 2vw;
 }
 
-
-#porfile_img {
-    width: 4vw;
-    height: 4vw;
-    display: flex;
-    align-self: center;
-    margin-right: 1vw;
+#acepted_invitations_tittles {
+    margin-left: 5%;
+    justify-content: flex-start;
 }
 
-h2 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2vw;
+#img_acc {
+    width: 50px;
 }
 
-span {
-    font-weight: 400;
+.bold-text {
+    font-weight: bold;
+    font-size: 16px;
 }
+
+#no_accepted_inv_acc {
+    margin-left: 7%;
+}
+
+
+@media (max-width: 768px) {
+  
+    #acepted_invitations_shadow {
+        position: fixed; 
+        top: 10%; 
+        left: 50%; /* Centra el modal horizontalmente */
+        transform: translateX(-50%); /* Alineación exacta en el centro */
+        width: 90vw; /* Ancho mayor en pantallas pequeñas */
+        height: 70vw; /* Altura adaptable */
+        border-radius: 25px; /* Bordes redondeados */
+        padding: 10vw; 
+        background-color: #fff; 
+        box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.288); 
+        z-index: 1000; 
+    }
 
  
-@media (max-width: 768px) {
-    
-    #acepted_invitations_shadow{
-        margin-top: 230vw;
-        -webkit-box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.288);
-        -moz-box-shadow: -4px 6px 13px -1px rgba(166,166,166,0.288);
-        box-shadow: -4px 6px 13px -1px rgba(166, 166, 166, 0.288);
-        width: 90vw;
-        height: 70vw;
-        border-top-left-radius: 25px;
-        border-top-right-radius: 0px;
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 0px;
-        padding-left: 10vw;
-        padding-top: 10vw;
-        padding-bottom: 10vw;
-        margin-left: 80vw;
-        position: absolute;
+    #acepted_invitations_tittles {
+        font-size: larger;
+        text-align: center;
     }
 
-    #acepted_invitations-p{
-        font-size: 15px !important;
+    #acepted_invitation_text {
+        width: 80vw; 
+        margin-left: 10%;
+        margin-bottom: 8vw;
     }
-    
-    #acepted_invitations_div{
-        margin-left: 1vw;
-        margin-top: 2vw;
-    }
-    
-    #text_accepted_p{
-        font-size: 15px;
-        margin-top: 30px;
-    }
-    #acepted_invitations_tittle{
-        font-size: larger;
-    }
-    #acepted_invitation_text{
-        display: flex;
+
+    #acepted_invitation {
         flex-direction: column;
-        width: 50vw !important;
-        margin-bottom: 8vw !important;
-    }
-    
-    #acepted_invitation{
-        display: flex;
-        margin-top: 2vw;
-    }
-    
-    #porfile_img{
-        width: 4vw;
-        height: 4vw;
-        display: flex;
-        align-self: center;
-        justify-items: center;
-        margin-right: 1vw;
-      
-    }
-    
-    #acepted_invitations_tittle{
-        display: flex;
-        justify-content: center;
-        font-size: larger;
-    }
-    
-    #invitations-p{
-        font-size: px;
     }
 
-    #no_accepted_inv{
-        font-size: 19.2px;
+    #img_acc {
+        width: 25vw; 
+        height: auto; 
+    }
+
+    .bold-text {
+        font-size: 14px; 
+    }
+
+    #no_accepted_inv_acc {
+        font-size: 18px;
         text-align: center;
         color: rgb(136, 136, 136);
     }
 
-
-    span{
-        font-weight: 400;
+   
+    #acepted_invitations_div {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
     }
-    
-    #name ,#ocation , #date{
+
+    #text_accepted_p {
         font-size: 15px;
     }
 }

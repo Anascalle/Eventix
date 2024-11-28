@@ -1,0 +1,34 @@
+
+  
+  .progress-bar-container {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+  }
+  
+  .fund-form {
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: left;
+  }
+  
+  .fund-form input,
+  .fund-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .fund-form button {
+    padding: 10px 20px;
+    background-color: #36A2EB;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .fund-form button:hover {
+    background-color: #2980b9;
+  }
+  
