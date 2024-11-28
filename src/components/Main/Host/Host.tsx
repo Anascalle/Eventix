@@ -3,6 +3,7 @@ import "./Host.css";
 import Avatar from "react-avatar";
 import DeletedButton from "../DeletedButton/deletedButton";
 import EditButton from "../EditButton/editButton";
+import LinearProgressBar from "./LinearProgress";
 import { HostEventsProps } from "../../../Types/types";
 import { useNavigate } from "react-router-dom";
 import useDeleteEvent from "../../../hooks/useDeletedComponent";
@@ -11,6 +12,7 @@ const HostEvents: React.FC<HostEventsProps> = ({ date, id, name, invitations, co
   const navigate = useNavigate();
   const { deleteEvent, deleting, error } = useDeleteEvent();
   const [showButtons, setShowButtons] = useState<boolean>(false); 
+  const [avatarImg, setAvatarImg] = useState<string>(invitations[0]?.userImg || 'default-avatar-url'); 
 
   const handleButtonClick = () => {
     console.log(`Button clicked. Card ID: ${id}`);
@@ -21,6 +23,11 @@ const HostEvents: React.FC<HostEventsProps> = ({ date, id, name, invitations, co
     deleteEvent(id);
   };
 
+  const handleImageChange = (newImageUrl: string) => {
+    setAvatarImg(newImageUrl); // Cambia la URL de la imagen
+  };
+  console.log(handleImageChange);
+  
  
   const toggleButtons = () => setShowButtons((prev) => !prev);
 
@@ -35,13 +42,14 @@ const HostEvents: React.FC<HostEventsProps> = ({ date, id, name, invitations, co
               </div>
             )}
             {invitations.slice(0, 2).map((invitation, index) => (
-              <Avatar
-                key={invitation.userId}
-                src={invitation.userImg}
-                size={window.innerWidth < 740 ? "60" : "30"} 
-                round
-                className={`sb-avatar__image ${index === 1 ? "second-avatar" : ""}`}
-              />
+            <Avatar
+            key={invitation.userId}
+            src={avatarImg} // Usando el estado para la imagen
+            size={window.innerWidth < 740 ? "60" : "30"} 
+            round
+            className={`sb-avatar__image ${index === 1 ? "second-avatar" : ""}`}
+          />
+       
             ))}
           </div>
         ) : (
@@ -53,7 +61,7 @@ const HostEvents: React.FC<HostEventsProps> = ({ date, id, name, invitations, co
           <p id="date_event">{date}</p>
         </button>
       </div>
-
+      <LinearProgressBar eventId={id} />
 
       <button id="threeDotsButton" onClick={toggleButtons}>
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">

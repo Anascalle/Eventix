@@ -9,12 +9,18 @@ import useRejectInvitation from "../../../hooks/useRejectInvitation";
 const GuestEventes: React.FC<GuestEventesProps> = ({ date, id, name, invitations, coloor }) => {
   const navigate = useNavigate();
   const [showButtons, setShowButtons] = useState(false); 
-  const { rejectInvitation } = useRejectInvitation(); // Usa el hook de rechazo de invitación
+  const { rejectInvitation } = useRejectInvitation();
+  const [avatarImg, setAvatarImg] = useState<string>(invitations[0]?.userImg || 'default-avatar-url'); 
 
   const handleButtonClick = () => {
     console.log(`Button clicked. Card ID: ${id}`);
     navigate(`/detail/${id}`, { state: { id, userType: "Guest" } });
   };
+  const handleImageChange = (newImageUrl: string) => {
+    setAvatarImg(newImageUrl); // Cambia la URL de la imagen
+  };
+  console.log(handleImageChange);
+  
 
   const toggleButtons = () => {
     setShowButtons(!showButtons); 
@@ -32,7 +38,7 @@ const GuestEventes: React.FC<GuestEventesProps> = ({ date, id, name, invitations
              {invitations.slice(0, 2).map((invitation, index) => (
               <Avatar
                 key={invitation.userId}
-                src={invitation.userImg}
+                src={avatarImg}
                 size={window.innerWidth < 740 ? "60" : "30"}
                 round
                 className={`sb-avatar__images ${index === 1 ? "second-avatar" : ""}`}

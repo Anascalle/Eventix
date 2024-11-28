@@ -1,93 +1,130 @@
-.fund-form {
+.create_event_form {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 20px;
   padding: 40px;
   border: 1px solid #ccc;
   border-radius: 30px;
   background-color: #f9f9f9;
+  height: 85%;
   width: 55%;
-  max-width: 100%;
-  min-height: 500px;
-  height: auto;
-  overflow-y: auto;
 }
 
-.fund-form .form-group {
+button:disabled {
+  background-color: #ccc;  
+  cursor: not-allowed;  
+  color: #777;  
+}
+
+#select_id {
+ width: 100%;
+}
+
+.title_create_event {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.address-container {
+  display: flex;
+  align-items: center;  
+  gap: 10px;  
+}
+
+.close-button {
+  position: absolute;
+  top: 50px;
+  left: 1150px;
+  border: none;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-column, .map_div {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 100%;
+  width: 48%;
+  gap: 8px; 
 }
 
-.fund-form label {
-  font-family: "Red Hat Display", sans-serif;
+.left-column label, .map_div label {
+  font-family: "Red Hat Display";
   font-weight: bold;
-  color: #00b78c;
+  margin-bottom: 5px;
+  color: #00B78C;
+}
+option {
+  background-color: #fff;
+  color: #333;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 14px;
 }
 
-.fund-form input,
-.fund-form textarea {
-  padding: 10px;
+
+.left-column input, .left-column select, .left-column textarea,
+.map_div input, .map_div textarea {
+  padding: 5px;  
   border: 1px solid #ccc;
   border-radius: 10px;
-  font-size: 14px;
-  width: 100%;
-  margin-bottom: 15px;
+  transition: all 0.3s ease; 
   font-family: "Red Hat Display";
-  transition: border-color 0.3s ease;
+  width: 97%;  
+  font-size: 14px;  
+  margin-bottom: 5px;  
 }
 
-.fund-form input:focus,
-.fund-form textarea:focus {
-  border-color: #00b78c;
-  outline: none;
+.left-column input:focus, 
+.left-column select:focus, 
+.left-column textarea:focus,
+.map_div input:focus, 
+.map_div textarea:focus {
+  border-color: #00B78C;  
+  outline: none;  
+}
+.map_div .example {
+  font-size: 12px;
+  color: #888;
 }
 
-.fund-form button {
+
+#create_event[type="submit"] {
+  width: 100%;
+  font-weight: 600;
   padding: 15px;
-  background-color: #00b78c;
+  background-color: #00B78C;
   width: 40%;
   color: white;
   border: none;
   border-radius: 10px;
-  font-weight: 600;
   cursor: pointer;
   font-size: 0.9rem;
   transition: background-color 0.3s ease;
+  display: block;
   margin: 20px auto;
   font-family: "Red Hat Display";
 }
 
-.fund-form button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  color: #777;
-}
-
-.fund-form button:hover:not(:disabled) {
-  background-color: #007d5a;
-}
-
-.fund-form .success-message {
-  color: green;
-  font-weight: bold;
-}
-
-.fund-form .error-message {
-  color: red;
-  font-weight: bold;
+#create_event[type="submit"]:hover {
+  background-color: #00B78C;
 }
 
 @media (max-width: 768px) {
-  .fund-form {
-    width: 100%;
-    padding: 20px;
-    min-height: auto;
+  .create_event_form {
+      flex-direction: column;
+      align-items: center;
   }
 
-  .fund-form button {
-    width: 100%;
+  .left-column, .map_div {
+      width: 100%;
   }
 }

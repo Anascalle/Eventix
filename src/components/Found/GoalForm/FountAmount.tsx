@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseConfig';
 
-
+import "./FoundAmount.css"
 interface FundFormProps {
   eventId: string;
   onFundCreated: () => void; 
@@ -55,8 +55,9 @@ const FundForm: React.FC<FundFormProps> = ({ eventId, onFundCreated }) => {
 
   return (
     <form onSubmit={handleSubmit} className="fund-form">
+      <h1 id='title_wel'>Welcome to group fundraising</h1>
       <div>
-        <label htmlFor="goalAmount">Cantidad de la Meta:</label>
+        <label htmlFor="goalAmount">Goal:</label>
         <input
           id="goalAmount"
           type="number"
@@ -67,7 +68,7 @@ const FundForm: React.FC<FundFormProps> = ({ eventId, onFundCreated }) => {
       </div>
 
       <div>
-        <label htmlFor="description">Descripción:</label>
+        <label htmlFor="description">Description:</label>
         <textarea
           id="description"
           value={description}
@@ -80,7 +81,7 @@ const FundForm: React.FC<FundFormProps> = ({ eventId, onFundCreated }) => {
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Guardando...' : 'Guardar Meta'}
+        {loading ? 'Guardando...' : 'Create'}
       </button>
     </form>
   );

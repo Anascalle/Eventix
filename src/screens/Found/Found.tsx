@@ -6,10 +6,11 @@ import './Found.css';
 import FundForm from '../../components/Found/GoalForm/FountAmount';
 import GoalProgress from '../../components/Found/ProgressGoal/ProgressGoal';
 import AddMoneyForm from '../../components/Found/AddMoney/AddMoney';
-
+import Nav2 from '../../components/Main/Nav/Nav.view';
+import ContributorList from '../../components/Found/ContributesList/ContributeList';
 const FoundScreen: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [fundExists, setFundExists] = useState<boolean | null>(null); // `null` para indicar carga inicial
+  const [fundExists, setFundExists] = useState<boolean | null>(null); // null para indicar carga inicial
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
@@ -46,16 +47,20 @@ const FoundScreen: React.FC = () => {
   }
 
   if (fundExists === null) {
-    return <p>Cargando...</p>; // Estado inicial de carga
+    return <p>Cargando...</p>; 
   }
 
   return (
     <div className="Found-screen">
-      <h1>Fondo</h1>
+       <Nav2></Nav2>
+ 
       {fundExists ? (
         <>
+     
           <GoalProgress eventId={id!} />
           <AddMoneyForm eventId={id!} />
+          <ContributorList eventId={id!} />
+
         </>
       ) : (
         <FundForm eventId={id!} onFundCreated={handleFundCreated} />

@@ -1,21 +1,21 @@
 import { useUser } from "../../../context/useContext";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../../../utils/firebaseConfig";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Nav.css";
-import InvitationsAccept from "../AceptedInvitations/AceptedInvitations"; 
+import InvitationsAccept from "../AceptedInvitations/AceptedInvitations";
 
 const Nav2: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
-  const { user } = useUser(); 
+  const navigate = useNavigate(); 
+  const { user } = useUser();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [notificationCount, setNotificationCount] = useState<number>(0);
   const [hasNotification, setHasNotification] = useState<boolean>(false);
 
-  // Verifica si los datos del usuario existen en el contexto
-  const userName = user?.username || "Guest"; // Si no hay username, muestra "Guest"
-  const userImg = user?.img || "https://via.placeholder.com/50"; // Si no hay img, muestra una imagen por defecto.
+  const userName = user?.username || "Guest";
+  const userImg = user?.img || "https://via.placeholder.com/50";
 
   useEffect(() => {
     if (userId) {
@@ -39,17 +39,28 @@ const Nav2: React.FC = () => {
     setHasNotification(false);
   };
 
+  const handleEventixClick = () => {
+    if (user?.uid) {
+      navigate(`/main/${user.uid}`);
+      navigate("/login");
+    }
+  };
+
   return (
     <nav className="nav_bar2">
-      <h1 className="app_name">Eventix</h1>
-      <h1 className="app_name_responsive">Eventix</h1>
+      <h1 className="app_name" onClick={handleEventixClick}>
+        Eventix
+      </h1>
+      <h1 className="app_name_responsive" onClick={handleEventixClick}>
+        Eventix
+      </h1>
       <div className="user-container">
         <button
           id="svg_button"
           onClick={toggleModal}
           className={hasNotification ? "notification-active" : ""}
         >
-         <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"

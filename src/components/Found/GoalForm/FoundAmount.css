@@ -1,80 +1,94 @@
-#fund-form-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.fund-form {
+  position: absolute;
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+  top: 25%;
+  right: 30%;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#title_wel {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-left: 18%;
+}
+
+.fund-form div {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.fund-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: left;
+  font-size: 16px;
+  color: #333;
+}
+
+.fund-form input,
+.fund-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.fund-form button {
+  padding: 2% 5%;
+  width: 100%;
+  background-color: #2eae85;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.fund-form button:hover {
+  background-color: #26a474;
+}
+
+.fund-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.fund-form p {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fund-form p[style="color: red"] {
+  color: red;
+}
+
+.fund-form p[style="color: green"] {
+  color: green;
+}
+
+@media (max-width: 600px) {
+  .fund-form {
+    padding: 15px;
+    width: 90%;
+    top: 10%;
+    right: 5%;
   }
-  
-  #fund-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #form-group {
-    margin-bottom: 20px;
-  }
-  
-  #form-group label {
+
+  .fund-form input,
+  .fund-form textarea,
+  .fund-form button {
     font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
   }
-  
-  #form-input, #form-textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  #form-textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  #submit-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  #submit-button:disabled {
-    background-color: #bbb;
-    cursor: not-allowed;
-  }
-  
-  #submit-button:hover {
-    background-color: #45a049;
-  }
-  
-  #close-btns-found {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    color: #888;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  #close-btns-found:hover {
-    color: #f44336;
-  }
-  
-  #form-group p {
-    color: red;
-    font-size: 14px;
-  }
-  
+}
