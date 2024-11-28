@@ -1,17 +1,27 @@
-import "./BackBtn.css"
+import "./BackBTn.css"
+import { useNavigate } from "react-router-dom";
 
-interface BackProp{
+interface BackProp {
     NameEvent: string;
 }
 
-const BackBtn: React.FC<BackProp> = (prop) =>{
-    return(
+const BackBtn: React.FC<BackProp> = (prop) => {
+    const navigate = useNavigate(); 
+
+    const handleBackClick = () => {
+        navigate(-1); 
+    };
+
+    return (
         <div className="BackBtn">
-            <button><img src="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Back.png?alt=media&token=24f43304-f4db-4705-ab8a-998f0f31123f" alt="" /></button>
-            <p>{prop.NameEvent}</p>
-        </div>  
-    
-    )
+            <button onClick={handleBackClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+<path d="M20.8648 25.0102C20.9548 25.0998 21.0262 25.2063 21.0749 25.3235C21.1236 25.4406 21.1487 25.5662 21.1487 25.693C21.1487 25.8198 21.1236 25.9454 21.0749 26.0625C21.0262 26.1797 20.9548 26.2861 20.8648 26.3758C20.7748 26.4655 20.6679 26.5366 20.5503 26.5851C20.4328 26.6336 20.3067 26.6586 20.1794 26.6586C20.0521 26.6586 19.9261 26.6336 19.8085 26.5851C19.6909 26.5366 19.5841 26.4655 19.4941 26.3758L9.80684 16.7248C9.71677 16.6351 9.64532 16.5287 9.59657 16.4115C9.54782 16.2944 9.52273 16.1688 9.52273 16.042C9.52273 15.9151 9.54782 15.7895 9.59657 15.6724C9.64532 15.5552 9.71677 15.4488 9.80684 15.3591L19.4941 5.70812C19.6758 5.52703 19.9224 5.42529 20.1794 5.42529C20.4365 5.42529 20.683 5.52703 20.8648 5.70812C21.0466 5.88921 21.1487 6.13483 21.1487 6.39093C21.1487 6.64704 21.0466 6.89265 20.8648 7.07374L11.8617 16.042L20.8648 25.0102Z" fill="#0E0D35"/>
+</svg>
+<p>{prop.NameEvent}</p>
+            </button>
+        </div>
+    );
 }
 
 export default BackBtn;
