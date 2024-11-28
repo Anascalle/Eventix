@@ -57,6 +57,7 @@ const MapInformation: React.FC<MapInformationProps> = ({ eventId }) => {
             StartTime={eventInfo.startTime}
             Location={eventInfo.location}
             Description={eventInfo.description}
+            
         />
         </div>
     );

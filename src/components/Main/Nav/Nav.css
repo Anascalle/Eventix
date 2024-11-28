@@ -81,10 +81,11 @@
       margin-left: 0;
     }
   
-    #porfile_img_nav {
-      width: 8vw;
+#profile_img_nav {
+      width: 13vw !important; 
+      display: block;
+      margin-right: 10vw;
     }
-  
     #user_name_nav {
       font-size: 0.9rem;
       margin-right: 2vw;
@@ -100,12 +101,11 @@
       display: none; /* Oculta los enlaces en pantallas pequeñas */
     }
   
-    #porfile_img_nav {
-      width: 10vw; 
+ #profile_img_nav {
+      width: 13vw !important; 
       display: block;
       margin-right: 10vw;
     }
-  
     #user_name_nav {
       display: none;
     }

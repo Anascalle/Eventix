@@ -6,21 +6,21 @@ import FinalSection from "../FinalSection/FinalSection.View";
 
 const SectionGroup: React.FC =() =>{
   const [imageUrls, setImageUrls] = useState({
-    section1: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Img1.png?alt=media&token=a00a85d6-cc5e-487a-b90a-107ba8e39d8e",
-    section3: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img3.png?alt=media&token=9b0a74d5-dbf8-4390-bb75-f16bcd054843",
+    section1: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Img1.webp?alt=media&token=cb253353-56ac-409b-ad73-3a69b97feb7c",
+    section3: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img3.webp?alt=media&token=19bdfe9c-a9e5-41ba-a61c-fa29cf27dfd8",
   });
 
   const updateImageUrls = () => {
     const isMobile = window.innerWidth <= 375;
     if (isMobile) {
       setImageUrls({
-        section1: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img1-mobile.png?alt=media&token=dd9fe303-f36a-48a5-9633-c424574a1b92",
-        section3: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img3-mobile.png?alt=media&token=fa98a493-4b29-4959-a9d8-3432efd3dbb7",
+        section1: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img1-mobile.webp?alt=media&token=5398f96c-8d62-4351-86ec-8f86db52f156",
+        section3: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img3-mobile.webp?alt=media&token=76678f82-ada1-46a6-a656-159b6dd33d76",
       });
     } else {
       setImageUrls({
-        section1: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Img1.png?alt=media&token=a00a85d6-cc5e-487a-b90a-107ba8e39d8e",
-        section3: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img3.png?alt=media&token=9b0a74d5-dbf8-4390-bb75-f16bcd054843",
+        section1: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/Img1.webp?alt=media&token=cb253353-56ac-409b-ad73-3a69b97feb7c",
+        section3: "https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img3.webp?alt=media&token=19bdfe9c-a9e5-41ba-a61c-fa29cf27dfd8",
       });
     }
   };
@@ -50,7 +50,7 @@ const SectionGroup: React.FC =() =>{
       <Section
         texts={["Choose", "the", "best", "day", "and", "location"]} 
         fontWeights={["semi-bold", "normal", "semi-bold", "semi-bold", "normal", "semi-bold"]} 
-          imageUrl="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img2.png?alt=media&token=52b3da74-98e2-4424-955a-9ae25f95b478"
+          imageUrl="https://firebasestorage.googleapis.com/v0/b/programacion-ec39e.appspot.com/o/img2.webp?alt=media&token=ea72f734-42ec-4624-b6be-1ef2eb49f2b1"
         colors={["#FFFF", "#FFFF",  "#0E0D35", "#0E0D35","#FFFF"]}
         customClass="second_sections"
       />

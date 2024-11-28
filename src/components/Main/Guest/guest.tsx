@@ -8,11 +8,11 @@ interface GuestEventesProps {
     url: string;
     name: string
     id: string;
-    
+  
   }
   
 const GuestEventes: React.FC<GuestEventesProps> = ({
-  ocation,
+
   date,
   url,
   name,
@@ -27,7 +27,7 @@ const GuestEventes: React.FC<GuestEventesProps> = ({
   
   return (
     <button id="Guest_events" onClick={handleButtonClick}>
-        <img id="event_img" src={url} alt="" />
+        <img id="event_img" src={url} alt="event img" />
         <p id="ocation_event">{name}</p>
         <p id="date_event">{date}</p>
         

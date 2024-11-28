@@ -1,50 +1,81 @@
 @media (min-width: 900px) {
-.registerSpace{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-#registerForm{
-    width: 75%;
-}
-
-#SignImg{
-    width: 60%;
-    object-fit: cover;
-}
-
-#SignSpace{
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-}
-}
-
-@media (max-width: 899px) {
-    .registerSpace{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
 
     #registerForm{
-        width: 75%;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        align-items: center;
+        justify-content: center;
     }
 
     #SignImg{
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    #SignBackgroundSpace{
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-image: linear-gradient(#D2CDFF,#C6F6FA);
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    #SignWhiteSpace{
+        display: flex;
+        width: 90%;
+        height: 85%;
+        background-color: #F8F8F9;
+        border-radius: 20px;
+    }
+
+    #disSign1{
         display: none;
     }
 
-    #SignSpace{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+    #disSign2{
+        display: none;
     }
-}
+    }
+    @media (max-width: 899px) {
+        #registerForm{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #SignImg{
+            display: none;
+        }
+
+        #SignBackgroundSpace{
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            background-image: linear-gradient(#D2CDFF,#C6F6FA);
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #SignWhiteSpace{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: #F8F8F9;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #disSign1{
+            display: none;
+        }
+
+        #disSign2{
+            display: none;
+        }
+    }
